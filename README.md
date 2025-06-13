@@ -122,7 +122,7 @@ Authentication: Requires JWT.
 [
   {
     "status": 200,
-    "body": [ array of items ]
+    "body": [ "array_values" ]
   },
   {
     "status": 201,
