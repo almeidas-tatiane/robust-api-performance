@@ -47,7 +47,7 @@ Returns a JWT token.
   "username": "admin",
   "password": "password"
 }
-### 🔍 GET `/items/:id`
+### 🔍 `GET /items/:id`
 
 **Description:** Retrieves a specific item by ID.  
 **Authentication:** Requires JWT.
