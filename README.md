@@ -123,7 +123,7 @@ Authentication: Requires JWT.
 [
   {
     "status": 200,
-    "body": [ /* array of items */ ]
+    "body": [ array of items ]
   },
   {
     "status": 201,
@@ -148,7 +148,8 @@ JWT_EXPIRES_IN=1h
 ### 📥 Postman Collection
 Use the collection below to quickly test the API endpoints with JWT authentication and pre-configured examples:
 
-📦 **Download:**  robust-api.postman_collection.json
+📦 **Download:** [robust-api.postman_collection.json](./robust-api.postman_collection.json)
+
 
 ### 🧪 Designed for Performance Testing
 This API was created specifically to practice performance testing with tools like Apache JMeter.
