@@ -48,7 +48,7 @@ Returns a JWT token.
   "password": "password"
 }
 ```
-### 🔍 `GET /items/:id`
+#### 🔍 `GET /items/:id`
 
 **Description:** Retrieves a specific item by ID.  
 **Authentication:** Requires JWT.
@@ -60,3 +60,5 @@ Returns a JWT token.
   "name": "Item Name",
   "description": "Item description"
 }
+
+```
