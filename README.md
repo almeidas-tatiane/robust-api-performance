@@ -147,7 +147,8 @@ JWT_EXPIRES_IN=1h
 ### 📥 Postman Collection
 Use the collection below to quickly test the API endpoints with JWT authentication and pre-configured examples:
 
-📦 **Download:** [robust-api.postman_collection.json]([./robust-api.postman_collection.json](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/robust-api-postman-collection.json))
+📦 [📥 Download robust-api-postman-collection.json](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/robust-api-postman-collection.json)
+
 
 
 ### 🧪 Designed for Performance Testing
