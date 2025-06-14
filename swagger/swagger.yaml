@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: Item Management API
+  description: API for managing items with CRUD operations and batch processing.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:3000'
+    description: Development server
+paths:
+  /items/{id}:
+    get:
+      summary: Retrieve a specific item by ID
+      description: Retrieves a specific item by its unique ID.
+      operationId: getItemById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the item
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+        '404':
+          description: Item not found
+    delete:
+      summary: Delete an item by ID
+      description: Deletes an item by its unique ID.
+      operationId: deleteItemById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the item
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Item deleted successfully
+        '404':
+          description: Item not found
+  /items:
+    post:
+      summary: Create a new item
+      description: Creates a new item with the provided name and optional description.
+      operationId: createItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the item
+                description:
+                  type: string
+                  description: The description of the item
+                  nullable: true
+              required:
+                - name
+      responses:
+        '201':
+          description: Item created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+  /batch:
+    post:
+      summary: Perform multiple operations in a single request
+      description: Allows multiple operations (GET, POST) in a single request.
+      operationId: batchOperations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      method:
+                        type: string
+                        enum: [GET, POST]
+                      path:
+                        type: string
+                      body:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                            nullable: true
+      responses:
+        '200':
+          description: Batch operations completed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                    body:
+                      type: object
+components:
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - jwtAuth: []
