@@ -6,13 +6,15 @@
 A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication and batch endpoint processing.
 
 ---
-### 🧪 Designed for Performance Testing
+## 🧪 Designed for Performance Testing
 This API was created specifically to practice performance testing with tools like Apache JMeter.
 
 Features include:
 - Dynamic data handling
 - Realistic user scenarios
 - JWT-based authentication
+- - Batch processing of multiple operations
+- Complete CRUD functionality
 ---
 
 ## 🚀 Why this project?
@@ -141,7 +143,7 @@ Authentication: Requires JWT.
   }
 ]
 ```
-### 🛠️ Environment Variables
+## 🛠️ Environment Variables
 Create a .env file in the root of the project with the following content:
 
 ```ini
@@ -151,19 +153,16 @@ JWT_SECRET=your_jwt_secret
 JWT_EXPIRES_IN=1h
 ```
 ---
-### 📥 Postman Collection
+## 📥 Postman Collection
 Use the collection below to quickly test the API endpoints with JWT authentication and pre-configured examples:
 
 📦 [📥 Download robust-api-postman-collection.json](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/robust-api-postman-collection.json)
 
 ---
-### 📥 Swagger
+## 📥 Swagger
 Open the file in the Swagger Editor (https://editor.swagger.io/)
 📦 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
-
-- Batch processing of multiple operations
-- Complete CRUD functionality
 
 These capabilities make it perfect for creating realistic load, stress, and spike testing scenarios.
 
