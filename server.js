@@ -17,14 +17,14 @@ app.use(cors());
 app.use(express.json());
 
 // Conecta ao MongoDB
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB conectado'))
   .catch(err => console.error('Erro MongoDB:', err));
 
 // Modelos
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true },
-  password: String
+  passwordHash: String
 });
 const User = mongoose.model('User', userSchema);
 
@@ -49,7 +49,7 @@ function authMiddleware(req, res, next) {
   });
 }
 
-// Rota para cadastro de usuário (exemplo)
+// Rota para cadastro de usuário
 app.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -69,14 +69,14 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Rota para login, retorna JWT
+// Rota de login
 app.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const passwordOk = await bcrypt.compare(password, user.password);
+    const passwordOk = await bcrypt.compare(password, user.passwordHash);
     if (!passwordOk) return res.status(401).json({ error: 'Invalid credentials' });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
@@ -87,9 +87,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// CRUD Items usando mongoose
-
-// GET /items - lista todos os itens
+// CRUD de Itens
 app.get('/items', authMiddleware, async (req, res) => {
   try {
     const items = await Item.find();
@@ -99,7 +97,6 @@ app.get('/items', authMiddleware, async (req, res) => {
   }
 });
 
-// GET /items/:id - busca item por id
 app.get('/items/:id', authMiddleware, async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
@@ -110,7 +107,6 @@ app.get('/items/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// POST /items - cria novo item
 app.post('/items', authMiddleware, async (req, res) => {
   try {
     const { name, description } = req.body;
@@ -124,7 +120,6 @@ app.post('/items', authMiddleware, async (req, res) => {
   }
 });
 
-// PUT /items/:id - atualiza item
 app.put('/items/:id', authMiddleware, async (req, res) => {
   try {
     const { name, description } = req.body;
@@ -141,7 +136,6 @@ app.put('/items/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// DELETE /items/:id - deleta item
 app.delete('/items/:id', authMiddleware, async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
@@ -154,7 +148,7 @@ app.delete('/items/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Endpoint batch simplificado para múltiplas operações (exemplo básico)
+// Endpoint batch completo
 app.post('/batch', authMiddleware, async (req, res) => {
   try {
     const { operations } = req.body;
@@ -172,11 +166,12 @@ app.post('/batch', authMiddleware, async (req, res) => {
       if (method === 'GET' && path === '/items') {
         const items = await Item.find();
         results.push({ status: 200, body: items });
+
       } else if (method === 'GET' && path.startsWith('/items/')) {
         const id = path.split('/')[2];
         const item = await Item.findById(id);
-        if (item) results.push({ status: 200, body: item });
-        else results.push({ status: 404 });
+        results.push(item ? { status: 200, body: item } : { status: 404 });
+
       } else if (method === 'POST' && path === '/items') {
         if (!body.name) {
           results.push({ status: 400, body: 'Missing name' });
@@ -185,6 +180,17 @@ app.post('/batch', authMiddleware, async (req, res) => {
         const newItem = new Item({ name: body.name, description: body.description });
         await newItem.save();
         results.push({ status: 201, body: newItem });
+
+      } else if (method === 'PUT' && path.startsWith('/items/')) {
+        const id = path.split('/')[2];
+        const updated = await Item.findByIdAndUpdate(id, body, { new: true });
+        results.push(updated ? { status: 200, body: updated } : { status: 404 });
+
+      } else if (method === 'DELETE' && path.startsWith('/items/')) {
+        const id = path.split('/')[2];
+        const deleted = await Item.findByIdAndDelete(id);
+        results.push(deleted ? { status: 204 } : { status: 404 });
+
       } else {
         results.push({ status: 405, body: 'Method not allowed or path not found' });
       }
@@ -196,8 +202,14 @@ app.post('/batch', authMiddleware, async (req, res) => {
   }
 });
 
-// Endpoint raiz simples
-app.get('/', (req, res) => res.send('API is running'));
+// Rota raiz
+app.get('/', (req, res) => {
+  res.json({
+    status: 'API online',
+    message: 'Bem-vindo à API de autenticação e gerenciamento de itens',
+    endpoints: ['/register', '/login', '/items', '/batch']
+  });
+});
 
 // Inicia o servidor
 app.listen(port, () => {
