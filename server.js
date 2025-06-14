@@ -24,7 +24,7 @@ mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
 // Modelos
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true },
-  passwordHash: String
+  password: String
 });
 const User = mongoose.model('User', userSchema);
 
@@ -76,7 +76,7 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ username });
     if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const passwordOk = await bcrypt.compare(password, user.passwordHash);
+    const passwordOk = await bcrypt.compare(password, user.password);
     if (!passwordOk) return res.status(401).json({ error: 'Invalid credentials' });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
