@@ -162,6 +162,7 @@ Use the collection below to quickly test the API endpoints with JWT authenticati
 ---
 ## 📥 Swagger
 Open the file in the Swagger Editor (https://editor.swagger.io/)
+
 📦 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 
