@@ -7,14 +7,15 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 
 ---
 ## 🧪 Designed for Performance Testing
-This API was created specifically to practice performance testing with tools like Apache JMeter.
+This API was created specifically to practice performance testing with tools like Apache JMeter,K6 and Gatling.
 
 Features include:
 - Dynamic data handling
 - Realistic user scenarios
 - JWT-based authentication
-- - Batch processing of multiple operations
+- Batch processing of multiple operations
 - Complete CRUD functionality
+
 ---
 
 ## 🚀 Why this project?
@@ -164,6 +165,6 @@ Open the file in the Swagger Editor (https://editor.swagger.io/)
 📦 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 
-These capabilities make it perfect for creating realistic load, stress, and spike testing scenarios.
+
 
 
