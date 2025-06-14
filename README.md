@@ -3,9 +3,16 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)](https://nodejs.org/) [![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://www.mongodb.com/cloud/atlas) [![Postman](https://img.shields.io/badge/Postman-Collection-orange?logo=postman)](./robust-api-postman-collection.json)
 
 
-A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  
-Supports full CRUD operations with JWT-based authentication and batch endpoint processing.
+A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication and batch endpoint processing.
 
+---
+### 🧪 Designed for Performance Testing
+This API was created specifically to practice performance testing with tools like Apache JMeter.
+
+Features include:
+- Dynamic data handling
+- Realistic user scenarios
+- JWT-based authentication
 ---
 
 ## 🚀 Why this project?
@@ -143,21 +150,18 @@ MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/robust-api?re
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRES_IN=1h
 ```
-
+---
 ### 📥 Postman Collection
 Use the collection below to quickly test the API endpoints with JWT authentication and pre-configured examples:
 
 📦 [📥 Download robust-api-postman-collection.json](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/robust-api-postman-collection.json)
 
+---
+### 📥 Swagger
+Open the file in the Swagger Editor (https://editor.swagger.io/)
+📦 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 
-### 🧪 Designed for Performance Testing
-This API was created specifically to practice performance testing with tools like Apache JMeter.
-
-Features include:
-- Dynamic data handling
-- Realistic user scenarios
-- JWT-based authentication
 - Batch processing of multiple operations
 - Complete CRUD functionality
 
