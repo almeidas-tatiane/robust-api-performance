@@ -3,7 +3,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)](https://nodejs.org/) [![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://www.mongodb.com/cloud/atlas) [![Postman](https://img.shields.io/badge/Postman-Collection-orange?logo=postman)](./robust-api-postman-collection.json)
 
 
-A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication and batch endpoint processing.
+A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication.
 
 ---
 ## 🧪 Designed for Performance Testing
@@ -13,14 +13,13 @@ Features include:
 - Dynamic data handling
 - Realistic user scenarios
 - JWT-based authentication
-- Batch processing of multiple operations
 - Complete CRUD functionality
 
 ---
 
 ## 🚀 Why this project?
 
-This project was developed as a hands-on exercise to **practice and validate performance testing techniques** using tools like JMeter. It simulates real-world operations like authentication, CRUD operations, and batch processing — providing a rich environment for designing, executing, and analyzing load and stress test scenarios.
+This project was developed as a hands-on exercise to **practice and validate performance testing techniques** using tools like JMeter. It simulates real-world operations like authentication, CRUD operations — providing a rich environment for designing, executing, and analyzing load and stress test scenarios.
 
 ---
 
@@ -106,44 +105,7 @@ Authentication: Requires JWT.
 **Response:**
 204 No Content on success.
 
-### 🔁 Batch Endpoint
-#### POST /batch
-Description: Allows multiple operations (GET, POST) in a single request.
-Authentication: Requires JWT.
 
-**Request Body:**
-```json
-{
-  "operations": [
-    { "method": "GET", "path": "/items" },
-    {
-      "method": "POST",
-      "path": "/items",
-      "body": {
-        "name": "Batch Item",
-        "description": "Created via batch"
-      }
-    }
-  ]
-}
-```
-**Response:**
-```json
-[
-  {
-    "status": 200,
-    "body": [ "array_values" ]
-  },
-  {
-    "status": 201,
-    "body": {
-      "_id": "generated_id",
-      "name": "Batch Item",
-      "description": "Created via batch"
-    }
-  }
-]
-```
 ## 🛠️ Environment Variables
 Create a .env file in the root of the project with the following content:
 
