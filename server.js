@@ -173,9 +173,16 @@ app.post('/batch', authMiddleware, async (req, res) => {
 
       // GET /items/:id
       } else if (method === 'GET' && path.startsWith('/items/')) {
-        const id = path.split('/')[2];
-        const item = await Item.findById(id);
-        results.push(item ? { status: 200, body: item } : { status: 404, body: 'Item not found' });
+        const match = path.match(/^\/items\/([^/]+)$/);
+        const id = match ? match[1] : null;
+
+        if (!id) {
+          results.push({ status: 400, body: 'Invalid path format' });
+          continue;
+         }
+
+  const item = await Item.findById(id);
+  results.push(item ? { status: 200, body: item } : { status: 404, body: 'Item not found' });
 
       // POST /items
       } else if (method === 'POST' && path === '/items') {
