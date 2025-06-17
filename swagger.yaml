@@ -4,8 +4,6 @@ info:
   description: Postman collection for testing JWT-based robust API for performance testing purposes.
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
-    description: Local server on port 3000
   - url: http://localhost:3001
     description: Local server on port 3001
 paths:
