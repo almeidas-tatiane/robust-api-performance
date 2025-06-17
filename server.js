@@ -138,13 +138,16 @@ app.put('/items/:id', authMiddleware, async (req, res) => {
 
 app.delete('/items/:id', authMiddleware, async (req, res) => {
   try {
-    const item = await Item.findById(req.params.id);
-    if (!item) return res.status(404).json({ error: 'Item not found' });
+    const deletedItem = await Item.findByIdAndDelete(req.params.id);
+    
+    if (!deletedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
 
-    await item.remove();
-    res.status(204).send();
+    res.status(204).send(); // sucesso, mas sem corpo
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('Erro ao deletar item:', err.message);
+    res.status(500).json({ error: 'Server error', details: err.message });
   }
 });
 
