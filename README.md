@@ -42,6 +42,15 @@ All protected routes require a JWT sent in the `Authorization` header as `Bearer
 
 ## 📦 API Endpoints
 
+### ➕ POST /register
+Create an user with username and password.
+```json
+{
+  "username": "admin",
+  "password": "password"
+}
+```
+
 ### 🔐 Auth
 #### POST /login 
 Authenticate with username and password.  
