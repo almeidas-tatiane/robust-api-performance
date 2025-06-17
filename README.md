@@ -82,7 +82,6 @@ Authentication: Requires JWT.
   "description": "Optional description"
 }
 ```
-```
 #### 🔍 GET /items
 
 **Description:** Retrieves all items.  
