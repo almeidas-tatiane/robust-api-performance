@@ -63,20 +63,6 @@ Returns a JWT token.
   "password": "password"
 }
 ```
-#### 🔍 GET /items/:id
-
-**Description:** Retrieves a specific item by ID.  
-**Authentication:** Requires JWT.
-
-**Response:**
-```json
-{
-  "_id": "item_id",
-  "name": "Item Name",
-  "description": "Item description"
-}
-
-```
 #### ➕ POST /items
 Description: Creates a new item.
 Authentication: Requires JWT.
@@ -95,6 +81,36 @@ Authentication: Requires JWT.
   "name": "New Item",
   "description": "Optional description"
 }
+```
+```
+#### 🔍 GET /items
+
+**Description:** Retrieves all items.  
+**Authentication:** Requires JWT.
+
+**Response:**
+```json
+{
+  "_id": "item_id",
+  "name": "Item Name",
+  "description": "Item description"
+}
+
+```
+
+#### 🔍 GET /items/:id
+
+**Description:** Retrieves a specific item by ID.  
+**Authentication:** Requires JWT.
+
+**Response:**
+```json
+{
+  "_id": "item_id",
+  "name": "Item Name",
+  "description": "Item description"
+}
+
 ```
 #### ✏️ PUT /items/:id
 Description: Updates the item's name and/or description.
