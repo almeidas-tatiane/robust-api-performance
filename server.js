@@ -153,28 +153,31 @@ app.delete('/items/:id', authMiddleware, async (req, res) => {
 
 // Endpoint batch completo
 app.post('/batch', authMiddleware, async (req, res) => {
-  try {
-    const { operations } = req.body;
-    if (!Array.isArray(operations)) {
-      return res.status(400).json({ error: 'Operations must be an array' });
-    }
+  const { operations } = req.body;
+  if (!Array.isArray(operations)) {
+    return res.status(400).json({ error: 'Operations must be an array' });
+  }
 
-    const results = [];
+  const results = [];
 
-    for (const op of operations) {
-      const method = op.method.toUpperCase();
+  for (const op of operations) {
+    try {
+      const method = op.method?.toUpperCase();
       const path = op.path;
       const body = op.body || {};
 
+      // GET /items
       if (method === 'GET' && path === '/items') {
         const items = await Item.find();
         results.push({ status: 200, body: items });
 
+      // GET /items/:id
       } else if (method === 'GET' && path.startsWith('/items/')) {
         const id = path.split('/')[2];
         const item = await Item.findById(id);
-        results.push(item ? { status: 200, body: item } : { status: 404 });
+        results.push(item ? { status: 200, body: item } : { status: 404, body: 'Item not found' });
 
+      // POST /items
       } else if (method === 'POST' && path === '/items') {
         if (!body.name) {
           results.push({ status: 400, body: 'Missing name' });
@@ -184,25 +187,39 @@ app.post('/batch', authMiddleware, async (req, res) => {
         await newItem.save();
         results.push({ status: 201, body: newItem });
 
+      // PUT /items/:id
       } else if (method === 'PUT' && path.startsWith('/items/')) {
         const id = path.split('/')[2];
-        const updated = await Item.findByIdAndUpdate(id, body, { new: true });
-        results.push(updated ? { status: 200, body: updated } : { status: 404 });
+        const item = await Item.findById(id);
+        if (!item) {
+          results.push({ status: 404, body: 'Item not found' });
+          continue;
+        }
+        if (body.name) item.name = body.name;
+        if (body.description) item.description = body.description;
+        await item.save();
+        results.push({ status: 200, body: item });
 
+      // DELETE /items/:id
       } else if (method === 'DELETE' && path.startsWith('/items/')) {
         const id = path.split('/')[2];
-        const deleted = await Item.findByIdAndDelete(id);
-        results.push(deleted ? { status: 204 } : { status: 404 });
+        const result = await Item.findByIdAndDelete(id);
+        if (!result) {
+          results.push({ status: 404, body: 'Item not found' });
+          continue;
+        }
+        results.push({ status: 204 });
 
+      // Unknown method/path
       } else {
-        results.push({ status: 405, body: 'Method not allowed or path not found' });
+        results.push({ status: 400, body: 'Unsupported method or path' });
       }
+    } catch (err) {
+      results.push({ status: 500, body: 'Server error' });
     }
-
-    res.json(results);
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
   }
+
+  res.json(results);
 });
 
 // Rota raiz
