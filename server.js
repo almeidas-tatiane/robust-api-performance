@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
+const { body, validationResult } = require('express-validator');
 
 const app = express();
 
@@ -13,13 +14,34 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
 const mongoUri = process.env.MONGO_URI;
 
-app.use(cors());
+if (!JWT_SECRET) {
+  console.error('JWT_SECRET is not defined in environment variables. Exiting.');
+  process.exit(1);
+}
+
+// Configure CORS - ajuste as origens conforme sua necessidade
+const allowedOrigins = ['http://localhost:3000', 'http://seusite.com'];
+app.use(cors({
+  origin: function(origin, callback) {
+    // permite requests sem origin (como curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `CORS policy: Origin ${origin} not allowed`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.use(express.json());
 
 // Conecta ao MongoDB
 mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB conectado'))
-  .catch(err => console.error('Erro MongoDB:', err));
+  .catch(err => {
+    console.error('Erro MongoDB:', err);
+    process.exit(1);
+  });
 
 // Modelos
 const userSchema = new mongoose.Schema({
@@ -49,43 +71,59 @@ function authMiddleware(req, res, next) {
   });
 }
 
-// Rota para cadastro de usuário
-app.post('/register', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ error: 'Username and password required' });
-
-    const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ error: 'Username already exists' });
-
-    const passwordHash = await bcrypt.hash(password, 10);
-    const user = new User({ username, passwordHash });
-    await user.save();
-
-    res.status(201).json({ message: 'User created' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+// Middleware para validar e retornar erros do express-validator
+function validateRequest(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ error: 'Validation failed', details: errors.array() });
   }
-});
+  next();
+}
+
+// Rota para cadastro de usuário
+app.post('/register',
+  body('username').isString().isLength({ min: 3 }).trim(),
+  body('password').isString().isLength({ min: 6 }),
+  validateRequest,
+  async (req, res) => {
+    try {
+      const { username, password } = req.body;
+
+      const existingUser = await User.findOne({ username });
+      if (existingUser) return res.status(400).json({ error: 'Username already exists' });
+
+      const passwordHash = await bcrypt.hash(password, 10);
+      const user = new User({ username, passwordHash });
+      await user.save();
+
+      res.status(201).json({ message: 'User created' });
+    } catch (err) {
+      console.error('Register error:', err);
+      res.status(500).json({ error: 'Server error', details: err.message });
+    }
+  });
 
 // Rota de login
-app.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+app.post('/login',
+  body('username').isString().trim(),
+  body('password').isString(),
+  validateRequest,
+  async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+      if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const passwordOk = await bcrypt.compare(password, user.passwordHash);
-    if (!passwordOk) return res.status(401).json({ error: 'Invalid credentials' });
+      const passwordOk = await bcrypt.compare(password, user.passwordHash);
+      if (!passwordOk) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-    res.json({ token });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
+      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+      res.json({ token });
+    } catch (err) {
+      console.error('Login error:', err);
+      res.status(500).json({ error: 'Server error', details: err.message });
+    }
+  });
 
 // CRUD de Itens
 app.get('/items', authMiddleware, async (req, res) => {
@@ -93,7 +131,8 @@ app.get('/items', authMiddleware, async (req, res) => {
     const items = await Item.find();
     res.json(items);
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('GET /items error:', err);
+    res.status(500).json({ error: 'Server error', details: err.message });
   }
 });
 
@@ -103,50 +142,60 @@ app.get('/items/:id', authMiddleware, async (req, res) => {
     if (!item) return res.status(404).json({ error: 'Item not found' });
     res.json(item);
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('GET /items/:id error:', err);
+    res.status(500).json({ error: 'Server error', details: err.message });
   }
 });
 
-app.post('/items', authMiddleware, async (req, res) => {
-  try {
-    const { name, description } = req.body;
-    if (!name) return res.status(400).json({ error: 'Name is required' });
+app.post('/items', authMiddleware,
+  body('name').isString().isLength({ min: 1 }).trim(),
+  body('description').optional().isString(),
+  validateRequest,
+  async (req, res) => {
+    try {
+      const { name, description } = req.body;
 
-    const newItem = new Item({ name, description });
-    await newItem.save();
-    res.status(201).json(newItem);
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
-  }
-});
+      const newItem = new Item({ name, description });
+      await newItem.save();
+      res.status(201).json(newItem);
+    } catch (err) {
+      console.error('POST /items error:', err);
+      res.status(500).json({ error: 'Server error', details: err.message });
+    }
+  });
 
-app.put('/items/:id', authMiddleware, async (req, res) => {
-  try {
-    const { name, description } = req.body;
-    const item = await Item.findById(req.params.id);
-    if (!item) return res.status(404).json({ error: 'Item not found' });
+app.put('/items/:id', authMiddleware,
+  body('name').optional().isString().isLength({ min: 1 }).trim(),
+  body('description').optional().isString(),
+  validateRequest,
+  async (req, res) => {
+    try {
+      const { name, description } = req.body;
+      const item = await Item.findById(req.params.id);
+      if (!item) return res.status(404).json({ error: 'Item not found' });
 
-    if (name !== undefined) item.name = name;
-    if (description !== undefined) item.description = description;
+      if (name !== undefined) item.name = name;
+      if (description !== undefined) item.description = description;
 
-    await item.save();
-    res.json(item);
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
-  }
-});
+      await item.save();
+      res.json(item);
+    } catch (err) {
+      console.error('PUT /items/:id error:', err);
+      res.status(500).json({ error: 'Server error', details: err.message });
+    }
+  });
 
 app.delete('/items/:id', authMiddleware, async (req, res) => {
   try {
     const deletedItem = await Item.findByIdAndDelete(req.params.id);
-    
+
     if (!deletedItem) {
       return res.status(404).json({ error: 'Item not found' });
     }
 
-    res.status(204).send(); // sucesso, mas sem corpo
+    res.status(204).send();
   } catch (err) {
-    console.error('Erro ao deletar item:', err.message);
+    console.error('DELETE /items/:id error:', err);
     res.status(500).json({ error: 'Server error', details: err.message });
   }
 });
@@ -156,7 +205,7 @@ app.get('/', (req, res) => {
   res.json({
     status: 'API online',
     message: 'Bem-vindo à API de autenticação e gerenciamento de itens',
-    endpoints: ['/register', '/login', '/items', '/batch']
+    endpoints: ['/register', '/login', '/items']
   });
 });
 
