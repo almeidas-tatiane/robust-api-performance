@@ -166,7 +166,7 @@ Open the file in the Swagger Editor (https://editor.swagger.io/)
 📦 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 ## 🛠️ How to run this project locally?
-Run in command line
+Inside the project's folder, run in command line
 ```cmd
 node server.js
 
