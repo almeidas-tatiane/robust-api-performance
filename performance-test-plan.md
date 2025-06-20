@@ -1,37 +1,41 @@
 # 🧪 Performance Test Plan
 
+## 🌟 About the Project
+
+This performance test plan is designed for a RESTful API application built with Node.js, Express, and MongoDB Atlas. The API is secured using JWT authentication and supports user registration, login, and full CRUD operations on items. This project demonstrates a practical approach to performance testing using tools like JMeter, Prometheus, and Grafana.
+
 ## 🎯 Goal
 The objective of this test is to assess the system’s behavior under expected load conditions.
 It focuses on evaluating the API’s performance across key functionalities, including authentication (/login) and CRUD operations on /items.
 
 ### 📦Test Endpoints
-- ➕ POST /register - Create an user with username and password.
-- 🔐 POST /login - Authenticate with username and password. Returns a JWT token.
-- ➕ POST /items -  Creates a new item. Authentication: Requires JWT.
-- 🔍 GET /items - Retrieves all items. Requires JWT.
-- 🔍 GET /items/:id - Retrieves a specific item by ID. Requires JWT.
-- ✏️ PUT /items/:id - Updates the item's name and/or description. Authentication: Requires JWT.
-- 🗑️ DELETE /items/:id - Deletes an item by ID. Authentication: Requires JWT.
+- ➕ **POST /register** – Creates a user with `username` and `password`.
+- 🔐 **POST /login** – Authenticates the user and returns a JWT token.
+- ➕ **POST /items** – Creates a new item. Requires JWT authentication.
+- 🔍 **GET /items** – Retrieves all items. Requires JWT authentication.
+- 🔍 **GET /items/:id** – Retrieves a specific item by ID. Requires JWT authentication.
+- ✏️ **PUT /items/:id** – Updates an item's name and/or description. Requires JWT authentication.
+- 🗑️ **DELETE /items/:id** – Deletes an item by ID. Requires JWT authentication.
 
 
 ### 📦 Swagger
 Open the Swagger YAML file in the Swagger Editor 
 
-🔗 Swagger Editor (https://editor.swagger.io/)
+🔗 [Swagger Editor] (https://editor.swagger.io/)
 
 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 ### 🔧 Infrastructure Architecture 
-High-level architecture of a RESTful API secured with JWT Authentication.
+High-level architecture of a RESTful API secured with JWT authentication.
 
 ![image](https://github.com/user-attachments/assets/987f8c75-56b3-4a85-8d04-00c594336a03)
 
 
 #### 🧪 Key Notes:
-- The load generator (JMeter) will run on an EC2 instance hosted on AWS.
+- The load generator (JMeter) will run on an AWS-hosted EC2 instance.
 - The Node.js API communicates with MongoDB Atlas via Mongoose.
-- JWT tokens are used to secure all /items endpoints.
-- Monitoring is handled using Prometheus and Node Exporter, with Grafana dashboards for real-time visibility into key performance metrics such as CPU, memory, and request latency.
+- JWT tokens are required to access all `/items` endpoints.
+- Monitoring is handled using Prometheus and Node Exporter, with Grafana dashboards providing real-time visibility into key performance metrics such as CPU, memory, and request latency.
 
 #### 🔧Technologies Used
 - Node.js + Express  
@@ -41,14 +45,14 @@ High-level architecture of a RESTful API secured with JWT Authentication.
 - dotenv (environment config)  
 
 ## ✅ Acceptance Criteria
-- The system must maintain an **error rate below 1%.**
+- The system must maintain an **error rate below 1%**.
 - **90th percentile response time** must be:
-    - **≤ 200 ms** for GET and DELETE requests
-    - **≤ 500 ms** for POST and PUT requests
+  - **≤ 200 ms** for GET and DELETE requests
+  - **≤ 500 ms** for POST and PUT requests
 
-- These thresholds apply under the following conditions:
-    - **50 concurrent users**
-    - **10 requests per second**
+- These thresholds apply under the following load:
+  - **50 concurrent users**
+  - **10 requests per second**
 
 ## 🛠️ Tools
 - JMeter: (https://jmeter.apache.org/download_jmeter.cgi)
@@ -68,12 +72,12 @@ High-level architecture of a RESTful API secured with JWT Authentication.
 | Database Performance                        | Prometheus (MongoDB Exporter)                     |
 
 ### 📝 Notes
-- This test plan will use JMeter as Performance test tool, but other tools can be consider as Gatling, K6.
-- If the company has Dynatrace, Datadog or New Relic as APM tool other performance metrics can be consider for the test:
-    - Service / Analyze backtrace
-    - Service / View service flow
-    - Service / Pure Paths
-    - Service / Current hotspots
+- This test plan uses JMeter as the performance testing tool, but alternatives such as Gatling or K6 may also be considered.
+- If the company uses APM tools such as Dynatrace, Datadog, or New Relic, additional performance insights may include:
+  - Service Backtrace Analysis
+  - Service Flow Visualization
+  - PurePath Tracing (Dynatrace-specific)
+  - Current Hotspots
 
 ## ⚙️ Environment Pre-conditions
 
@@ -90,7 +94,7 @@ High-level architecture of a RESTful API secured with JWT Authentication.
 | Roles                                       | Responsibilities                                                                              |
 |---------------------------------------------|-----------------------------------------------------------------------------------------------|
 | **Tatiane - Performance Test Engineer**     | - Prepare the test plan and scripts                                                           |
-|                                             | - Setup test data                                                                             |
+|                                             | - Set up test data                                                                             |
 |                                             | - Execute the scripts at AWS environment                                                      |
 |                                             | - Analyze execution results                                                                   |
 |                                             | - Prepare the test report, identify bottlenecks, and suggest improvements                     |
@@ -113,31 +117,32 @@ High-level architecture of a RESTful API secured with JWT Authentication.
 |                                             |                                                                                               |
 | **QA - Functional test team and Dev team**  | - Validate that performance scripts reflect production issues or new feature requirements     |
 |                                             |                                                                                               |
-| **Stackholder or Product/Project Owner**    | - Provide context on the system being tested                                                  |
+| **Stakeholder or Product/Project Owner**    | - Provide context on the system being tested                                                  |
 |                                             | - Define and communicate performance acceptance criteria                                      |
 
 ### 📝 Notes
 - Performance testing must not begin until the acceptance criteria and test plan are clearly defined and approved.
-- All stakeholders listed above will be invited to observe the performance test execution.
-- All stakeholders listed above will be invited to the performance results meeting to discuss findings and next steps.
-- All stakeholders will be part of a dedicated performance test communication channel (Performance Committee).
+- All stakeholders listed above will be invited to observe the test execution.
+- All stakeholders will be invited to the results meeting to discuss findings and next steps.
+- All stakeholders will be included in the dedicated communication channel (Performance Committee).
 
-## Test Data
-Performance test team will use CSV external files with:
-- **Login users:** 50 usernames and password
-- **List of items** 100 items to be added, listed and updated 
+## 📁 Test Data
+The Performance Test Team will use external CSV files containing:
 
-## Scenarios
+- **Login Users:** 50 usernames and passwords
+- **Items List:** 100 items to be added, retrieved, updated, and deleted
+
+## 🔄 Scenarios
 The following scenarios will be tested:
-- Register user
-- Login
-- Create item
-- Get all items
-- Get item by ID
-- Update item by ID
-- Get item by ID
-- Delete item by ID
-- Get item by ID
+| **Scenario**          | **Endpoint** | **Method** | **Auth Required** | **Description**                      |
+|-----------------------|--------------|------------|-------------------|--------------------------------------|
+| Register a user       | `/register`  | POST       | No                | Creates a user with username/password|
+| Login                 | `/login`     | POST       | No                | Authenticates user and returns token |
+| Create an item        | `/items`     | POST       | Yes               | Adds a new item                      |
+| Retrieve all items    | `/items`     | GET        | Yes               | Fetches all items                    |
+| Retrieve item by ID   | `/items/:id` | GET        | Yes               | Fetches a specific item              |
+| Update item by ID     | `/items/:id` | PUT        | Yes               | Updates item name/description        |
+| Delete item by ID     | `/items/:id` | DELETE     | Yes               | Removes an item                      |
 
 ## Volumetry
 
