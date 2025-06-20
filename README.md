@@ -201,7 +201,7 @@ This test plan was created as part of a personal portfolio project to demonstrat
 This project is part of my personal learning journey in performance engineering. 
 Feedback, suggestions, or connections are always welcome!
 
-📧 Contact me via [LinkedIn](https://www.linkedin.com/in/tatianealmeida/)) or GitHub Discussions.
+📧 Contact me via [LinkedIn](https://www.linkedin.com/in/tatianealmeida/) or GitHub Discussions.
 
 
 
