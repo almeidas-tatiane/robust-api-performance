@@ -155,6 +155,10 @@ Open the file in the Swagger Editor (https://editor.swagger.io/)
 Inside the project's folder, run in command line
 ```cmd
 node server.js
+---
+## 🧪 Performance Test Plan
+This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
+[Performance Test Plan](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
 
 
 
