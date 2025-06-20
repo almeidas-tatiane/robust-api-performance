@@ -135,6 +135,16 @@ The Performance Test Team will use external CSV files containing:
 - **Login Users:** 50 usernames and passwords
 - **Items List:** 100 items to be added, retrieved, updated, and deleted
 
+## 🧠 Test Strategy
+The following test types will be executed:
+| Test Type             | % of volumetry | Time   | Ramp Up        | Steady State                         | Ramp Down                              |
+|-----------------------|----------------|--------|----------------|--------------------------------------|----------------------------------------|
+| **Baseline**          | 10%            | 1 hour | 10 min         | 48 min                               | 2 min                                  |
+| **Load**              | 100%           | 1 hour | 10 min         | 48 min                               | 2 min                                  |
+
+### 📝 Notes
+The volumetric values for each scenario during Load and Baseline tests are defined in the 'Test Scenarios with Volumetry' section
+
 ## 🔄 Test Scenarios with Volumetry
 The following scenarios will be tested:
 | Scenario              | Endpoint     | Method | Auth Required  | Description                          | Volumetry (Example)                    |
