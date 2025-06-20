@@ -22,34 +22,8 @@ Open the file in the Swagger Editor (https://editor.swagger.io/)
 ### 🔧 Infrastructure Architecture 
 RESTful API with JWT Authentication
 
-+----------------------+           +----------------------+
-|     End User         |  --->     |   Load Generator     |
-| (JMeter or BlazeMeter)           |  (JMeter CLI/GUI)    |
-+----------------------+           +----------------------+
-                                           |
-                                           | HTTP(S) Requests
-                                           v
-+--------------------------------------------------------------+
-|                  Node.js Application (Express)              |
-|  - JWT Authentication                                        |
-|  - Full CRUD for items (/items)                              |
-|  - Login and Registration endpoints (/login, /register)      |
-|  - Batch operations (/batch)                                 |
-+--------------------------------------------------------------+
-                                           |
-                                           | Mongoose (ODM)
-                                           v
-+-----------------------------+       +-----------------------------+
-|        MongoDB Atlas        | <-->  |  Cloud MongoDB Database     |
-|   (Managed cloud database)  |       | Stores users and item data  |
-+-----------------------------+       +-----------------------------+
+![image](https://github.com/user-attachments/assets/987f8c75-56b3-4a85-8d04-00c594336a03)
 
-                +--------------------+
-                |     Monitoring     |
-                |  Prometheus +      |
-                |  Node Exporter +   |
-                |  Grafana Dashboard |
-                +--------------------+
 
 #### 🧪 Key Notes:
 - The Load Generator (JMeter) will run in an EC2 at AWS.
