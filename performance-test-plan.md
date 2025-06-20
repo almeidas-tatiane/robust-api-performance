@@ -67,7 +67,16 @@ RESTful API with JWT Authentication
 | Database Performance                        | Prometheus (MongoDB Exporter)                     |
 
 
-## Environment Pre-Conditions
+## ⚙️ Environment Pre-conditions
+
+- ✅ **Application Deployment**: The API is deployed in a stable environment (e.g., staging or performance testing) with production-like configuration.
+- ✅ **Database Initialization**: The database contains realistic and sufficient test data to simulate expected usage.
+- ✅ **Monitoring Tools Available**: Tools such as Prometheus + Grafana, Node Exporter, or equivalents are configured and accessible.
+- ✅ **JMeter Configuration**: JMeter (or another load testing tool) is installed and ready with preloaded test plans on the test machine (e.g., AWS EC2).
+- ✅ **External Dependencies**: Any third-party services or APIs are either mocked or accessible and stable during testing.
+- ✅ **Network Stability**: The connection between the load generator and the API is stable with minimal latency.
+- ✅ **Time Synchronization**: All involved systems have synchronized clocks (e.g., via NTP) to ensure accurate time correlation.
+- ✅ **Authentication Tokens**: JWT tokens (if required) are generated or retrieved automatically before testing secured endpoints.
 
 ## Roles and Responsibilites
 
