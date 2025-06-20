@@ -1,3 +1,5 @@
+⚠️ **Note**: This project is a work in progress and part of my personal portfolio to demonstrate my skills in Performance Engineering. It is actively being developed and will be updated with scripts, reports, and deployment steps soon.
+
 # 🚀 Robust RESTful API with JWT Authentication
 
 ## 📖 About the Project
@@ -25,10 +27,19 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [How to Run Locally](#️-how-to-run-this-project-locally)
 - [Performance Test Plan](#-performance-test-plan)
 
+---
+
+## 🔧 Upcoming Tasks
+- [ ] Deploy the application to AWS
+- [ ] Configure EC2 with JMeter, Prometheus, Grafana
+- [ ] Create and execute JMeter scripts
+- [ ] Collect results and screenshots
+- [ ] Write test report summarizing results and insights
+
 
 ---
 ## ⚡ Designed for Performance Testing
-This API was created specifically to practice performance testing with tools like Apache JMeter,K6 and Gatling.
+This API was created specifically to practice performance testing using tools like Apache JMeter, K6, and Gatling
 
 Features include:
 - Dynamic data handling
@@ -64,7 +75,7 @@ All protected routes require a JWT sent in the `Authorization` header as `Bearer
 ## 📦 API Endpoints
 
 ### ➕ POST /register
-Create a user with username and password.
+Create a user with a username and password.
 ```json
 {
   "username": "admin",
@@ -182,6 +193,14 @@ node server.js
 This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
 
 🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
+---
+## 🤝 Contributing or Feedback
+
+This project is part of my personal learning journey in performance engineering. 
+Feedback, suggestions, or connections are always welcome!
+
+📧 Contact me via [LinkedIn](https://www.linkedin.com/in/almeidas-tatiane/) or GitHub Discussions.
+
 
 
 
