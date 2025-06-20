@@ -18,6 +18,7 @@ It focuses on evaluating the API’s performance across key functionalities, inc
 Open the Swagger YAML file in the Swagger Editor 
 
 🔗 Swagger Editor (https://editor.swagger.io/)
+
 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 ### 🔧 Infrastructure Architecture 
