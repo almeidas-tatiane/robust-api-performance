@@ -64,7 +64,7 @@ RESTful API with JWT Authentication
 | CPU Usage                                   | Prometheus (Node Exporter)                        |
 | Memory Usage                                | Prometheus (Node Exporter)                        |
 | Network Throughput                          | Prometheus (Node Exporter)                        |
-| Database Performance                        | Prometheus (MongoDB Exporter),Elastic Stack (ELK) |
+| Database Performance                        | Prometheus (MongoDB Exporter)                     |
 
 
 ## Environment Pre-Conditions
