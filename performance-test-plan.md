@@ -95,9 +95,9 @@ High-level architecture of a RESTful API secured with JWT authentication.
 ## 👥 Roles and Responsibilites
 | Roles                                       | Responsibilities                                                                              |
 |---------------------------------------------|-----------------------------------------------------------------------------------------------|
-|                                             | - Prepare the test plan and scripts                                                           |
-|                                             | - Set up test data                                                                             |
-| **Tatiane - Performance Test Engineer**     | - Execute the scripts at AWS environment                                                      |
+| **Tatiane - Performance Test Engineer**     | - Prepare the test plan and scripts                                                           |
+|                                             | - Set up test data                                                                            |
+|                                             | - Execute the scripts at AWS environment                                                      |
 |                                             | - Analyze execution results                                                                   |
 |                                             | - Prepare the test report, identify bottlenecks, and suggest improvements                     |
 |                                             | - Present the test results to stakeholders and discuss next steps                             |
