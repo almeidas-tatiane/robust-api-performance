@@ -4,6 +4,21 @@
 
 
 A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication.
+---
+
+## 📑 Table of Contents
+
+- [About the Project](#-about-the-project)
+- [Why this Project?](#-why-this-project)
+- [Technologies Used](#-technologies-used)
+- [API Overview](#-api-overview)
+- [API Endpoints](#-api-endpoints)
+- [Environment Variables](#️-environment-variables)
+- [Postman Collection](#-postman-collection)
+- [Swagger](#-swagger)
+- [How to Run Locally](#️-how-to-run-this-project-locally)
+- [Performance Test Plan](#-performance-test-plan)
+
 
 ---
 ## 🧪 Designed for Performance Testing
@@ -43,7 +58,7 @@ All protected routes require a JWT sent in the `Authorization` header as `Bearer
 ## 📦 API Endpoints
 
 ### ➕ POST /register
-Create an user with username and password.
+Create a user with username and password.
 ```json
 {
   "username": "admin",
@@ -160,7 +175,8 @@ node server.js
 ## 🧪 Performance Test Plan
 This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
 
-[Link Performance Test Plan](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
+🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
+
 
 
 
