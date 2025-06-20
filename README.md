@@ -26,6 +26,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Swagger](#-swagger)
 - [How to Run Locally](#️-how-to-run-this-project-locally)
 - [Performance Test Plan](#-performance-test-plan)
+- [Contributing or Feedback](#-contributing-or-feedback)
 
 ---
 
