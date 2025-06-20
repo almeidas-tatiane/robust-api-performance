@@ -70,10 +70,10 @@ High-level architecture of a RESTful API secured with JWT Authentication.
 ### 📝 Notes
 - This test plan will use JMeter as Performance test tool, but other tools can be consider as Gatling, K6.
 - If the company has Dynatrace, Datadog or New Relic as APM tool other performance metrics can be consider for the test:
-  -- Service / Analyze backtrace
-  -- Service / View service flow
-  -- Service / Pure Paths
-  -- Service / Current hotspots
+    - Service / Analyze backtrace
+    - Service / View service flow
+    - Service / Pure Paths
+    - Service / Current hotspots
 
 ## ⚙️ Environment Pre-conditions
 
