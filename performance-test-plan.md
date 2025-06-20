@@ -1,8 +1,8 @@
 # 🧪 Performance Test Plan
 
 ## 🎯 Goal
-The objective of this test is to assess the system's behavior under expected load conditions.
-It will evaluate the API’s performance across key functionalities, including authentication (/login) and CRUD operations for /items.
+The objective of this test is to assess the system’s behavior under expected load conditions.
+It focuses on evaluating the API’s performance across key functionalities, including authentication (/login) and CRUD operations on /items.
 
 ### 📦Test Endpoints
 - ➕ POST /register - Create an user with username and password.
@@ -15,24 +15,23 @@ It will evaluate the API’s performance across key functionalities, including a
 
 
 ### 📦 Swagger
-Open the file in the Swagger Editor (https://editor.swagger.io/)
-
+Open the Swagger YAML file in the Swagger Editor 
+🔗 Swagger Editor (https://editor.swagger.io/)
 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
 
 ### 🔧 Infrastructure Architecture 
-RESTful API with JWT Authentication
+High-level architecture of a RESTful API secured with JWT Authentication.
 
 ![image](https://github.com/user-attachments/assets/987f8c75-56b3-4a85-8d04-00c594336a03)
 
 
 #### 🧪 Key Notes:
-- The Load Generator (JMeter) will run in an EC2 at AWS.
-- The Node.js API interacts directly with MongoDB Atlas using Mongoose.
-- The application is secured with JWT tokens, required to access /items.
-- Server-level monitoring is handled by Prometheus and Node Exporter, with Grafana dashboards for real-time performance metrics like CPU usage, memory, and request latency.
+- The load generator (JMeter) will run on an EC2 instance hosted on AWS.
+- The Node.js API communicates with MongoDB Atlas via Mongoose.
+- JWT tokens are used to secure all /items endpoints.
+- Monitoring is handled using Prometheus and Node Exporter, with Grafana dashboards for real-time visibility into key performance metrics such as CPU, memory, and request latency.
 
 #### 🔧Technologies Used
-
 - Node.js + Express  
 - MongoDB Atlas (cloud-hosted database)  
 - JSON Web Tokens (JWT)  
@@ -40,14 +39,14 @@ RESTful API with JWT Authentication
 - dotenv (environment config)  
 
 ## ✅ Acceptance Criteria
-- The system must maintain an error rate below 1%.
-- 90th percentile response time must be:
-    - ≤ 200 ms for GET and DELETE requests
-    - ≤ 500 ms for POST and PUT requests
+- The system must maintain an **error rate below 1%.**
+- **90th percentile response time** must be:
+    - **≤ 200 ms** for GET and DELETE requests
+    - **≤ 500 ms** for POST and PUT requests
 
 - These thresholds apply under the following conditions:
-    - 50 concurrent users
-    - 10 requests per second
+    - **50 concurrent users**
+    - **10 requests per second**
 
 ## 🛠️ Tools
 - JMeter: (https://jmeter.apache.org/download_jmeter.cgi)
@@ -78,40 +77,41 @@ RESTful API with JWT Authentication
 - ✅ **Time Synchronization**: All involved systems have synchronized clocks (e.g., via NTP) to ensure accurate time correlation.
 - ✅ **Authentication Tokens**: JWT tokens (if required) are generated or retrieved automatically before testing secured endpoints.
 
-## Roles and Responsibilites
+## 👥 Roles and Responsibilites
 | Roles                                       | Responsibilities                                                                              |
 |---------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **Tatiane - Performance Test Engineer**     | - Prepare the test plan                                                                       |
-|                                             | - Prepare the test script and test data                                                       |
+| **Tatiane - Performance Test Engineer**     | - Prepare the test plan and scripts                                                           |
+|                                             | - Setup test data                                                                             |
 |                                             | - Execute the scripts at AWS environment                                                      |
-|                                             | - Analyze the execution's result                                                              |
-|                                             | - Prepare the test report, identifying the bottlenecks and give suggestions of improvment     |
-|                                             | - Conduct a meeting to present the test report to stakeholders and discuss the next steps     |
+|                                             | - Analyze execution results                                                                   |
+|                                             | - Prepare the test report, identify bottlenecks, and suggest improvements                     |
+|                                             | - Present the test results to stakeholders and discuss next steps                             |
 |                                             |                                                                                               |
 | **DevOps / SRE team**                       | - Deploy the application                                                                      |
-|                                             | - Scalate the test environments to be similar to production                                   |
+|                                             | - Scale the test environment to closely match production                                      |
 |                                             |                                                                                               |
-| **Database team**                           | - Scalate the test database to be similar to production                                       |
-|                                             | - Monitoring the database during test execution, and report any issue in real time            |
-|                                             | - Inform Performance Test Team, if there is any cache on database and how long it is          |
+| **Database team**                           | - Scale the test database to match production                                                 |
+|                                             | - Monitor the database during test execution                                                  |
+|                                             | - Inform the Performance Team of any caching mechanisms and their expiration duration         |
 |                                             |                                                                                               |
-| **Application team**                        | - Monitoring the application'behavior during test execution, and report any issue in real time|
+| **Application team**                        | - Monitor application behavior during test execution                                          |
+|                                             | - Report any anomalies in real-time                                                           |
 |                                             |                                                                                               |
-| **QA - Functional test team**               | - Inform Performance Test team once functional test is done and all critical issues are solved|
-|                                             | - Show to Performance Test the scenarios that should be consider to performance test          |
-|                                             | - Provide an example of test data to be used to performance test team                         |
+| **QA - Functional test team**               | - Notify the Performance Team when functional testing is complete and critical bugs           |
+|                                             | are resolved                                                                                  |
+|                                             | - Share relevant scenarios to be considered for performance testing                           |
+|                                             | - Provide example test data for use by the Performance Team                                   |
 |                                             |                                                                                               |
-| **QA - Functional test team and Dev team**  | - Validate the script implemented by Performance test team is according to Production issue   |
-|                                             | that should be reproducted or is according to the new project requirements                    |
+| **QA - Functional test team and Dev team**  | - Validate that performance scripts reflect production issues or new feature requirements     |
 |                                             |                                                                                               |
-| **Stackholder or Product/Project Owner**    | - Provide information about the system that should be tested                                  |
-|                                             | - Inform the Performance Acceptance Criteria                                                  |
+| **Stackholder or Product/Project Owner**    | - Provide context on the system being tested                                                  |
+|                                             | - Define and communicate performance acceptance criteria                                      |
 
-### Notes
- - Performance Test Execution must not happen until Performance Acceptance Criteria and Performance Test Plan is clear and done.
- - All roles/person mention in table above wil be invited to follow the Performance Test Execution.
- - All roles/person mention in table above wil be invited to the meeting of performance results and next steps.
- - All roles/person mention in table above wil be part of a Performance commit.
+### 📝 Notes
+- Performance testing must not begin until the acceptance criteria and test plan are clearly defined and approved.
+- All stakeholders listed above will be invited to observe the performance test execution.
+- All stakeholders listed above will be invited to the performance results meeting to discuss findings and next steps.
+- All stakeholders will be part of a dedicated performance test communication channel (Performance Commit).
 
 ## Test Data
 
