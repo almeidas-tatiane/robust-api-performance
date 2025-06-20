@@ -1,6 +1,6 @@
-# 🧪 Robust RESTful API with JWT Authentication
+# 🚀 Robust RESTful API with JWT Authentication
 
-## 🧪 About the Project
+## 📖 About the Project
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)](https://nodejs.org/) [![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://www.mongodb.com/cloud/atlas) [![Postman](https://img.shields.io/badge/Postman-Collection-orange?logo=postman)](./robust-api-postman-collection.json)
 
@@ -27,7 +27,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 
 
 ---
-## 🧪 Designed for Performance Testing
+## ⚡ Designed for Performance Testing
 This API was created specifically to practice performance testing with tools like Apache JMeter,K6 and Gatling.
 
 Features include:
@@ -178,7 +178,7 @@ Inside the project's folder, run in command line
 node server.js
 ```
 ---
-## 🧪 Performance Test Plan
+## 📈 Performance Test Plan
 This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
 
 🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
