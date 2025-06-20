@@ -56,6 +56,16 @@ RESTful API with JWT Authentication
 
 
 ## Performance Metrics
+| Metric                                      | Suggested Tools                                   |
+|---------------------------------------------|---------------------------------------------------|
+| Throughput                                  | JMeter                                            |
+| Number of Successful vs Failed Iterations   | JMeter                                            |
+| Error Rate                                  | JMeter                                            |
+| CPU Usage                                   | Prometheus (Node Exporter)                        |
+| Memory Usage                                | Prometheus (Node Exporter)                        |
+| Network Throughput                          | Prometheus (Node Exporter)                        |
+| Database Performance                        | Prometheus (MongoDB Exporter),Elastic Stack (ELK) |
+
 
 ## Environment Pre-Conditions
 
