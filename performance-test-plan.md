@@ -120,11 +120,24 @@ High-level architecture of a RESTful API secured with JWT Authentication.
 - Performance testing must not begin until the acceptance criteria and test plan are clearly defined and approved.
 - All stakeholders listed above will be invited to observe the performance test execution.
 - All stakeholders listed above will be invited to the performance results meeting to discuss findings and next steps.
-- All stakeholders will be part of a dedicated performance test communication channel (Performance Commit).
+- All stakeholders will be part of a dedicated performance test communication channel (Performance Committee).
 
 ## Test Data
+Performance test team will use CSV external files with:
+- **Login users:** 50 usernames and password
+- **List of items** 100 items to be added, listed and updated 
 
 ## Scenarios
+The following scenarios will be tested:
+- Register user
+- Login
+- Create item
+- Get all items
+- Get item by ID
+- Update item by ID
+- Get item by ID
+- Delete item by ID
+- Get item by ID
 
 ## Volumetry
 
