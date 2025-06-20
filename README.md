@@ -4,6 +4,7 @@
 
 
 A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication.
+
 ---
 
 ## 📑 Table of Contents
