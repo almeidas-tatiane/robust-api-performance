@@ -161,7 +161,7 @@ The following scenarios will be tested:
 | Monitoring Stack           | Prometheus + Grafana  | -                         | Dashboards for live monitoring       |
 
 ### 🔗 Live Dashboard Access
-- [Grafana - JMeter Execution Dashboard](http://your-monitoring-stack/grafana/d/jmeter-live-dashboard) *(replace with actual URL)*
+- [Grafana - JMeter Execution Dashboard](http://your-monitoring-stack/grafana/d/jmeter-live-dashboard) *(this link will be replaced once I have created actual URL)*
 
 ### 📝 Notes
 - If the application is deployed in an AWS Object Storage service (e.g., S3 static hosting), only front-end metrics can be collected — backend monitoring must be done at the API level.
