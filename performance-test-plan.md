@@ -100,8 +100,18 @@ RESTful API with JWT Authentication
 | QA - Functional test team                   | - Inform Performance Test team once functional test is done and all critical issues are solved|
 |                                             | - Show to Performance Test the scenarios that should be consider to performance test          |
 |                                             | - Provide an example of test data to be used to performance test team                         |
+|                                             |                                                                                               |
+| QA - Functional test team and Dev team      | - Validate the script implemented by Performance test team is according to Production issue   |
+|                                             | that should be reproducted or is according to the new project requirements                    |
+|                                             |                                                                                               |
+| Stackholder or Product/Project Owner        | - Provide information about the system that should be tested                                  |
+|                                             | - Inform the Performance Acceptance Criteria                                                  |
 
-
+### Notes
+ - Performance Test Execution must not happen until Performance Acceptance Criteria and Performance Test Plan is clear and done.
+ - All roles/person mention in table above wil be invited to follow the Performance Test Execution.
+ - All roles/person mention in table above wil be invited to the meeting of performance results and next steps.
+ - All roles/person mention in table above wil be part of a Performance commit.
 
 ## Test Data
 
