@@ -109,6 +109,7 @@ High-level architecture of a RESTful API secured with JWT authentication.
 |                                             |                                                                                               |
 | **Application team**                        | - Monitor application behavior during test execution                                          |
 |                                             | - Report any anomalies in real-time                                                           |
+|                                             | - Provide application's architecture diagram to performance test team                         |
 |                                             |                                                                                               |
 | **QA - Functional test team**               | - Notify the Performance Team when functional testing is complete and critical bugs           |
 |                                             | are resolved                                                                                  |
@@ -148,4 +149,19 @@ The following scenarios will be tested:
 - If the Stakeholder or Product Owner cannot provide volumetry information, and the application is already live in production, performance testers can gather realistic volumetric data using APM tools such as **Datadog, New Relic, or Dynatrace**.
 - It's recommended to analyze metrics over a representative period — ideally the **last 1 to 3 months** — to identify average usage patterns, traffic peaks, and outliers. This ensures the test scenarios reflect actual system usage and help prevent under/over-estimating the load.
 
-## Servers to be monitored during Performance Test execution
+## 🖥️ Servers to Be Monitored During Performance Test Execution
+
+| Server/Component            | Type                 | Monitoring Tool           | Notes                                |
+|----------------------------|-----------------------|---------------------------|--------------------------------------|
+| Application Server         | AWS EC2 / S3 Hosting  | Node Exporter + Prometheus| Monitor CPU, memory, latency         |
+| Database (MongoDB Atlas)   | Cloud DB              | MongoDB Atlas / Exporter  | Monitor query performance, I/O, cache|
+| JMeter Load Generator      | AWS EC2               | Node Exporter + Prometheus| Monitor CPU/network during test      |
+| Monitoring Stack           | Prometheus + Grafana  | -                         | Dashboards for live monitoring       |
+
+### 🔗 Live Dashboard Access
+- [Grafana - JMeter Execution Dashboard](http://your-monitoring-stack/grafana/d/jmeter-live-dashboard) *(replace with actual URL)*
+
+### 📝 Notes
+- If the application is deployed in an AWS Object Storage service (e.g., S3 static hosting), only front-end metrics can be collected — backend monitoring must be done at the API level.
+- Always validate that Node Exporter and MongoDB exporters are installed, configured, and reachable before execution begins.
+
