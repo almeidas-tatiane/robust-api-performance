@@ -50,6 +50,10 @@ RESTful API with JWT Authentication
     - 10 requests per second
 
 ## 🛠️ Tools
+- JMeter: (https://jmeter.apache.org/download_jmeter.cgi)
+- Grafana: (https://grafana.com/docs/grafana/latest/setup-grafana/installation/)
+- Prometheus: (https://prometheus.io/download/)
+
 
 ## Performance Metrics
 
