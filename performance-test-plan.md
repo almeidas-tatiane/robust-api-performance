@@ -79,14 +79,28 @@ RESTful API with JWT Authentication
 - ✅ **Authentication Tokens**: JWT tokens (if required) are generated or retrieved automatically before testing secured endpoints.
 
 ## Roles and Responsibilites
-| Roles                                       | Responsibilities                                                                         |
-|---------------------------------------------|------------------------------------------------------------------------------------------|
-| Tatiane - Performance Test Engineer         | - Prepare the test plan                                                                  |
-|                                             | - Prepare the test script and test data                                                  |
-|                                             | - Execute the scripts at AWS environment                                                 |
-|                                             | - Analyze the execution's result                                                         |
-|                                             | - Prepare the test report, identifying the bottlenecks and give suggestions of improvment|
-|                                             | - Conduct a meeting to present the test report to stakeholders and discuss the next steps|
+| Roles                                       | Responsibilities                                                                              |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Tatiane - Performance Test Engineer         | - Prepare the test plan                                                                       |
+|                                             | - Prepare the test script and test data                                                       |
+|                                             | - Execute the scripts at AWS environment                                                      |
+|                                             | - Analyze the execution's result                                                              |
+|                                             | - Prepare the test report, identifying the bottlenecks and give suggestions of improvment     |
+|                                             | - Conduct a meeting to present the test report to stakeholders and discuss the next steps     |
+|                                             |                                                                                               |
+| DevOps / SRE team                           | - Deploy the application                                                                      |
+|                                             | - Scalate the test environments to be similar to production                                   |
+|                                             |                                                                                               |
+| Database team                               | - Scalate the test database to be similar to production                                       |
+|                                             | - Monitoring the database during test execution, and report any issue in real time            |
+|                                             | - Inform Performance Test Team, if there is any cache on database and how long it is          |
+|                                             |                                                                                               |
+| Application team                            | - Monitoring the database during test execution, and report any issue in real time            |
+|                                             |                                                                                               |
+| QA - Functional test team                   | - Inform Performance Test team once functional test is done and all critical issues are solved|
+|                                             | - Show to Performance Test the scenarios that should be consider to performance test          |
+|                                             | - Provide an example of test data to be used to performance test team                         |
+
 
 
 ## Test Data
