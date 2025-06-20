@@ -143,7 +143,7 @@ The following test types will be executed:
 | **Load**              | 100%           | 1 hour | 10 min         | 48 min                               | 2 min                                  |
 
 ### 📝 Notes
-The volumetric values for each scenario during Load and Baseline tests are defined in the 'Test Scenarios with Volumetry' section
+The volumetric values for each scenario during Load and Baseline tests are defined in the **'Test Scenarios with Volumetry'** section
 
 ## 🔄 Test Scenarios with Volumetry
 The following scenarios will be tested:
