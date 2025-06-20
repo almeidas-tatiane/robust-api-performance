@@ -35,6 +35,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [ ] Deploy the application to AWS
 - [ ] Configure EC2 with JMeter, Prometheus, Grafana
 - [ ] Create and execute JMeter scripts
+- [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
 - [ ] Collect results and screenshots
 - [ ] Write test report summarizing results and insights
 
