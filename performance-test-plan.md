@@ -1,8 +1,8 @@
 # 🧪 Performance Test Plan
 
-## Goal
-The objective of this test is to verify the system's behavior under an expected load.
-The test will verify the API's performance; that covers: login and CRUD.
+## 🎯 Goal
+The objective of this test is to assess the system's behavior under expected load conditions.
+It will evaluate the API’s performance across key functionalities, including authentication (/login) and CRUD operations for /items.
 
 ### 📦Test Endpoints
 - ➕ POST /register - Create an user with username and password.
@@ -39,8 +39,15 @@ RESTful API with JWT Authentication
 - bcryptjs (password hashing)  
 - dotenv (environment config)  
 
-## Acceptance Criteria
-The system must maintain an error rate below 1%, and ensure all API requests are processed in 90 percentil within 200ms for GET/DELETE and 500ms for POST/PUT operations under a load of 50 concurrent users and 10 requests per second.
+## ✅ Acceptance Criteria
+- The system must maintain an error rate below 1%.
+- 90th percentile response time must be:
+    - ≤ 200 ms for GET and DELETE requests
+    - ≤ 500 ms for POST and PUT requests
+
+- These thresholds apply under the following conditions:
+    - 50 concurrent users
+    - 10 requests per second
 
 ## 🛠️ Tools
 
