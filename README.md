@@ -27,6 +27,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [How to Run Locally](#️-how-to-run-this-project-locally)
 - [Performance Test Plan](#-performance-test-plan)
 - [Contributing or Feedback](#-contributing-or-feedback)
+- [Usage and Credit Notice](#-usage-and-credit-notice)
 
 ---
 
@@ -202,6 +203,12 @@ This project is part of my personal learning journey in performance engineering.
 Feedback, suggestions, or connections are always welcome!
 
 📧 Contact me via [LinkedIn](https://www.linkedin.com/in/tatianealmeida/) or GitHub Discussions.
+
+---
+## 🙏 Usage and Credit Notice
+To help strengthen our community, I would appreciate it if you could mention my [GitHub](https://github.com/almeidas-tatiane) and [LinkedIn](https://www.linkedin.com/in/tatiane-almeida/) when using this material.
+
+
 
 
 
