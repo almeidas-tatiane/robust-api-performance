@@ -1,6 +1,6 @@
-# 🧪 Performance Test Plan
+# 📈 Performance Test Plan
 
-## 🌟 About the Project
+## 📝 About the Project
 
 This performance test plan is designed for a RESTful API application built with Node.js, Express, and MongoDB Atlas. The API is secured using JWT authentication and supports user registration, login, and full CRUD operations on items. This project demonstrates a practical approach to performance testing using tools like JMeter, Prometheus, and Grafana.
 
@@ -10,7 +10,7 @@ This test plan was created as part of a personal portfolio project to demonstrat
 The objective of this test is to assess the system’s behavior under expected load conditions.
 It focuses on evaluating the API’s performance across key functionalities, including authentication (/login) and CRUD operations on /items.
 
-### 📦Test Endpoints
+### 🕹️Test Endpoints
 - ➕ **POST /register** – Creates a user with `username` and `password`.
 - 🔐 **POST /login** – Authenticates the user and returns a JWT token.
 - ➕ **POST /items** – Creates a new item. Requires JWT authentication.
