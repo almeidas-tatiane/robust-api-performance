@@ -193,6 +193,7 @@ node server.js
 This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
 
 🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
+
 ---
 ## 🤝 Contributing or Feedback
 
