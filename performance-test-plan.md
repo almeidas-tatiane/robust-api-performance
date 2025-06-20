@@ -79,6 +79,15 @@ RESTful API with JWT Authentication
 - ✅ **Authentication Tokens**: JWT tokens (if required) are generated or retrieved automatically before testing secured endpoints.
 
 ## Roles and Responsibilites
+| Roles                                       | Responsibilities                                                                         |
+|---------------------------------------------|------------------------------------------------------------------------------------------|
+| Tatiane - Performance Test Engineer         | - Prepare the test plan                                                                  |
+|                                             | - Prepare the test script and test data                                                  |
+|                                             | - Execute the scripts at AWS environment                                                 |
+|                                             | - Analyze the execution's result                                                         |
+|                                             | - Prepare the test report, identifying the bottlenecks and give suggestions of improvment|
+|                                             | - Conduct a meeting to present the test report to stakeholders and discuss the next steps|
+
 
 ## Test Data
 
