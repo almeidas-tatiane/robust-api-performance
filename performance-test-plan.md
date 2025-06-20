@@ -81,30 +81,30 @@ RESTful API with JWT Authentication
 ## Roles and Responsibilites
 | Roles                                       | Responsibilities                                                                              |
 |---------------------------------------------|-----------------------------------------------------------------------------------------------|
-| Tatiane - Performance Test Engineer         | - Prepare the test plan                                                                       |
+| **Tatiane - Performance Test Engineer**     | - Prepare the test plan                                                                       |
 |                                             | - Prepare the test script and test data                                                       |
 |                                             | - Execute the scripts at AWS environment                                                      |
 |                                             | - Analyze the execution's result                                                              |
 |                                             | - Prepare the test report, identifying the bottlenecks and give suggestions of improvment     |
 |                                             | - Conduct a meeting to present the test report to stakeholders and discuss the next steps     |
 |                                             |                                                                                               |
-| DevOps / SRE team                           | - Deploy the application                                                                      |
+| **DevOps / SRE team**                       | - Deploy the application                                                                      |
 |                                             | - Scalate the test environments to be similar to production                                   |
 |                                             |                                                                                               |
-| Database team                               | - Scalate the test database to be similar to production                                       |
+| **Database team**                           | - Scalate the test database to be similar to production                                       |
 |                                             | - Monitoring the database during test execution, and report any issue in real time            |
 |                                             | - Inform Performance Test Team, if there is any cache on database and how long it is          |
 |                                             |                                                                                               |
-| Application team                            | - Monitoring the database during test execution, and report any issue in real time            |
+| **Application team**                        | - Monitoring the application'behavior during test execution, and report any issue in real time|
 |                                             |                                                                                               |
-| QA - Functional test team                   | - Inform Performance Test team once functional test is done and all critical issues are solved|
+| **QA - Functional test team**               | - Inform Performance Test team once functional test is done and all critical issues are solved|
 |                                             | - Show to Performance Test the scenarios that should be consider to performance test          |
 |                                             | - Provide an example of test data to be used to performance test team                         |
 |                                             |                                                                                               |
-| QA - Functional test team and Dev team      | - Validate the script implemented by Performance test team is according to Production issue   |
+| **QA - Functional test team and Dev team**  | - Validate the script implemented by Performance test team is according to Production issue   |
 |                                             | that should be reproducted or is according to the new project requirements                    |
 |                                             |                                                                                               |
-| Stackholder or Product/Project Owner        | - Provide information about the system that should be tested                                  |
+| **Stackholder or Product/Project Owner**    | - Provide information about the system that should be tested                                  |
 |                                             | - Inform the Performance Acceptance Criteria                                                  |
 
 ### Notes
