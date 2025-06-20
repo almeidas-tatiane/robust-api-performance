@@ -132,18 +132,20 @@ The Performance Test Team will use external CSV files containing:
 - **Login Users:** 50 usernames and passwords
 - **Items List:** 100 items to be added, retrieved, updated, and deleted
 
-## 🔄 Scenarios
+## 🔄 Test Scenarios with Volumetry
 The following scenarios will be tested:
-| **Scenario**          | **Endpoint** | **Method** | **Auth Required** | **Description**                      |
-|-----------------------|--------------|------------|-------------------|--------------------------------------|
-| Register a user       | `/register`  | POST       | No                | Creates a user with username/password|
-| Login                 | `/login`     | POST       | No                | Authenticates user and returns token |
-| Create an item        | `/items`     | POST       | Yes               | Adds a new item                      |
-| Retrieve all items    | `/items`     | GET        | Yes               | Fetches all items                    |
-| Retrieve item by ID   | `/items/:id` | GET        | Yes               | Fetches a specific item              |
-| Update item by ID     | `/items/:id` | PUT        | Yes               | Updates item name/description        |
-| Delete item by ID     | `/items/:id` | DELETE     | Yes               | Removes an item                      |
+| Scenario              | Endpoint     | Method | Auth Required  | Description                          | Volumetry (Example)                    |
+|-----------------------|--------------|--------|----------------|--------------------------------------|----------------------------------------|
+| Register a user       | `/register`  | POST   | No             | Creates a user with username/password| 50 new users per test cycle            |
+| Login                 | `/login`     | POST   | No             | Authenticates user and returns token | 500 logins per hour                    |
+| Create an item        | `/items`     | POST   | Yes            | Adds a new item                      | 300 items created per hour             |
+| Retrieve all items    | `/items`     | GET    | Yes            | Fetches all items                    | 1000 requests per hour                 |
+| Retrieve item by ID   | `/items/:id` | GET    | Yes            | Fetches a specific item              | 1500 requests per hour                 |
+| Update item by ID     | `/items/:id` | PUT    | Yes            | Updates item name/description        | 200 updates per hour                   |
+| Delete item by ID     | `/items/:id` | DELETE | Yes            | Removes an item                      | 100 deletions per hour                 |
 
-## Volumetry
+### 📝 Notes
+- If the Stakeholder or Product Owner cannot provide volumetry information, and the application is already live in production, performance testers can gather realistic volumetric data using APM tools such as **Datadog, New Relic, or Dynatrace**.
+- It's recommended to analyze metrics over a representative period — ideally the **last 1 to 3 months** — to identify average usage patterns, traffic peaks, and outliers. This ensures the test scenarios reflect actual system usage and help prevent under/over-estimating the load.
 
 ## Servers to be monitored during Performance Test execution
