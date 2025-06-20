@@ -1,5 +1,7 @@
 # 🧪 Robust RESTful API with JWT Authentication
 
+## 🧪 About the Project
+
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)](https://nodejs.org/) [![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://www.mongodb.com/cloud/atlas) [![Postman](https://img.shields.io/badge/Postman-Collection-orange?logo=postman)](./robust-api-postman-collection.json)
 
 
@@ -10,6 +12,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 ## 📑 Table of Contents
 
 - [About the Project](#-about-the-project)
+- [Designed for Performance Testing](#-designed-for-performance-testing)
 - [Why this Project?](#-why-this-project)
 - [Technologies Used](#-technologies-used)
 - [API Overview](#-api-overview)
