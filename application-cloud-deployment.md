@@ -158,6 +158,7 @@ aws-cli/2.15.35 Python/3.11.5 Windows/10 exe/x86_64
 ```
 
 **Configure your credentials**
+
 Run
 ```bash
 aws configure
