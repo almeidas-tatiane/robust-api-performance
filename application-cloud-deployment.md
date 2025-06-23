@@ -302,6 +302,7 @@ terraform -v
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
+
 📌**Note:** The Secret Access Key is only displayed when you create a non root user, so when you do it for the first time, don't forget to save the Secret Access Key.
 ---
 ##### Install and configure aws configure locally
