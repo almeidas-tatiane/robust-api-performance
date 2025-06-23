@@ -298,7 +298,7 @@ terraform -v
 - Default region (ex: us-east-1)
 - (Optional) Output format (blank or json)
 ---
-##### 🔐 Step 1: Get your credentials
+##### 🔐 Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
