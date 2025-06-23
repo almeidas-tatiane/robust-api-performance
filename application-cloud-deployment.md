@@ -16,7 +16,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 ---
 ### 🧱 Step-by-Step Deployment Guide
 
-#### 1. 🐳 Containerize the Application with Docker
+#### **1. 🐳 Containerize the Application with Docker**
 Create a `Dockerfile` in your project root:
 
 ```dockerfile
@@ -48,7 +48,7 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-2. 🛠️ Set Up Terraform for AWS Infrastructure
+**2. 🛠️ Set Up Terraform for AWS Infrastructure** 
 
 Example folder structure:
 ```css
@@ -62,6 +62,28 @@ infra/
 **Create a infra folder inside your project**
 
 **Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
+
+📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
+- Open your terminal (GitBash or PowerShell) and execute:
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+- When asked where to save, use the default path and press Enter key
+```bash
+Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
+```
+
+- It will create 2 files:
+  - ~/.ssh/id_rsa -> **private key**
+  - ~/.ssh/id_rsa.pub -> **public key**
+
+- Verify if the file exists in this path
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+
 ```h 
 provider "aws" {
   region = "us-east-1"
@@ -109,6 +131,7 @@ resource "aws_instance" "app_server" {
   }
 }
 ```
+
 **Create a variables.tf file**
 ```'hcl
 variable "region" {
@@ -174,10 +197,11 @@ Default output format [None]: json
 **Initialize and apply:**
 ```bash
 terraform init
+terraform plan
 terraform apply
 ```
 ---
-3. ☸️ Deploy Application to EKS (Kubernetes)
+**3. ☸️ Deploy Application to EKS (Kubernetes)**
 After Terraform finishes, use kubectl to interact with the cluster.
 
 ***Update your kubeconfig:***
