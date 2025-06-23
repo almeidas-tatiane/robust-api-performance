@@ -596,6 +596,15 @@ kubectl get svc
 📌**IMPORTANT:**
 Use this external IP to test your API in Postman or browser.
 
+--
+## **Stopping the application avoiding extra costs at AWS**
+The script delete-nodegroup.sh was created to:
+- Remove automatically EC2 instances created to EKS
+- Stop charges by EC2 instances immediately after its exclusion
+- Keep the EKS control plane active
 
-
+---
+## **Restore node group and application at AWS**
+The script restore-nodegroup-and-app.sh was created to:
+- Redeploy the application
 
