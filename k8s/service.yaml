@@ -1,0 +1,13 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: robust-api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: robust-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
