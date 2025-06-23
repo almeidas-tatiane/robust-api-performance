@@ -28,7 +28,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Performance Test Plan](#-performance-test-plan)
 - [Contributing or Feedback](#-contributing-or-feedback)
 - [Usage and Credit Notice](#-usage-and-credit-notice)
-- -[Application Deployment on AWS using Docker, Terraform, and EKS](#application-deployment-on-aws-using-docker-terraform-and-eks)
+- [Application Deployment on AWS using Docker, Terraform, and EKS](#application-deployment-on-aws-using-docker-terraform-and-eks)
 
 ---
 
