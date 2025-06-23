@@ -34,7 +34,7 @@ RUN npm install
 COPY . .
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 3001
 
 # Start the application
 CMD ["node", "server.js"]
@@ -42,7 +42,7 @@ CMD ["node", "server.js"]
 Then, build and test the Docker image locally:
 ```
 docker build -t robust-api .
-docker run -p 3000:3000 robust-api
+docker run -p 3001:3001 robust-api
 ```
 
 ---
@@ -99,7 +99,7 @@ spec:
         - name: robust-api
           image: <your-dockerhub-username>/robust-api:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 3001
           env:
             - name: MONGO_URI
               valueFrom:
@@ -125,7 +125,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 3001
 ```
 ***Apply the resources:***
 ```bash
