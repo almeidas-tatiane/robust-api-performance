@@ -422,6 +422,7 @@ After Terraform finishes, use kubectl to interact with the cluster.
 ***Update your kubeconfig:***
 ```bash
 aws eks --region <your-region> update-kubeconfig --name <your-cluster-name>
+Ex: aws eks --region us-east-1 update-kubeconfig --name performance
 ```
 
 ***Create a Kubernetes Deployment and Service:***
