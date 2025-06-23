@@ -1,13 +1,48 @@
-# 🧪 Robust RESTful API with JWT Authentication
+⚠️ **Note**: This project is a work in progress and part of my personal portfolio to demonstrate my skills in Performance Engineering. It is actively being developed and will be updated with scripts, reports, and deployment steps soon.
+
+# 🚀 Robust RESTful API with JWT Authentication
+
+## 📖 About the Project
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)](https://nodejs.org/) [![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://www.mongodb.com/cloud/atlas) [![Postman](https://img.shields.io/badge/Postman-Collection-orange?logo=postman)](./robust-api-postman-collection.json)
 
 
 A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atlas.  Supports full CRUD operations with JWT-based authentication.
 
+📌 This project is part of my return-to-tech portfolio, demonstrating hands-on expertise in API development and performance testing. I welcome feedback and collaboration opportunities!
+
 ---
-## 🧪 Designed for Performance Testing
-This API was created specifically to practice performance testing with tools like Apache JMeter,K6 and Gatling.
+
+## 📑 Table of Contents
+
+- [About the Project](#-about-the-project)
+- [Designed for Performance Testing](#-designed-for-performance-testing)
+- [Why this Project?](#-why-this-project)
+- [Technologies Used](#-technologies-used)
+- [API Overview](#-api-overview)
+- [API Endpoints](#-api-endpoints)
+- [Environment Variables](#️-environment-variables)
+- [Postman Collection](#-postman-collection)
+- [Swagger](#-swagger)
+- [How to Run Locally](#️-how-to-run-this-project-locally)
+- [Performance Test Plan](#-performance-test-plan)
+- [Contributing or Feedback](#-contributing-or-feedback)
+- [Usage and Credit Notice](#-usage-and-credit-notice)
+
+---
+
+## 🔧 Upcoming Tasks
+- [ ] Deploy the application to AWS
+- [ ] Configure EC2 with JMeter, Prometheus, Grafana
+- [ ] Create and execute JMeter scripts
+- [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
+- [ ] Collect results and screenshots
+- [ ] Write test report summarizing results and insights
+
+
+---
+## ⚡ Designed for Performance Testing
+This API was created specifically to practice performance testing using tools like Apache JMeter, K6, and Gatling
 
 Features include:
 - Dynamic data handling
@@ -43,7 +78,7 @@ All protected routes require a JWT sent in the `Authorization` header as `Bearer
 ## 📦 API Endpoints
 
 ### ➕ POST /register
-Create an user with username and password.
+Create a user with a username and password.
 ```json
 {
   "username": "admin",
@@ -155,6 +190,28 @@ Open the file in the Swagger Editor (https://editor.swagger.io/)
 Inside the project's folder, run in command line
 ```cmd
 node server.js
+```
+---
+## 📈 Performance Test Plan
+This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
+
+🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
+
+---
+## 🤝 Contributing or Feedback
+
+This project is part of my personal learning journey in performance engineering. 
+Feedback, suggestions, or connections are always welcome!
+
+📧 Contact me via [LinkedIn](https://www.linkedin.com/in/tatianealmeida/) or GitHub Discussions.
+
+---
+## 🙏 Usage and Credit Notice
+To help strengthen our community, I would appreciate it if you could mention my [GitHub](https://github.com/almeidas-tatiane) and [LinkedIn](https://www.linkedin.com/in/tatianealmeida/) when using this material.
+
+
+
+
 
 
 
