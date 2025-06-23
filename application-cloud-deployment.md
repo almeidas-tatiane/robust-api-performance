@@ -57,9 +57,11 @@ infra/
 ├── variables.tf
 ├── outputs.tf
 
-Create a infra folder inside your project
+```
 
-Create a main.tf file - It will be used to create the main resources (EC2, VPC, etc)
+**Create a infra folder inside your project**
+
+**Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
 ```h 
 provider "aws" {
   region = "us-east-1"
@@ -107,20 +109,20 @@ resource "aws_instance" "app_server" {
   }
 }
 ```
-Create a variables.tf file
+**Create a variables.tf file**
 ```'hcl
 variable "region" {
   default = "us-east-1"
 }
 ```
-Create outputs.tf file - It will show IPs after creation
+**Create outputs.tf file** - It will show IPs after creation
 ```h
 output "app_server_ip" {
   value = aws_instance.app_server.public_ip
 }
 
 ```
-Initialize and apply:
+**Initialize and apply:**
 ```bash
 terraform init
 terraform apply
