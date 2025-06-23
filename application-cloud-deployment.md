@@ -14,6 +14,40 @@ This section provides a high-level guide to deploy the Node.js API application t
 | **EKS (Elastic Kubernetes Service)** | Runs the Kubernetes cluster on AWS                            | Fully managed K8s, integrates with AWS networking, IAM, and monitoring   |
 
 ---
+# Table of Contents
+
+- [🧱 Step-by-Step Deployment Guide](#-step-by-step-deployment-guide)
+  - [1. 🐳 Containerize the Application with Docker](#1-🐳-containerize-the-application-with-docker)
+  - [2. 🛠️ Set Up Terraform for AWS Infrastructure](#2-🛠️-set-up-terraform-for-aws-infrastructure)
+    - [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
+    - [Create a main.tf file](#create-a-main.tf-file)
+    - [Create a variables.tf file](#create-a-variables.tf-file)
+    - [Create outputs.tf file](#create-outputs.tf-file)
+    - [Configure the Terraform locally](#configure-the-terraform-locally)
+    - [Configure aws configure on Terraform](#configure-aws-configure-on-terraform)
+    - [Get your credentials](#get-your-credentials)
+    - [Install and configure aws configure locally](#install-and-configure-aws-configure-locally)
+    - [Configure your credentials](#configure-your-credentials)
+    - [Set up a not root USER at IAM](#set-up-a-not-root-user-at-iam)
+    - [Create a specific policy to performance user](#create-a-specific-policy-to-performance-user)
+    - [Apply the AllowEKSRoleManagement to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
+    - [Initialize and apply](#initialize-and-apply)
+  - [3. ☸️ Deploy Application to EKS (Kubernetes)](#3-☸️-deploy-application-to-eks-kubernetes)
+    - [Update your kubeconfig](#update-your-kubeconfig)
+    - [Connection test](#connection-test)
+    - [PRE-REQUISITES](#pre-requisites)
+    - [Create api-secrets on cluster with mongo-uri and jwt_secret keys](#create-api-secrets-on-cluster-with-mongo-uri-and-jwt_secret-keys)
+    - [Create a Kubernetes Deployment](#create-a-kubernetes-deployment)
+    - [Additional commands on docker to run](#additional-commands-on-docker-to-run)
+    - [Applying the deployment.yaml](#applying-the-deployment.yaml)
+    - [Checking if the deployment.yaml worked](#checking-if-the-deployment.yaml-worked)
+    - [Create a Kubernetes Service](#create-a-kubernetes-service)
+    - [Apply the resources](#apply-the-resources)
+    - [Access the Application](#access-the-application)
+- [Stopping the application avoiding extra costs at AWS](#stopping-the-application-avoiding-extra-costs-at-aws)
+- [Restore node group and application at AWS](#restore-node-group-and-application-at-aws)
+---
+
 ## 🧱 Step-by-Step Deployment Guide
 
 ### **1. 🐳 Containerize the Application with Docker**
