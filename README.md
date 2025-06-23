@@ -28,6 +28,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Performance Test Plan](#-performance-test-plan)
 - [Contributing or Feedback](#-contributing-or-feedback)
 - [Usage and Credit Notice](#-usage-and-credit-notice)
+- -[Application Deployment on AWS using Docker, Terraform, and EKS](#application-deployment-on-aws-using-docker-terraform-and-eks)
 
 ---
 
@@ -198,6 +199,9 @@ This test plan was created as part of a personal portfolio project to demonstrat
 🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
 
 ---
+## Application Deployment on AWS using Docker, Terraform, and EKS
+Check the application-cloud-deployment.md file
+
 ## 🤝 Contributing or Feedback
 
 This project is part of my personal learning journey in performance engineering. 
