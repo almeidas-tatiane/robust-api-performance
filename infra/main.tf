@@ -44,6 +44,15 @@ resource "aws_instance" "app_server" {
   }
 }
 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+}
+
 # VPC with 2 public subnets (for simplicity)
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
@@ -62,6 +71,7 @@ module "vpc" {
     Name = "performance-vpc"
   }
 }
+
 
 # IAM Role for EKS Cluster
 resource "aws_iam_role" "eks_cluster_role" {
