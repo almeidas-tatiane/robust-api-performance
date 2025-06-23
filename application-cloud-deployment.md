@@ -50,22 +50,75 @@ docker run -p 3001:3001 dockerfile
 ---
 2. 🛠️ Set Up Terraform for AWS Infrastructure
 
-Use Terraform to provision the following:
-- A new VPC (or use existing)
-- EKS Cluster
-- Node Group (EC2 worker nodes)
-- IAM roles and policies
-- Security groups and networking
-
 Example folder structure:
 ```css
 infra/
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
-├── eks.tf
-├── vpc.tf
-└── providers.tf
+
+Create a infra folder inside your project
+
+Create a main.tf file - It will be used to create the main resources (EC2, VPC, etc)
+```h 
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_key_pair" "deployer" {
+  key_name   = "performance-key"
+  public_key = file("~/.ssh/id_rsa.pub")
+}
+
+resource "aws_security_group" "allow_ssh_http" {
+  name        = "allow_ssh_http"
+  description = "Allow SSH and HTTP"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # SSH
+  }
+
+  ingress {
+    from_port   = 3001
+    to_port     = 3001
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # App port
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 (us-east-1)
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.deployer.key_name
+  security_groups = [aws_security_group.allow_ssh_http.name]
+
+  tags = {
+    Name = "app-server"
+  }
+}
+```
+Create a variables.tf file
+```'hcl
+variable "region" {
+  default = "us-east-1"
+}
+```
+Create outputs.tf file - It will show IPs after creation
+```h
+output "app_server_ip" {
+  value = aws_instance.app_server.public_ip
+}
+
 ```
 Initialize and apply:
 ```bash
