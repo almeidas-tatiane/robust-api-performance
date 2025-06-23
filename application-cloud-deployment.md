@@ -570,14 +570,6 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 ---
-#### ***🔐 Store Secrets (Optional)***
-Use Kubernetes Secrets or AWS Secrets Manager to store sensitive data:
-```bash
-kubectl create secret generic api-secrets \
-  --from-literal=mongo_uri='your-mongo-uri' \
-  --from-literal=jwt_secret='your-secret-key'
-```
----
 #### ***✅ Access the Application***
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
