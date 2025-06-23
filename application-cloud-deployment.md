@@ -509,8 +509,13 @@ spec:
 
 Inside k8s folder, execute:
 ```
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f deployment.yaml
 ````
+If deployment.yaml was executed successfully the message will be displayed:
+```
+deployment.apps/robust-api created
+```
+
 #### **Checking if the deployment.yaml worked**
 ```bash
 
