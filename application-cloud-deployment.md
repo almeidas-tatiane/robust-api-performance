@@ -444,6 +444,15 @@ NAME                                           STATUS   ROLES    AGE   VERSION
 ip-10-0-1-xxx.us-east-1.compute.internal       Ready    <none>   5m    v1.29.x
 ```
 ---
+📌**Note:** 
+```
+Before the next step **Create a Kubernetes Deployment and Service**, verify your dockerhub-username
+- Access (https://hub.docker.com)
+- Login
+- Your dockerhub-username is next to your profile icon or in the profile URL
+```
+---
+
 #### ***Create a Kubernetes Deployment and Service:***
 ```yaml
 # deployment.yaml
