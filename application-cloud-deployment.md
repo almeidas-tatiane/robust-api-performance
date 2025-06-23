@@ -445,6 +445,7 @@ ip-10-0-1-xxx.us-east-1.compute.internal       Ready    <none>   5m    v1.29.x
 ```
 ---
 📌**Note:** 
+#### **PRE-REQUISITES**
 ```
 Before the next step **Create a Kubernetes Deployment and Service**, verify your dockerhub-username
 - Access (https://hub.docker.com)
@@ -453,6 +454,12 @@ Before the next step **Create a Kubernetes Deployment and Service**, verify your
 ```
 ```
 In the root project, create a k8s folder, inside it, will be all files related to kubernetes: deployment.yaml and services.yaml
+```
+```
+**Create api-secrets on cluster with mongo-uri and jwt_secret keys**
+kubectl create secret generic api-secrets \
+  --from-literal=mongo_uri='your-MongoAtlas-URI' \
+  --from-literal=jwt_secret='your-JWT-password'
 ```
 
 #### ***Create a Kubernetes Deployment and Service:***
