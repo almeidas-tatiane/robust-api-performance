@@ -505,6 +505,17 @@ spec:
                   name: api-secrets
                   key: jwt_secret
 ```
+#### **Aplying the deployment.yaml**
+
+Inside k8s folder, execute:
+```
+kubectl apply -f k8s/deployment.yaml
+````
+#### **Checking if the deployment.yaml worked**
+```bash
+
+
+
 ```yaml
 # service.yaml
 apiVersion: v1
