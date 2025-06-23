@@ -33,7 +33,6 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 ---
 
 ## 🔧 Upcoming Tasks
-- [ ] Deploy the application to AWS
 - [ ] Configure EC2 with JMeter, Prometheus, Grafana
 - [ ] Create and execute JMeter scripts
 - [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
@@ -200,7 +199,7 @@ This test plan was created as part of a personal portfolio project to demonstrat
 
 ---
 ## Application Deployment on AWS using Docker, Terraform, and EKS
-Check the application-cloud-deployment.md file
+Check the [application-cloud-deployment.md file](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md)
 
 ## 🤝 Contributing or Feedback
 
