@@ -505,6 +505,24 @@ spec:
                   name: api-secrets
                   key: jwt_secret
 ```
+#### **Additional commands on docker to run**
+
+Run in the terminal(in the same path location where application's dockerfile is)
+
+```bash
+# Build the image on the deployment.yaml
+docker build -t robust-api .
+
+#Tag with correct user
+docker tag robust-api <your dockerhub-username>/robust-api:latest
+
+# Docker Hub login
+docker login
+
+# Docker Hub push
+docker push <your dockerhub-username>/robust-api:latest
+```
+---
 #### **Aplying the deployment.yaml**
 
 Inside k8s folder, execute:
@@ -515,7 +533,7 @@ If deployment.yaml was executed successfully the message will be displayed:
 ```
 deployment.apps/robust-api created
 ```
-
+---
 #### **Checking if the deployment.yaml worked**
 ```bash
 kubectly get deployments
@@ -575,6 +593,7 @@ Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
 kubectl get svc
 ```
+📌**IMPORTANT:**
 Use this external IP to test your API in Postman or browser.
 
 
