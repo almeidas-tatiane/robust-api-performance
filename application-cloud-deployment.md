@@ -193,6 +193,18 @@ AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <yoour secret acces
 Default region name [None]: us-east-1     <can be any other reagion, but us-east-1 is free>
 Default output format [None]: json
 ```
+**Set up a not root USER at IAM**
+
+To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps bellow:
+
+- Access AWS Console: (https://console.aws.amazon.com/iam/home#/users)
+- Click on Users
+- Add users
+- Type the name performance
+- Add the following policies directly:
+  - AmazonEC2FullAccess
+  - AmazonEKSClusterPolicy
+  
 
 **Initialize and apply:**
 ```bash
@@ -202,6 +214,7 @@ terraform apply
 ```
 ---
 **3. ☸️ Deploy Application to EKS (Kubernetes)**
+
 After Terraform finishes, use kubectl to interact with the cluster.
 
 ***Update your kubeconfig:***
