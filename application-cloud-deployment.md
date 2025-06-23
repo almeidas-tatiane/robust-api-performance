@@ -471,7 +471,7 @@ If the api-secrets were created successfully the message will be displayed:
 secret/api-secrets created
 ```
 
-#### ***Create a Kubernetes Deployment and Service:***
+#### ***Create a Kubernetes Deployment:***
 ```yaml
 # deployment.yaml
 apiVersion: apps/v1
@@ -518,8 +518,35 @@ deployment.apps/robust-api created
 
 #### **Checking if the deployment.yaml worked**
 ```bash
+kubectly get deployments
+```
 
+**You should see something similar to:**
+Show how many pods are ready.
+```
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+robust-api   0/2     2            0           3m28s
+```
 
+```bash
+kubectl get pods -l app=robust-api
+```
+
+**You should see the pods name and other related information about it**
+```
+NAME                         READY   STATUS             RESTARTS   AGE
+robust-api-687f59957-kzmd5   0/1     ImagePullBackOff   0          5m4s
+robust-api-687f59957-z8526   0/1     ImagePullBackOff   0          5m4s
+```
+
+**To verify the logs**
+```bash
+kubectl logs <pod-name>
+Ex: kubectl logs robust-api-687f59957-kzmd5
+```
+
+---
+#### ***Create a Kubernetes Service:***
 
 ```yaml
 # service.yaml
