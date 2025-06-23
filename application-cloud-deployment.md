@@ -61,8 +61,6 @@ infra/
 
 **Create a infra folder inside your project**
 
-**Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
-
 📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
 - Open your terminal (GitBash or PowerShell) and execute:
 ```bash
@@ -82,7 +80,7 @@ Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
 ```bash
 cat ~/.ssh/id_rsa.pub
 ```
-
+**Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
 
 ```h 
 provider "aws" {
@@ -91,7 +89,7 @@ provider "aws" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "performance-key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("~/.ssh/id_ed25519.pub")
 }
 
 resource "aws_security_group" "allow_ssh_http" {
@@ -130,6 +128,141 @@ resource "aws_instance" "app_server" {
     Name = "app-server"
   }
 }
+
+
+# VPC with 2 public subnets (for simplicity)
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "4.0.2"
+
+  name = "performance-vpc"
+  cidr = "10.0.0.0/16"
+
+  azs             = ["us-east-1a", "us-east-1b"]
+  public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
+
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "performance-vpc"
+  }
+}
+
+
+# IAM Role for EKS Cluster
+resource "aws_iam_role" "eks_cluster_role" {
+  name = "performance-eks-cluster-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "eks.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "eks_cluster_AmazonEKSClusterPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  role       = aws_iam_role.eks_cluster_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "eks_cluster_AmazonEKSServicePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+  role       = aws_iam_role.eks_cluster_role.name
+}
+
+# IAM Role for EKS Worker Nodes (Managed Node Group)
+resource "aws_iam_role" "eks_nodegroup_role" {
+  name = "performance-eks-nodegroup-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "eks_worker_AmazonEKSWorkerNodePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+  role       = aws_iam_role.eks_nodegroup_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "eks_worker_AmazonEC2ContainerRegistryReadOnly" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  role       = aws_iam_role.eks_nodegroup_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "eks_worker_AmazonEKS_CNI_Policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+  role       = aws_iam_role.eks_nodegroup_role.name
+}
+
+# EKS Cluster
+resource "aws_eks_cluster" "performance" {
+  name     = "performance"
+  role_arn = aws_iam_role.eks_cluster_role.arn
+
+  vpc_config {
+    subnet_ids = module.vpc.public_subnets
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.eks_cluster_AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.eks_cluster_AmazonEKSServicePolicy,
+  ]
+}
+
+# EKS Managed Node Group
+resource "aws_eks_node_group" "performance_nodes" {
+  cluster_name    = aws_eks_cluster.performance.name
+  node_group_name = "performance-node-group"
+  node_role_arn   = aws_iam_role.eks_nodegroup_role.arn
+  subnet_ids      = module.vpc.public_subnets
+
+  scaling_config {
+    desired_size = 2
+    max_size     = 3
+    min_size     = 1
+  }
+
+  instance_types = ["t3.medium"]
+
+  depends_on = [
+    aws_eks_cluster.performance,
+    aws_iam_role_policy_attachment.eks_worker_AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.eks_worker_AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.eks_worker_AmazonEKS_CNI_Policy,
+  ]
+}
+
+# Outputs for convenience
+output "cluster_endpoint" {
+  value = aws_eks_cluster.performance.endpoint
+}
+
+output "cluster_name" {
+  value = aws_eks_cluster.performance.name
+}
+
+output "cluster_certificate_authority_data" {
+  value = aws_eks_cluster.performance.certificate_authority[0].data
+}
+
+output "node_group_role_arn" {
+  value = aws_iam_role.eks_nodegroup_role.arn
+}
+
 ```
 
 **Create a variables.tf file**
@@ -198,13 +331,82 @@ Default output format [None]: json
 To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps bellow:
 
 - Access AWS Console: (https://console.aws.amazon.com/iam/home#/users)
+- Click on IAM
 - Click on Users
 - Add users
 - Type the name performance
 - Add the following policies directly:
   - AmazonEC2FullAccess
-  - AmazonEKSClusterPolicy
-  
+
+ **Create a specific policy to performance user**
+ - Access AWS Console with a ROOT user
+ - Click on IAM
+ - Click on Policies
+ - Click on Create policy
+ - Click on JSON
+ - Type the name: **AllowEKSRoleManagement**
+ - Paste the policy
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"eks:CreateCluster",
+				"eks:DescribeCluster",
+				"eks:DeleteCluster",
+				"eks:ListClusters",
+				"eks:UpdateClusterConfig",
+				"eks:CreateNodegroup",
+				"eks:DescribeNodegroup",
+				"eks:UpdateNodegroupConfig",
+				"eks:DeleteNodegroup",
+				"eks:ListNodegroups",
+				"iam:CreateRole",
+				"iam:GetRole",
+				"iam:AttachRolePolicy",
+				"iam:PutRolePolicy",
+				"iam:ListRolePolicies",
+				"iam:ListAttachedRolePolicies",
+				"iam:DeleteRole",
+				"iam:DetachRolePolicy",
+				"iam:CreateInstanceProfile",
+				"iam:AddRoleToInstanceProfile",
+				"iam:RemoveRoleFromInstanceProfile",
+				"iam:DeleteInstanceProfile",
+				"iam:PassRole",
+				"iam:CreateServiceLinkedRole",
+				"ec2:DescribeSubnets",
+				"ec2:DescribeVpcs",
+				"ec2:DescribeSecurityGroups",
+				"ec2:CreateSecurityGroup",
+				"ec2:AuthorizeSecurityGroupIngress",
+				"ec2:AuthorizeSecurityGroupEgress",
+				"ec2:RevokeSecurityGroupIngress",
+				"ec2:RevokeSecurityGroupEgress",
+				"ec2:DeleteSecurityGroup",
+				"ec2:DescribeRouteTables"
+			],
+			"Resource": "*"
+		}
+	]
+}
+```
+- Click on Next
+- Click on Save
+
+**Apply the AllowEKSRoleManagement to performance user**
+ - Access AWS Console with a ROOT user
+ - Click on IAM
+ - Click on Users
+ - Click on Performance
+ - Click on Add permissions -> Add permissions
+ - Select Attach policies directly
+ - Search **AllowEKSRoleManagement**
+ - Select the policy **AllowEKSRoleManagement**
+ - Click on Next
+ - Click oon Add permissions
 
 **Initialize and apply:**
 ```bash
