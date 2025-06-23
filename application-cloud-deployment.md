@@ -453,10 +453,11 @@ Before the next step **Create a Kubernetes Deployment and Service**, verify your
 - Your dockerhub-username is next to your profile icon or in the profile URL
 ```
 ```
-In the root project, create a k8s folder, inside it, will be all files related to kubernetes: deployment.yaml and services.yaml
+In the root project, create a k8s folder, inside it, will be the files: deployment.yaml and services.yaml
 ```
-```
+
 **Create api-secrets on cluster with mongo-uri and jwt_secret keys**
+```
 kubectl create secret generic api-secrets \
   --from-literal=mongo_uri='your-MongoAtlas-URI' \
   --from-literal=jwt_secret='your-JWT-password'
