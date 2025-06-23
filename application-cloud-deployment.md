@@ -43,8 +43,8 @@ CMD ["node", "server.js"]
 
 Then, build and test the Docker image locally:
 ```
-docker build -t robust-api .
-docker run -p 3001:3001 robust-api
+docker build -t dockerfile .
+docker run -p 3001:3001 dockerfile
 ```
 
 ---
