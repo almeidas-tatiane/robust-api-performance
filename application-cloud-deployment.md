@@ -14,6 +14,13 @@ This section provides a high-level guide to deploy the Node.js API application t
 | **EKS (Elastic Kubernetes Service)** | Runs the Kubernetes cluster on AWS                            | Fully managed K8s, integrates with AWS networking, IAM, and monitoring   |
 
 ---
+## 📑 Table of Contents
+- [Containerize the Application with Docker}(#containerize-the-application-with-docker)
+- [Set Up Terraform for AWS Infrastructure](#set-up-terraform-for-aws-infrastructure)
+	- [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)	
+
+
+
 ## 🧱 Step-by-Step Deployment Guide
 
 ### **1. 🐳 Containerize the Application with Docker**
