@@ -122,6 +122,52 @@ output "app_server_ip" {
 }
 
 ```
+---
+**Configure the Terraform locally**
+- Download Terraform: **This is for Windows**(https://developer.hashicorp.com/terraform/install#windows)
+- Extract it in your computer and after that add the path in Environment Variables
+- Verify the version installed: 
+```cmd
+terraform -v
+```
+---
+**Configure aws configure on Terraform**
+**✅ What do you need**
+- Access Key ID
+- Secret Access Key
+- Default region (ex: us-east-1)
+- (Optional) Output format (blank or json)
+
+##### 🔐 Step 1: Get your credentials
+To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
+After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
+📌**Note:** The Secret Access Key is only displayed when you create a non root user, so when you do it for the first time, don't forget to save the Secret Access Key.
+
+##### Install and configure aws configure locally
+- Download the aws configure: **This is for Windows**(https://awscli.amazonaws.com/AWSCLIV2.msi)
+- Install the aws.
+- Verify the installation
+```bash
+aws --version
+```
+It will display something similar to
+```
+aws-cli/2.15.35 Python/3.11.5 Windows/10 exe/x86_64
+```
+
+**Configure your credentials**
+Run
+```bash
+aws configure
+```
+Fill in your aws information
+```pqsql
+AWS Access Key ID [None]: AKIAxxxxxxxxxxxxxxxx <your access key id>
+AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <yoour secret access key>
+Default region name [None]: us-east-1     <can be any other reagion, but us-east-1 is free>
+Default output format [None]: json
+```
+
 **Initialize and apply:**
 ```bash
 terraform init
