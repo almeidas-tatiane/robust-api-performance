@@ -49,6 +49,7 @@ docker run -p 3001:3001 dockerfile
 
 ---
 2. 🛠️ Set Up Terraform for AWS Infrastructure
+
 Use Terraform to provision the following:
 - A new VPC (or use existing)
 - EKS Cluster
