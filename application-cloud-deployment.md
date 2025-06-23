@@ -39,10 +39,12 @@ EXPOSE 3001
 # Start the application
 CMD ["node", "server.js"]
 ```
+***📌 Note:*** Open your Docker Desktop and make sure it's running.
+
 Then, build and test the Docker image locally:
 ```
-docker build -t robust-api .
-docker run -p 3001:3001 robust-api
+docker build -t dockerfile .
+docker run -p 3001:3001 dockerfile
 ```
 
 ---
