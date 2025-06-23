@@ -1,0 +1,31 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robust-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: robust-api
+  template:
+    metadata:
+      labels:
+        app: robust-api
+    spec:
+      containers:
+        - name: robust-api
+          image: almeidastatiane/robust-api:latest
+          ports:
+            - containerPort: 3001
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: mongo_uri
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: jwt_secret
