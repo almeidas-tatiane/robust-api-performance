@@ -457,11 +457,14 @@ In the root project, create a k8s folder, inside it, will be the files: deployme
 ```
 
 **Create api-secrets on cluster with mongo-uri and jwt_secret keys**
+📌**IMPORTANT:**
+You just need to do it only once before apply the deployment.yaml
 ```
 kubectl create secret generic api-secrets \
   --from-literal=mongo_uri='your-MongoAtlas-URI' \
   --from-literal=jwt_secret='your-JWT-password'
 ```
+
 
 #### ***Create a Kubernetes Deployment and Service:***
 ```yaml
