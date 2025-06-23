@@ -48,7 +48,7 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-###**2. 🛠️ Set Up Terraform for AWS Infrastructure** 
+### **2. 🛠️ Set Up Terraform for AWS Infrastructure** 
 
 Example folder structure:
 ```css
@@ -59,7 +59,7 @@ infra/
 
 ```
 
-####**Create a infra folder inside your project**
+#### **Create a infra folder inside your project**
 
 📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
 - Open your terminal (GitBash or PowerShell) and execute:
@@ -80,7 +80,7 @@ Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
 ```bash
 cat ~/.ssh/id_rsa.pub
 ```
-####**Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
+#### **Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
 
 ```h 
 provider "aws" {
@@ -265,7 +265,7 @@ output "node_group_role_arn" {
 
 ```
 
-####**Create a variables.tf file**
+#### **Create a variables.tf file**
 ```'hcl
 variable "region" {
   default = "us-east-1"
@@ -279,7 +279,7 @@ output "app_server_ip" {
 
 ```
 ---
-####**Configure the Terraform locally**
+#### **Configure the Terraform locally**
 - Download Terraform: **This is for Windows**(https://developer.hashicorp.com/terraform/install#windows)
 - Extract it in your computer and after that add the path in Environment Variables
 - Verify the version installed: 
@@ -287,7 +287,7 @@ output "app_server_ip" {
 terraform -v
 ```
 ---
-####**Configure aws configure on Terraform**
+#### **Configure aws configure on Terraform**
 
 **✅ What do you need**
 - Access Key ID
@@ -313,7 +313,7 @@ It will display something similar to
 aws-cli/2.15.35 Python/3.11.5 Windows/10 exe/x86_64
 ```
 
-#####**Configure your credentials**
+##### **Configure your credentials**
 
 Run
 ```bash
@@ -326,7 +326,7 @@ AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <yoour secret acces
 Default region name [None]: us-east-1     <can be any other reagion, but us-east-1 is free>
 Default output format [None]: json
 ```
-#####**Set up a not root USER at IAM**
+##### **Set up a not root USER at IAM**
 
 To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps bellow:
 
@@ -338,7 +338,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
 - Add the following policies directly:
   - AmazonEC2FullAccess
 
- #####**Create a specific policy to performance user**
+ ##### **Create a specific policy to performance user**
  - Access AWS Console with a ROOT user
  - Click on IAM
  - Click on Policies
@@ -396,7 +396,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
 - Click on Next
 - Click on Save
 
-#####**Apply the AllowEKSRoleManagement to performance user**
+##### **Apply the AllowEKSRoleManagement to performance user**
  - Access AWS Console with a ROOT user
  - Click on IAM
  - Click on Users
@@ -408,24 +408,24 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
  - Click on Next
  - Click oon Add permissions
 
-#####**Initialize and apply:**
+##### **Initialize and apply:**
 ```bash
 terraform init
 terraform plan
 terraform apply
 ```
 ---
-###**3. ☸️ Deploy Application to EKS (Kubernetes)**
+### **3. ☸️ Deploy Application to EKS (Kubernetes)**
 
 After Terraform finishes, use kubectl to interact with the cluster.
 
-####***Update your kubeconfig:***
+#### ***Update your kubeconfig:***
 ```bash
 aws eks --region <your-region> update-kubeconfig --name <your-cluster-name>
 Ex: aws eks --region us-east-1 update-kubeconfig --name performance
 ```
 ---
-####***Connection test***
+#### ***Connection test***
 ```bash
 kubectl get nodes
 ```
@@ -435,7 +435,7 @@ NAME                                           STATUS   ROLES    AGE   VERSION
 ip-10-0-1-xxx.us-east-1.compute.internal       Ready    <none>   5m    v1.29.x
 ```
 
-####***Create a Kubernetes Deployment and Service:***
+#### ***Create a Kubernetes Deployment and Service:***
 ```yaml
 # deployment.yaml
 apiVersion: apps/v1
@@ -484,19 +484,19 @@ spec:
       port: 80
       targetPort: 3001
 ```
-***Apply the resources:***
+#### ***Apply the resources:***
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
-***🔐 Store Secrets (Optional)***
+#### ***🔐 Store Secrets (Optional)***
 Use Kubernetes Secrets or AWS Secrets Manager to store sensitive data:
 ```bash
 kubectl create secret generic api-secrets \
   --from-literal=mongo_uri='your-mongo-uri' \
   --from-literal=jwt_secret='your-secret-key'
 ```
-####***✅ Access the Application***
+#### ***✅ Access the Application***
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
 kubectl get svc
