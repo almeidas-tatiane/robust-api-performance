@@ -18,7 +18,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 - [Containerize the Application with Docker](#containerize-the-application-with-docker)
 - [Set Up Terraform for AWS Infrastructure](#Set-Up-Terraform-for-AWS-Infrastructure)
 	- [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
-  	- [Create a main.tf file](#Create-a-main.tf-file)	
+  	- [Create a main.tf file](#Create-a-main-tf-file)	
 
 
 
