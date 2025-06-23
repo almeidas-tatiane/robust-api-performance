@@ -451,7 +451,9 @@ Before the next step **Create a Kubernetes Deployment and Service**, verify your
 - Login
 - Your dockerhub-username is next to your profile icon or in the profile URL
 ```
----
+```
+In the root project, create a k8s folder, inside it, will be all files related to kubernetes: deployment.yaml and services.yaml
+```
 
 #### ***Create a Kubernetes Deployment and Service:***
 ```yaml
