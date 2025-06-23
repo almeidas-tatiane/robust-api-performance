@@ -39,6 +39,7 @@ EXPOSE 3001
 # Start the application
 CMD ["node", "server.js"]
 ```
+---
 ***📌 Note:*** Open your Docker Desktop and make sure it's running.
 
 Then, build and test the Docker image locally:
@@ -58,7 +59,7 @@ infra/
 ├── outputs.tf
 
 ```
-
+---
 #### **Create a infra folder inside your project**
 
 📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
@@ -80,6 +81,7 @@ Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
 ```bash
 cat ~/.ssh/id_rsa.pub
 ```
+---
 #### **Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
 
 ```h 
@@ -264,13 +266,14 @@ output "node_group_role_arn" {
 }
 
 ```
-
+---
 #### **Create a variables.tf file**
 ```'hcl
 variable "region" {
   default = "us-east-1"
 }
 ```
+---
 **Create outputs.tf file** - It will show IPs after creation
 ```h
 output "app_server_ip" {
@@ -294,13 +297,13 @@ terraform -v
 - Secret Access Key
 - Default region (ex: us-east-1)
 - (Optional) Output format (blank or json)
-
+---
 ##### 🔐 Step 1: Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
 📌**Note:** The Secret Access Key is only displayed when you create a non root user, so when you do it for the first time, don't forget to save the Secret Access Key.
-
+---
 ##### Install and configure aws configure locally
 - Download the aws configure: **This is for Windows**(https://awscli.amazonaws.com/AWSCLIV2.msi)
 - Install the aws.
@@ -312,7 +315,7 @@ It will display something similar to
 ```
 aws-cli/2.15.35 Python/3.11.5 Windows/10 exe/x86_64
 ```
-
+---
 ##### **Configure your credentials**
 
 Run
@@ -326,6 +329,7 @@ AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <yoour secret acces
 Default region name [None]: us-east-1     <can be any other reagion, but us-east-1 is free>
 Default output format [None]: json
 ```
+---
 ##### **Set up a not root USER at IAM**
 
 To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps bellow:
@@ -338,6 +342,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
 - Add the following policies directly:
   - AmazonEC2FullAccess
 
+---
  ##### **Create a specific policy to performance user**
  - Access AWS Console with a ROOT user
  - Click on IAM
@@ -395,7 +400,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
 ```
 - Click on Next
 - Click on Save
-
+---
 ##### **Apply the AllowEKSRoleManagement to performance user**
  - Access AWS Console with a ROOT user
  - Click on IAM
@@ -407,7 +412,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
  - Select the policy **AllowEKSRoleManagement**
  - Click on Next
  - Click oon Add permissions
-
+---
 ##### **Initialize and apply:**
 ```bash
 terraform init
@@ -434,7 +439,7 @@ If the node group is ready and running, you'll see something like:
 NAME                                           STATUS   ROLES    AGE   VERSION
 ip-10-0-1-xxx.us-east-1.compute.internal       Ready    <none>   5m    v1.29.x
 ```
-
+---
 #### ***Create a Kubernetes Deployment and Service:***
 ```yaml
 # deployment.yaml
@@ -484,11 +489,13 @@ spec:
       port: 80
       targetPort: 3001
 ```
+---
 #### ***Apply the resources:***
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
+---
 #### ***🔐 Store Secrets (Optional)***
 Use Kubernetes Secrets or AWS Secrets Manager to store sensitive data:
 ```bash
@@ -496,6 +503,7 @@ kubectl create secret generic api-secrets \
   --from-literal=mongo_uri='your-mongo-uri' \
   --from-literal=jwt_secret='your-secret-key'
 ```
+---
 #### ***✅ Access the Application***
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
