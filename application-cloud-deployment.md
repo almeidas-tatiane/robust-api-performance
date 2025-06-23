@@ -466,7 +466,10 @@ kubectl create secret generic api-secrets \
   --from-literal=mongo_uri='your-MongoAtlas-URI' \
   --from-literal=jwt_secret='your-JWT-password'
 ```
-
+If the api-secrets were created successfully the message will be displayed:
+```
+secret/api-secrets created
+```
 
 #### ***Create a Kubernetes Deployment and Service:***
 ```yaml
