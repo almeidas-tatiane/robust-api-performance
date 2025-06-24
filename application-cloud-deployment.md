@@ -16,8 +16,8 @@ This section provides a high-level guide to deploy the Node.js API application t
 ---
 ## Table of Contents
 
-- [1. Containerize the Application with Docker](#containerize-the-application-with-docker)
-- [2. Set Up Terraform for AWS Infrastructure](#set-up-terraform-for-aws-infrastructure)
+- [1. Containerize the Application with Docker](#1-containerize-the-application-with-docker)
+- [2. Set Up Terraform for AWS Infrastructure](#2-set-up-terraform-for-aws-infrastructure)
 	- [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
 	- [Create a main.tf file](#create-a-maintf-file)
 	- [Create a variables.tf file](#create-a-variablestf-file)
@@ -31,7 +31,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 			- [Create a specific policy to performance user](#create-a-specific-policy-to-performance-user)
 			- [Apply the AllowEKSRoleManagement to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
 		- [Initialize and apply](#initialize-and-apply)
-- [3. Deploy Application to EKS (Kubernetes)](#deploy-application-to-eks-kubernetes)
+- [3. Deploy Application to EKS (Kubernetes)](#3-deploy-application-to-eks-kubernetes)
 	- [Update your kubeconfig](#update-your-kubeconfig)
 	- [Connection test](#connection-test)
 	- [PRE-REQUISITES](#pre-requisites)
@@ -633,7 +633,7 @@ kubectl get svc
 📌**IMPORTANT:**
 Use this external IP to test your API in Postman or browser.
 
---
+---
 ## Stopping the application avoiding extra costs at AWS
 The script delete-nodegroup.sh was created to:
 - Remove automatically EC2 instances created to EKS
