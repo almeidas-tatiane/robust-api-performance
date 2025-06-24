@@ -32,7 +32,7 @@ aws configure
 
 It will ask for:
 
-See the details how to get AWS Access KeyID and how to configure AWS Secret Access Key in the following link: [https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md]
+See the details how to get AWS Access KeyID and how to configure AWS Secret Access Key in the following link: [https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md#get-your-credentials]
 ```
 - AWS Access Key ID
 - AWS Secret Access Key
