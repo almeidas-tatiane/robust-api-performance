@@ -47,8 +47,11 @@ If you're on Windows and don't have a Linux terminal, install **Git Bash** or **
 Let’s try just the first part of the VPC setup manually in your terminal.
 
 **1.1 Create a VPC (Virtual Private Cloud)**
+
 🧠 **What it does:**
+
 This creates a **virtual private network** in AWS where your EC2 instance will live.
+
 ```bash
 aws ec2 create-vpc --cidr-block 10.0.0.0/16 \
   --tag-specifications 'ResourceType=vpc,Tags=[{Key=Name,Value=my-vpc}]'
