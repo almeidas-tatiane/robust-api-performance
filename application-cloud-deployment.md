@@ -31,7 +31,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 			- [Create a specific policy to performance user](#create-a-specific-policy-to-performance-user)
 			- [Apply the AllowEKSRoleManagement to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
 		- [Initialize and apply](#initialize-and-apply)
-- [Deploy Application to Kubernetes](deploy-application-to-kubernetes)
+- [Deploy Application to Kubernetes](#deploy-application-to-kubernetes)
 	- [Update your kubeconfig](#update-your-kubeconfig)
 	- [Connection test](#connection-test)
 	- [PRE-REQUISITES](#pre-requisites)
