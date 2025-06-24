@@ -49,7 +49,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 
 ## 🧱 Step-by-Step Deployment Guide
 
-### 🐳 Containerize the Application with Docker
+### 🐳Containerize the Application with Docker
 Create a `Dockerfile` in your project root:
 
 ```dockerfile
@@ -82,7 +82,7 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-### 🛠️ Set Up Terraform for AWS Infrastructure
+### 🛠️Set Up Terraform for AWS Infrastructure
 
 Example folder structure:
 ```css
@@ -335,7 +335,7 @@ terraform -v
 - Default region (ex: us-east-1)
 - (Optional) Output format (blank or json)
 ---
-### 🔐 Get your credentials
+### 🔐Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
@@ -461,7 +461,7 @@ terraform plan
 terraform apply
 ```
 ---
-### ☸️ Deploy Application to Kubernetes
+### ☸️Deploy Application to Kubernetes
 
 After Terraform finishes, use kubectl to interact with the cluster.
 
@@ -625,7 +625,7 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 ---
-### ✅ Access the Application
+### ✅Access the Application
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
 kubectl get svc
