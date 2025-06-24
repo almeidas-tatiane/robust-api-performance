@@ -35,7 +35,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 	- [Update your kubeconfig](#update-your-kubeconfig)
 	- [Connection test](#connection-test)
 	- [PRE-REQUISITES](#pre-requisites)
-	- [Create api-secrets on cluster with mongo-uri and jwt_secret keys](#create-api-secrets-on-cluster-with-mongo-uri-and-jwtsecret-keys)
+	- [Create api-secrets on cluster with mongo-uri and jwt_secret keys](#create-api-secrets-on-cluster-with-mongo-uri-and-jwt_secret-keys)
 	- [Create a Kubernetes Deployment](#create-a-kubernetes-deployment)
 	- [Additional commands on docker to run](#additional-commands-on-docker-to-run)
 	- [Aplying the deployment.yaml](#aplying-the-deploymentyaml)
