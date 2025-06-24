@@ -16,33 +16,35 @@ This section provides a high-level guide to deploy the Node.js API application t
 ---
 ## Table of Contents
 
-- [🧱 Step-by-Step Deployment Guide](#-step-by-step-deployment-guide)
-  - [1. 🐳 Containerize the Application with Docker](#1--containerize-the-application-with-docker)
-  - [2. 🛠️ Set Up Terraform for AWS Infrastructure](#2--set-up-terraform-for-aws-infrastructure)
-    - [Create a `main.tf` file](#create-a-maintf-file)
-    - [Create a `variables.tf` file](#create-a-variablestf-file)
-    - [Create `outputs.tf` file](#create-outputstf-file)
-    - [Configure Terraform locally](#configure-the-terraform-locally)
-    - [Configure `aws configure` on Terraform](#configure-aws-configure-on-terraform)
-    - [Set up a non-root IAM user](#set-up-a-not-root-user-at-iam)
-    - [Create IAM policy: AllowEKSRoleManagement](#create-a-specific-policy-to-performance-user)
-    - [Attach IAM policy to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
-    - [Initialize and apply Terraform](#initialize-and-apply)
-  - [3. ☸️ Deploy Application to EKS (Kubernetes)](#3--deploy-application-to-eks-kubernetes)
-    - [Update kubeconfig](#update-your-kubeconfig)
-    - [Test EKS connection](#connection-test)
-    - [Pre-requisites: DockerHub](#pre-requisites)
-    - [Create Kubernetes secrets](#create-api-secrets-on-cluster-with-mongo-uri-and-jwt_secret-keys)
-    - [Create Kubernetes Deployment](#create-a-kubernetes-deployment)
-    - [Build and push Docker image](#additional-commands-on-docker-to-run)
-    - [Apply Deployment file](#aplying-the-deploymentyaml)
-    - [Check Deployment status](#checking-if-the-deploymentyaml-worked)
-    - [Check pod logs](#to-verify-the-logs)
-    - [Create Kubernetes Service](#create-a-kubernetes-service)
-    - [Apply Service file](#apply-the-resources)
-    - [Access the application](#access-the-application)
-- [🛑 Stopping the Application to Avoid AWS Charges](#stopping-the-application-avoiding-extra-costs-at-aws)
-- [🔁 Restore Node Group and Application](#restore-node-group-and-application-at-aws)
+- [1. Containerize the Application with Docker](#containerize-the-application-with-docker)
+- [2. Set Up Terraform for AWS Infrastructure](#set-up-terraform-for-aws-infrastructure)
+	- [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
+	- [Create a main.tf file](#create-a-maintf-file)
+	- [Create a variables.tf file](#create-a-variablestf-file)
+	- [Create outputs.tf file](#create-outputstf-file)
+	- [Configure the Terraform locally](#configure-the-terraform-locally)
+	- [Configure aws configure on Terraform](#configure-aws-configure-on-terraform)
+		- [Get your credentials](#get-your-credentials)
+		- [Install and configure aws configure locally](#install-and-configure-aws-configure-locally)
+		- [Configure your credentials](#configure-your-credentials)
+		- [Set up a not root USER at IAM](#set-up-a-not-root-user-at-iam)
+			- [Create a specific policy to performance user](#create-a-specific-policy-to-performance-user)
+			- [Apply the AllowEKSRoleManagement to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
+		- [Initialize and apply](#initialize-and-apply)
+- [3. Deploy Application to EKS (Kubernetes)](#deploy-application-to-eks-kubernetes)
+	- [Update your kubeconfig](#update-your-kubeconfig)
+	- [Connection test](#connection-test)
+	- [PRE-REQUISITES](#pre-requisites)
+	- [Create api-secrets on cluster with mongo-uri and jwt_secret keys](#create-api-secrets-on-cluster-with-mongo-uri-and-jwtsecret-keys)
+	- [Create a Kubernetes Deployment](#create-a-kubernetes-deployment)
+	- [Additional commands on docker to run](#additional-commands-on-docker-to-run)
+	- [Aplying the deployment.yaml](#aplying-the-deploymentyaml)
+	- [Checking if the deployment.yaml worked](#checking-if-the-deploymentyaml-worked)
+	- [Create a Kubernetes Service](#create-a-kubernetes-service)
+	- [Apply the resources](#apply-the-resources)
+	- [Access the Application](#access-the-application)
+- [Stopping the application avoiding extra costs at AWS](#stopping-the-application-avoiding-extra-costs-at-aws)
+- [Restore node group and application at AWS](#restore-node-group-and-application-at-aws)
 ---
 
 ## 🧱 Step-by-Step Deployment Guide
@@ -113,7 +115,9 @@ Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
 cat ~/.ssh/id_rsa.pub
 ```
 ---
-### Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
+### Create a main.tf file
+
+It will be used to create the main resources (EC2, VPC, etc)
 
 ```h 
 provider "aws" {
@@ -305,7 +309,9 @@ variable "region" {
 }
 ```
 ---
-**Create outputs.tf file** - It will show IPs after creation
+### Create outputs.tf file
+
+It will show IPs after creation
 ```h
 output "app_server_ip" {
   value = aws_instance.app_server.public_ip
@@ -487,7 +493,7 @@ Before the next step **Create a Kubernetes Deployment and Service**, verify your
 In the root project, create a k8s folder, inside it, will be the files: deployment.yaml and services.yaml
 ```
 
-**Create api-secrets on cluster with mongo-uri and jwt_secret keys**
+### Create api-secrets on cluster with mongo-uri and jwt_secret keys
 
 📌**IMPORTANT:**
 
@@ -628,14 +634,14 @@ kubectl get svc
 Use this external IP to test your API in Postman or browser.
 
 --
-## **Stopping the application avoiding extra costs at AWS**
+## Stopping the application avoiding extra costs at AWS
 The script delete-nodegroup.sh was created to:
 - Remove automatically EC2 instances created to EKS
 - Stop charges by EC2 instances immediately after its exclusion
 - Keep the EKS control plane active
 
 ---
-## **Restore node group and application at AWS**
+## Restore node group and application at AWS
 The script restore-nodegroup-and-app.sh was created to:
 - Redeploy the application
 
