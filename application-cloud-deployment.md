@@ -16,11 +16,9 @@ This section provides a high-level guide to deploy the Node.js API application t
 ---
 # Table of Contents
 
-# Table of Contents
-
-- [🧱 Step-by-Step Deployment Guide](#-step-by-step-deployment-guide)
-  - [1 🐳 Containerize the Application with Docker](#1-🐳-containerize-the-application-with-docker)
-  - [2 🛠️ Set Up Terraform for AWS Infrastructure](#2-🛠️-set-up-terraform-for-aws-infrastructure)
+- [🧱 Step-by-Step Deployment Guide](#step-by-step-deployment-guide)
+  - [1 🐳 Containerize the Application with Docker](#1-🐳containerize-the-application-with-docker)
+  - [2 🛠️ Set Up Terraform for AWS Infrastructure](#2-🛠️set-up-terraform-for-aws-infrastructure)
     - [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
     - [Create a maintf file](#create-a-maintf-file)
     - [Create a variablestf file](#create-a-variablestf-file)
