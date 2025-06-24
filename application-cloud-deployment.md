@@ -461,7 +461,7 @@ terraform plan
 terraform apply
 ```
 ---
-### ☸️Deploy Application to Kubernetes
+### Deploy Application to Kubernetes
 
 After Terraform finishes, use kubectl to interact with the cluster.
 
