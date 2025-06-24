@@ -23,7 +23,7 @@ Provision an EC2 instance with:
 
 **1. Install AWS CLI**
 
-👉 [Follow the guide:](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+👉 [Installing or updating to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 
 **2. Configure AWS CLI**
 ```bash
