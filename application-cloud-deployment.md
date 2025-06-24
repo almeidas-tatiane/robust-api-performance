@@ -14,7 +14,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 | **EKS (Elastic Kubernetes Service)** | Runs the Kubernetes cluster on AWS                            | Fully managed K8s, integrates with AWS networking, IAM, and monitoring   |
 
 ---
-# Table of Contents
+## Table of Contents
 
 - [🧱 Step-by-Step Deployment Guide](#-step-by-step-deployment-guide)
   - [1. 🐳 Containerize the Application with Docker](#1--containerize-the-application-with-docker)
