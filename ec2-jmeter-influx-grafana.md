@@ -56,3 +56,38 @@ This creates a **virtual private network** in AWS where your EC2 instance will l
 aws ec2 create-vpc --cidr-block 10.0.0.0/16 \
   --tag-specifications 'ResourceType=vpc,Tags=[{Key=Name,Value=my-vpc}]'
 ```
+📎 **What you need to do after running it:**
+You’ll get a JSON output like this:
+
+```bash
+{
+    "Vpc": {
+        "OwnerId": "<your ownerId at AWS>",
+        "InstanceTenancy": "default",
+        "Ipv6CidrBlockAssociationSet": [],
+        "CidrBlockAssociationSet": [
+            {
+                "AssociationId": "vpc-cidr-assoc-00e6828e118c27c1c",
+                "CidrBlock": "10.0.0.0/16",
+                "CidrBlockState": {
+                    "State": "associated"
+                }
+            }
+        ],
+        "IsDefault": false,
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "my-vpc"
+            }
+        ],
+        "VpcId": "vpc-0c1f7a706bb9e6ee1",
+        "State": "pending",
+        "CidrBlock": "10.0.0.0/16",
+        "DhcpOptionsId": "dopt-0367d7612c2310e5d"
+    }
+}
+```
+Copy the **VpcId** — you'll need it in the next steps.
+
+
