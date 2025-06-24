@@ -2,7 +2,7 @@
 
 This document is a step-by-step guide how to create an AWS EC2 with JMeter, InfluxDB and Grafana
 
-##✅ **Goal**
+✅## Goal
 
 Provision an EC2 instance with:
 - Static public IP (Elastic IP)
