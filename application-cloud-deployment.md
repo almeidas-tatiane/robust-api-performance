@@ -82,7 +82,7 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-### 🛠️Set Up Terraform for AWS Infrastructure
+### Set Up Terraform for AWS Infrastructure
 
 Example folder structure:
 ```css
