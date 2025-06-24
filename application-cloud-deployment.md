@@ -14,10 +14,40 @@ This section provides a high-level guide to deploy the Node.js API application t
 | **EKS (Elastic Kubernetes Service)** | Runs the Kubernetes cluster on AWS                            | Fully managed K8s, integrates with AWS networking, IAM, and monitoring   |
 
 ---
+# Table of Contents
+
+- [🧱 Step-by-Step Deployment Guide](#-step-by-step-deployment-guide)
+  - [1. 🐳 Containerize the Application with Docker](#1--containerize-the-application-with-docker)
+  - [2. 🛠️ Set Up Terraform for AWS Infrastructure](#2--set-up-terraform-for-aws-infrastructure)
+    - [Create a `main.tf` file](#create-a-maintf-file)
+    - [Create a `variables.tf` file](#create-a-variablestf-file)
+    - [Create `outputs.tf` file](#create-outputstf-file)
+    - [Configure Terraform locally](#configure-the-terraform-locally)
+    - [Configure `aws configure` on Terraform](#configure-aws-configure-on-terraform)
+    - [Set up a non-root IAM user](#set-up-a-not-root-user-at-iam)
+    - [Create IAM policy: AllowEKSRoleManagement](#create-a-specific-policy-to-performance-user)
+    - [Attach IAM policy to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
+    - [Initialize and apply Terraform](#initialize-and-apply)
+  - [3. ☸️ Deploy Application to EKS (Kubernetes)](#3--deploy-application-to-eks-kubernetes)
+    - [Update kubeconfig](#update-your-kubeconfig)
+    - [Test EKS connection](#connection-test)
+    - [Pre-requisites: DockerHub](#pre-requisites)
+    - [Create Kubernetes secrets](#create-api-secrets-on-cluster-with-mongo-uri-and-jwt_secret-keys)
+    - [Create Kubernetes Deployment](#create-a-kubernetes-deployment)
+    - [Build and push Docker image](#additional-commands-on-docker-to-run)
+    - [Apply Deployment file](#aplying-the-deploymentyaml)
+    - [Check Deployment status](#checking-if-the-deploymentyaml-worked)
+    - [Check pod logs](#to-verify-the-logs)
+    - [Create Kubernetes Service](#create-a-kubernetes-service)
+    - [Apply Service file](#apply-the-resources)
+    - [Access the application](#access-the-application)
+- [🛑 Stopping the Application to Avoid AWS Charges](#stopping-the-application-avoiding-extra-costs-at-aws)
+- [🔁 Restore Node Group and Application](#restore-node-group-and-application-at-aws)
+---
 
 ## 🧱 Step-by-Step Deployment Guide
 
-### **1. 🐳 Containerize the Application with Docker**
+### 1. 🐳 Containerize the Application with Docker
 Create a `Dockerfile` in your project root:
 
 ```dockerfile
@@ -61,7 +91,7 @@ infra/
 
 ```
 ---
-#### **Create a infra folder inside your project**
+### Create a infra folder inside your project
 
 📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
 - Open your terminal (GitBash or PowerShell) and execute:
@@ -83,7 +113,7 @@ Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
 cat ~/.ssh/id_rsa.pub
 ```
 ---
-#### **Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
+### Create a main.tf file** - It will be used to create the main resources (EC2, VPC, etc)
 
 ```h 
 provider "aws" {
@@ -268,7 +298,7 @@ output "node_group_role_arn" {
 
 ```
 ---
-#### **Create a variables.tf file**
+### Create a variables.tf file
 ```'hcl
 variable "region" {
   default = "us-east-1"
@@ -283,7 +313,7 @@ output "app_server_ip" {
 
 ```
 ---
-#### **Configure the Terraform locally**
+### Configure the Terraform locally
 - Download Terraform: **This is for Windows**(https://developer.hashicorp.com/terraform/install#windows)
 - Extract it in your computer and after that add the path in Environment Variables
 - Verify the version installed: 
@@ -291,7 +321,7 @@ output "app_server_ip" {
 terraform -v
 ```
 ---
-#### **Configure aws configure on Terraform**
+### Configure aws configure on Terraform
 
 **✅ What do you need**
 - Access Key ID
@@ -299,7 +329,7 @@ terraform -v
 - Default region (ex: us-east-1)
 - (Optional) Output format (blank or json)
 ---
-##### 🔐 Get your credentials
+### 🔐 Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
@@ -309,7 +339,7 @@ After that, goes to IAM -> Users -> Select your non user root and verify the Acc
 The Secret Access Key is only displayed when you create a non root user, so when you do it for the first time, don't forget to save the Secret Access Key.
 ```
 ---
-##### Install and configure aws configure locally
+### Install and configure aws configure locally
 - Download the aws configure: **This is for Windows**(https://awscli.amazonaws.com/AWSCLIV2.msi)
 - Install the aws.
 - Verify the installation
@@ -321,7 +351,7 @@ It will display something similar to
 aws-cli/2.15.35 Python/3.11.5 Windows/10 exe/x86_64
 ```
 ---
-##### **Configure your credentials**
+### Configure your credentials
 
 Run
 ```bash
@@ -335,7 +365,7 @@ Default region name [None]: us-east-1     <can be any other reagion, but us-east
 Default output format [None]: json
 ```
 ---
-##### **Set up a not root USER at IAM**
+### Set up a not root USER at IAM
 
 To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps bellow:
 
@@ -348,7 +378,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
   - AmazonEC2FullAccess
 
 ---
- ##### **Create a specific policy to performance user**
+ ### Create a specific policy to performance user
  - Access AWS Console with a ROOT user
  - Click on IAM
  - Click on Policies
@@ -406,7 +436,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
 - Click on Next
 - Click on Save
 ---
-##### **Apply the AllowEKSRoleManagement to performance user**
+### Apply the AllowEKSRoleManagement to performance user
  - Access AWS Console with a ROOT user
  - Click on IAM
  - Click on Users
@@ -418,24 +448,24 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
  - Click on Next
  - Click oon Add permissions
 ---
-##### **Initialize and apply:**
+### Initialize and apply
 ```bash
 terraform init
 terraform plan
 terraform apply
 ```
 ---
-### **3. ☸️ Deploy Application to EKS (Kubernetes)**
+### 3. ☸️ Deploy Application to EKS (Kubernetes)
 
 After Terraform finishes, use kubectl to interact with the cluster.
 
-#### ***Update your kubeconfig:***
+### Update your kubeconfig
 ```bash
 aws eks --region <your-region> update-kubeconfig --name <your-cluster-name>
 Ex: aws eks --region us-east-1 update-kubeconfig --name performance
 ```
 ---
-#### ***Connection test***
+### Connection test
 ```bash
 kubectl get nodes
 ```
@@ -446,7 +476,7 @@ ip-10-0-1-xxx.us-east-1.compute.internal       Ready    <none>   5m    v1.29.x
 ```
 ---
 📌**Note:** 
-#### **PRE-REQUISITES**
+### PRE-REQUISITES
 ```
 Before the next step **Create a Kubernetes Deployment and Service**, verify your dockerhub-username
 - Access (https://hub.docker.com)
@@ -472,7 +502,7 @@ If the api-secrets were created successfully the message will be displayed:
 secret/api-secrets created
 ```
 
-#### ***Create a Kubernetes Deployment:***
+### Create a Kubernetes Deployment
 ```yaml
 # deployment.yaml
 apiVersion: apps/v1
@@ -506,7 +536,7 @@ spec:
                   name: api-secrets
                   key: jwt_secret
 ```
-#### **Additional commands on docker to run**
+### Additional commands on docker to run
 
 Run in the terminal(in the same path location where application's dockerfile is)
 
@@ -524,7 +554,7 @@ docker login
 docker push <your dockerhub-username>/robust-api:latest
 ```
 ---
-#### **Aplying the deployment.yaml**
+### Aplying the deployment.yaml
 
 Inside k8s folder, execute:
 ```
@@ -535,7 +565,7 @@ If deployment.yaml was executed successfully the message will be displayed:
 deployment.apps/robust-api created
 ```
 ---
-#### **Checking if the deployment.yaml worked**
+### Checking if the deployment.yaml worked
 ```bash
 kubectly get deployments
 ```
@@ -565,7 +595,7 @@ Ex: kubectl logs robust-api-687f59957-kzmd5
 ```
 
 ---
-#### ***Create a Kubernetes Service:***
+### Create a Kubernetes Service
 
 ```yaml
 # service.yaml
@@ -583,13 +613,13 @@ spec:
       targetPort: 3001
 ```
 ---
-#### ***Apply the resources:***
+### Apply the resources
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 ---
-#### ***✅ Access the Application***
+### ✅ Access the Application
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
 kubectl get svc
