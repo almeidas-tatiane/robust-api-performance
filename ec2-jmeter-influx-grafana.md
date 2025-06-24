@@ -32,13 +32,14 @@ aws configure
 
 It will ask for:
 
-See the details how to get AWS Access KeyID and how to configure AWS Secret Access Key in the following link: [https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md#get-your-credentials]
 ```
 - AWS Access Key ID
 - AWS Secret Access Key
 - Region (e.g. us-east-1)
 - Output format: you can use json
 ```
+
+See the details how to get AWS Access KeyID and how to configure AWS Secret Access Key in the following link: [Get your credentials](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md#get-your-credentials)
 
 **3. Open a terminal**
 If you're on Windows and don't have a Linux terminal, install **Git Bash** or **WSL**
