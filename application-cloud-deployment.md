@@ -16,8 +16,8 @@ This section provides a high-level guide to deploy the Node.js API application t
 ---
 ## Table of Contents
 
-- [1. Containerize the Application with Docker](#1-containerize-the-application-with-docker)
-- [2. Set Up Terraform for AWS Infrastructure](#2-set-up-terraform-for-aws-infrastructure)
+- [Containerize the Application with Docker](#containerize-the-application-with-docker)
+- [Set Up Terraform for AWS Infrastructure](#set-up-terraform-for-aws-infrastructure)
 	- [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
 	- [Create a main.tf file](#create-a-maintf-file)
 	- [Create a variables.tf file](#create-a-variablestf-file)
@@ -31,7 +31,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 			- [Create a specific policy to performance user](#create-a-specific-policy-to-performance-user)
 			- [Apply the AllowEKSRoleManagement to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
 		- [Initialize and apply](#initialize-and-apply)
-- [3. Deploy Application to EKS (Kubernetes)](#3-deploy-application-to-eks-kubernetes)
+- [Deploy Application to Kubernetes](deploy-application-to-kubernetes)
 	- [Update your kubeconfig](#update-your-kubeconfig)
 	- [Connection test](#connection-test)
 	- [PRE-REQUISITES](#pre-requisites)
@@ -49,7 +49,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 
 ## 🧱 Step-by-Step Deployment Guide
 
-### 1. 🐳 Containerize the Application with Docker
+### 🐳 Containerize the Application with Docker
 Create a `Dockerfile` in your project root:
 
 ```dockerfile
@@ -82,7 +82,7 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-### **2. 🛠️ Set Up Terraform for AWS Infrastructure** 
+### 🛠️ Set Up Terraform for AWS Infrastructure
 
 Example folder structure:
 ```css
@@ -335,7 +335,7 @@ terraform -v
 - Default region (ex: us-east-1)
 - (Optional) Output format (blank or json)
 ---
-#### 🔐 Get your credentials
+### 🔐 Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
@@ -461,7 +461,7 @@ terraform plan
 terraform apply
 ```
 ---
-### 3. ☸️ Deploy Application to EKS (Kubernetes)
+### ☸️ Deploy Application to Kubernetes
 
 After Terraform finishes, use kubectl to interact with the cluster.
 
@@ -625,7 +625,7 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 ---
-#### ✅ Access the Application
+### ✅ Access the Application
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
 kubectl get svc
