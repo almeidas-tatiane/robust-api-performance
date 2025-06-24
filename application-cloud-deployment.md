@@ -335,7 +335,7 @@ terraform -v
 - Default region (ex: us-east-1)
 - (Optional) Output format (blank or json)
 ---
-### 🔐 Get your credentials
+#### 🔐 Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
 After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
 
@@ -493,7 +493,7 @@ Before the next step **Create a Kubernetes Deployment and Service**, verify your
 In the root project, create a k8s folder, inside it, will be the files: deployment.yaml and services.yaml
 ```
 
-### Create api-secrets on cluster with mongo-uri and jwt_secret keys
+#### Create api-secrets on cluster with mongo-uri and jwt_secret keys
 
 📌**IMPORTANT:**
 
@@ -625,7 +625,7 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 ---
-### ✅ Access the Application
+#### ✅ Access the Application
 Once deployed, the LoadBalancer service will expose an external IP address:
 ```bash
 kubectl get svc
