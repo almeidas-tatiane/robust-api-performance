@@ -30,6 +30,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Usage and Credit Notice](#-usage-and-credit-notice)
 - [Application Deployment on AWS using Docker, Terraform, and EKS](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md)
 - [Injection Machine - EC2 Creation](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md)
+- [Accessing EC2 via FileZilla (SFTP)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configuring-filezilla-to-ec2.md)
 
 ---
 
