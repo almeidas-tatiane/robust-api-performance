@@ -330,9 +330,9 @@ Look for:
 
 Now that:
 - You’ve launched your EC2 instance with a **fixed private IP** (e.g. 10.0.1.100)
-- You’ve allocated an **Elastic IP ** (Step 2.1)
+- You’ve allocated an **Elastic IP** (Step 2.1)
 - You have the **Instance ID** (Step 3.1)
-- And the Elastic **IP Allocation ID ** (Step 2.1)
+- And the Elastic **IP Allocation ID** (Step 2.1)
 - It’s time to **bind the static public IP (Elastic IP)** to your EC2 instance.
 
 ### 🎯 Goal
@@ -342,4 +342,46 @@ After step 4, your EC2 instance will have:
 |-----------|--------------------|-----------------------------------|
 |Private IP|	10.0.1.100|	✅ Yes|
 |Elastic (Public) IP|	3.86.120.45|	✅ Yes|
+
+### 🛠️ 4.1 Associate the Elastic IP via AWS CLI
+
+Run this command (replace with your actual values):
+```bash
+aws ec2 associate-address \
+  --instance-id <YOUR-INSTANCE-ID> \
+  --allocation-id <YOUR-ALLOCATION-ID>
+```
+
+A short JSON output confirming the association, like:
+```json
+{
+    "AssociationId": "eipassoc-0a1b2c3d4e5f6g7h"
+}
+```
+
+### 4.2 Confirm the IP assignment
+
+Use this command to double-check the result:
+```bash
+aws ec2 describe-instances --instance-ids i-0123456789abcdef0
+```
+Look for this in the output:
+```json
+"PrivateIpAddress": "10.0.1.100",
+"PublicIpAddress": "3.86.120.45"
+```
+
+**This means your setup is complete!**
+
+### 📌 4.3 What to expect now
+
+|**Action**	|**Will the IP change?**|
+|-----------|-----------------------|
+|**Stop EC2 instance**|	❌ No|
+|**Start EC2 instance**|	❌ No|
+|**Terminate EC2**|	⚠️ Yes — all lost unless backed up|
+|**Disassociate EIP**|	⚠️ Yes — IP becomes unbound|
+
+
+
 
