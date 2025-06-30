@@ -45,7 +45,7 @@ See the details how to get AWS Access KeyID and how to configure AWS Secret Acce
 If you're on Windows and don't have a Linux terminal, install **Git Bash** or **WSL**
 
 ---
-### 🧪 Step 1: Manually Run the First Commands
+### ✅ Step 1: Manually Run the First Commands
 
 Let’s try just the first part of the VPC setup manually in your terminal.
 
@@ -219,5 +219,22 @@ aws ec2 create-tags \
 **This helps you find the Elastic IP in the AWS Console under a friendly name**
 
 ---
+
+### ✅ Step 3: Launch an EC2 Instance with a Fixed Private IP
+
+This step creates a **virtual machine (EC2 instance)** inside the VPC and subnet you created earlier, and assigns it a **fixed internal (private) IP address**, so it doesn't change even after stopping and restarting the instance.
+
+## 🔧 3.1 What You Need Before This Step
+
+Make sure you have
+
+|Resource|	Description |	Example value|
+|--------|--------------|--------------|
+|VPC ID|	From Step 1	|vpc-0a1b2c3d4e5f6g7h
+|Subnet ID|	Public subnet inside the VPC |	subnet-1234abcd
+|Private IP|	An IP inside the subnet CIDR range	|10.0.1.100
+|Key Pair |	For SSH access to the EC2 instance |	my-key
+|Security Group|	Allows SSH (port 22) and other access	|sg-0123456789abcdef0
+|AMI ID| An Amazon Machine Image (OS template) | ami-0c55b159cbfafe1f0 (Ubuntu)
 
 
