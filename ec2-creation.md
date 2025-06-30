@@ -7,7 +7,7 @@ This EC2 will be an injection machine with Public and Private IP.
 ## 📚 Table of Contents
 
 - [✅ Goal](#-goal)
-- [Prerequisites](#-prerequisites)
+- [🧰 Prerequisites](#-prerequisites)
 - [🛠️ STEP-BY-STEP: How to Run These Commands](#️-step-by-step-how-to-run-these-commands)
   - [✅ Step 0: Prepare Your Environment](#-step-0-prepare-your-environment)
     - [1. Install AWS CLI](#1-install-aws-cli)
