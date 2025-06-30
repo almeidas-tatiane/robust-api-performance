@@ -1,6 +1,6 @@
 # Create EC2 to run JMeter, InfluxDB, Prometheus and Grafana
 
-This document is a step-by-step guide how to create an AWS EC2 to JMeter, InfluxDB, Prometheus and Grafana.
+This document is a step-by-step guide how to create an AWS EC2 to run JMeter, InfluxDB, Prometheus and Grafana.
 
 This EC2 will be an injection machine with Public and Private IP.
 
