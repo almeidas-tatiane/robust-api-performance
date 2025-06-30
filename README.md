@@ -29,6 +29,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Contributing or Feedback](#-contributing-or-feedback)
 - [Usage and Credit Notice](#-usage-and-credit-notice)
 - [Application Deployment on AWS using Docker, Terraform, and EKS](#application-deployment-on-aws-using-docker-terraform-and-eks)
+- [Injection Machine - EC2 Creation](#-https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md)
 
 ---
 
