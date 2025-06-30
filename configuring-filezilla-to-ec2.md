@@ -23,7 +23,8 @@ If you don't know how to create a private key file, check the step by step here:
 ![image](https://github.com/user-attachments/assets/1b47fdc4-18e1-4427-95c7-898adccbe96a)
 
 ```
-If you don't know how to create a private key file, check the step by step here: 
+If you don't know how to create a private key file, check the step by step here:
+(https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md#31-what-you-need-before-this-step)
 ``` 
 
 - [FileZilla Client](https://filezilla-project.org/download.php) installed
