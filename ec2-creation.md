@@ -282,22 +282,22 @@ Make sure you have
   - **Create a new security group (via CLI)**
     ```bash
     aws ec2 create-security-group \
-  --group-name allow-ssh \
-  --description "Allow SSH access" \
-  --vpc-id <YOUR-VPC-ID>
-  ```
-
+    --group-name allow-ssh \
+    --description "Allow SSH access" \
+    --vpc-id <YOUR-VPC-ID>
+    ```
   - Press ENTER and copy the **group-id**
 
   - Then allow SSH access
+  
   ```bash
     aws ec2 authorize-security-group-ingress \
     --group-id sg-<YOUR-GROUP-ID> \
     --protocol tcp \
     --port 22 \
-    --cidr <YOUR-IP-ADDRESS>/32 OR **0.0.0.0/0**
+    --cidr <YOUR-IP-ADDRESS>/32 OR 0.0.0.0/0
 
-  You can find <YOUR-IP-ADDRESS> here: **https://whatismyipaddress.com/**
+  You can find <YOUR-IP-ADDRESS> here: https://whatismyipaddress.com/
     ```
 
   - Press ENTER, it will return the **SecurityGroupRuleId** and **GroupId**
