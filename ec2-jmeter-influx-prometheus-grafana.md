@@ -216,7 +216,8 @@ aws ec2 create-tags \
   --tags Key=Name,Value=my-elastic-ip
 ```
 
-***This helps you find the Elastic IP in the AWS Console under a friendly name***
+**This helps you find the Elastic IP in the AWS Console under a friendly name**
+
 ---
 
 
