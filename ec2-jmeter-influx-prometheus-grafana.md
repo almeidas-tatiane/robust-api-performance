@@ -171,4 +171,51 @@ aws ec2 modify-subnet-attribute \
   --map-public-ip-on-launch
 ```
 Press Enter. There will be no output if successful.
+---
+### ✅ Step 2: Allocate and Prepare a Static Public IP (Elastic IP)
+
+In AWS, Elastic IPs (EIPs) are public IPv4 addresses that:
+- Are **static** (don’t change over time)
+- Can be associated with or moved between EC2 instances
+- Stay the same even if you stop and start the instance
+- Must be allocated manually
+
+**This is perfect for performance testing with JMeter, where you want to always access the same IP address.**
+
+## 🧰 Prerequisites (before starting this step)
+
+Make sure you have:
+- Completed Step 1 (especially the VPC and subnet setup)
+- A working AWS CLI session (**aws sts get-caller-identity** must work)
+- Your default region set (e.g. us-east-1)
+
+**🔧 2.1: Allocate a New Elastic IP**
+
+In your terminal, run:
+```bash
+aws ec2 allocate-address --domain vpc
+```
+The output should look like this
+```json
+{
+    "PublicIp": "3.86.120.45",
+    "AllocationId": "eipalloc-0123456789abcdef0",
+    "Domain": "vpc"
+}
+```
+**👉 Copy both values**
+- **PublicIp:** this is the actual IP you’ll access from your browser or JMeter
+- **AllocationId:** used to associate the IP to an EC2 instance later
+
+**📘 2.2. Optional: Tag your Elastic IP (for organization)**
+
+Use this command, replacing **<ALLOCATION_ID>** with yours:
+```bash
+aws ec2 create-tags \
+  --resources <ALLOCATION_ID> \
+  --tags Key=Name,Value=my-elastic-ip
+```
+***This helps you find the Elastic IP in the AWS Console under a friendly name***
+---
+
 
