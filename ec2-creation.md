@@ -7,7 +7,7 @@ This EC2 will be an injection machine with Public and Private IP.
 ## 📚 Table of Contents
 
 - [✅ Goal](#-goal)
-- [Requisites](#-requisites)
+- [Prerequisites](#-prerequisites)
 - [🛠️ STEP-BY-STEP: How to Run These Commands](#️-step-by-step-how-to-run-these-commands)
   - [✅ Step 0: Prepare Your Environment](#-step-0-prepare-your-environment)
     - [1. Install AWS CLI](#1-install-aws-cli)
@@ -43,7 +43,7 @@ Provision an EC2 instance with:
 - Ensure that the instance retains its IPs even after being stopped and restarted
 - Perfect for consistent access during performance testing (e.g., JMeter, Grafana, InfluxDB, Prometheus)
 ---
-## Requisites
+### 🧰 Prerequisites
 - AWS account
 - IAM user with EC2, VPC, and Elastic IP permissions
 - AWS CLI installed and configured (aws configure)
