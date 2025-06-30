@@ -295,7 +295,9 @@ Make sure you have
     --group-id sg-<YOUR-GROUP-ID> \
     --protocol tcp \
     --port 22 \
-    --cidr <YOUR-PUBLIC-IP-ADDRESS>/32
+    --cidr <YOUR-IP-ADDRESS>/32 OR 0.0.0.0/0
+
+  You can find <YOUR-IP-ADDRESS> [here](https://whatismyipaddress.com/)
     ```
 
   - Press ENTER, it will return the **SecurityGroupRuleId** and **GroupId**
