@@ -43,7 +43,7 @@ Provision an EC2 instance with:
 - Ensure that the instance retains its IPs even after being stopped and restarted
 - Perfect for consistent access during performance testing (e.g., JMeter, Grafana, InfluxDB, Prometheus)
 ---
-## 🧰 Pre requisites
+## 🧰Pre requisites
 - AWS account
 - IAM user with EC2, VPC, and Elastic IP permissions
 - AWS CLI installed and configured (aws configure)
