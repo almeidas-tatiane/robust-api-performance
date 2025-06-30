@@ -215,6 +215,7 @@ aws ec2 create-tags \
   --resources <ALLOCATION_ID> \
   --tags Key=Name,Value=my-elastic-ip
 ```
+
 ***This helps you find the Elastic IP in the AWS Console under a friendly name***
 ---
 
