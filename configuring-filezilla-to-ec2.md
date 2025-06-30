@@ -43,6 +43,9 @@ If you're using Windows, you must convert your `.pem` key to `.ppk` using **PuTT
 
 > ⚠️ You can skip setting a passphrase unless extra security is needed.
 
+![image](https://github.com/user-attachments/assets/7bb5e948-35be-4443-a2ec-59baa4d5c154)
+
+
 ---
 
 ### 🔐 Step 2: Add the private key to FileZilla
