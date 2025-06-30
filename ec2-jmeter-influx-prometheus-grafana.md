@@ -325,4 +325,8 @@ Look for:
 - "PrivateIpAddress": "10.0.1.100" ✅
 - "PublicIpAddress": "X.X.X.X" 
 
+-----
+## 👉 Step 4: Associate the Elastic IP to the EC2 instance
+
+
 
