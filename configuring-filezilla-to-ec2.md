@@ -16,7 +16,10 @@ Before starting, make sure you have:
 
 **NOTE**
 
-If you don't know how to create a private key file, check the [step-by-step guide here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html).
+- If you don't know how to create a private key file, check the [step-by-step guide here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md#create-a-infra-folder-inside-your-project).
+- The Key pair must be associated with your EC2, to verify go to EC2 -> Selected the EC2 created -> navegated until Key pairs session
+![image](https://github.com/user-attachments/assets/8cb8409c-82df-45c9-b9c2-73800f6b87fa)
+![image](https://github.com/user-attachments/assets/9371950f-58a7-40f8-821d-39ea7c5970f2)
 
 - **Port 22** open in the **Security Group**
 
@@ -24,7 +27,7 @@ If you don't know how to create a private key file, check the [step-by-step guid
 
 **NOTE**
 
-If you don't know how to create a private key file, check the [step-by-step guide here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md#31-what-you-need-before-this-step).
+If you don't know how to create a security group and associate with port 22, check the [step-by-step guide here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md#31-what-you-need-before-this-step).
 
 - [FileZilla Client](https://filezilla-project.org/download.php) installed
 
