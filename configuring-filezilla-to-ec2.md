@@ -15,7 +15,7 @@ Before starting, make sure you have:
 ![image](https://github.com/user-attachments/assets/c09d8774-8164-4be1-ae30-7da4a2129268)
 
 ```
-If you don't know how to create a private key file, check the step by step here: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html
+If you don't know how to create a private key file, check the step by step here: (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 ``` 
 
 - **Port 22** open in the **Security Group**
