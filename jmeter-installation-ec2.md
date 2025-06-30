@@ -8,4 +8,4 @@ This document is a step by step guide how to install JMeter on EC2 injection mac
 
 ## Installing Java on Linux
 
-- 
+
