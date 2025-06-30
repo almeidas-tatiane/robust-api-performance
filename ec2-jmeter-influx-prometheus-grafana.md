@@ -239,3 +239,7 @@ Make sure you have
 |AMI ID| An Amazon Machine Image (OS template) | ami-0c55b159cbfafe1f0 (Ubuntu)
 
 
+**🧠 Tip: How to find these in the Console (if unsure)**
+- **AMI ID:** go to EC2 > AMIs and search for Ubuntu 22.04 in your region.
+- **Key Pair:** go to EC2 > Key Pairs.
+- **Security Group:** create one that allows SSH (port 22) from your IP.
