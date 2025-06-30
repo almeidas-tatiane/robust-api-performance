@@ -26,7 +26,12 @@ This EC2 will be an injection machine with Public and Private IP.
     - [3.1 What You Need Before This Step](#31-what-you-need-before-this-step)
     - [3.2 Launch the EC2 Instance via AWS CLI](#32-launch-the-ec2-instance-via-aws-cli)
     - [3.3 Check Your Instance Status](#33-check-your-instance-status)
-  - [✅ Step 4: Associate the Elastic IP to the EC2 instance](#-step-4)
+  - [✅ Step 4: Associate the Elastic IP to the EC2 instance](#-step-4-associate-the-elastic-ip-to-the-ec2-instance)
+    - [🎯 Goal](#-goal-1)
+    - [4.1 Associate the Elastic IP via AWS CLI](#41-associate-the-elastic-ip-via-aws-cli)
+    - [4.2 Confirm the IP assignment](#42-confirm-the-ip-assignment)
+    - [4.3 What to expect now](#43-what-to-expect-now)
+
 
 ---
 
