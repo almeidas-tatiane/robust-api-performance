@@ -4,6 +4,32 @@ This document is a step-by-step guide how to create an AWS EC2 to JMeter, Influx
 
 This EC2 will be an injection machine with Public and Private IP.
 
+## 📚 Table of Contents
+
+- [✅ Goal](#-goal)
+- [🧰 Prerequisites](#-prerequisites)
+- [🛠️ STEP-BY-STEP: How to Run These Commands](#️-step-by-step-how-to-run-these-commands)
+  - [✅ Step 0: Prepare Your Environment](#-step-0-prepare-your-environment)
+    - [1. Install AWS CLI](#1-install-aws-cli)
+    - [2. Configure AWS CLI](#2-configure-aws-cli)
+    - [3. Open a terminal](#3-open-a-terminal)
+  - [✅ Step 1: Manually Run the First Commands](#-step-1-manually-run-the-first-commands)
+    - [1.1 Create a VPC (Virtual Private Cloud)](#11-create-a-vpc-virtual-private-cloud)
+    - [1.2 Create a public subnet](#12-create-a-public-subnet)
+    - [1.3 Create and attach an Internet Gateway](#13-create-and-attach-an-internet-gateway)
+    - [1.4 Create a route table and add an Internet route](#14-create-a-route-table-and-add-an-internet-route)
+    - [1.5 Enable automatic public IP assignment (optional)](#15-enable-automatic-public-ip-assignment-optional)
+  - [✅ Step 2: Allocate and Prepare a Static Public IP (Elastic IP)](#-step-2-allocate-and-prepare-a-static-public-ip-elastic-ip)
+    - [2.1 Allocate a New Elastic IP](#21-allocate-a-new-elastic-ip)
+    - [2.2 Optional: Tag your Elastic IP (for organization)](#22-optional-tag-your-elastic-ip-for-organization)
+  - [✅ Step 3: Launch an EC2 Instance with a Fixed Private IP](#-step-3-launch-an-ec2-instance-with-a-fixed-private-ip)
+    - [3.1 What You Need Before This Step](#31-what-you-need-before-this-step)
+    - [3.2 Launch the EC2 Instance via AWS CLI](#32-launch-the-ec2-instance-via-aws-cli)
+    - [3.3 Check Your Instance Status](#33-check-your-instance-status)
+  - [✅ Step 4: Associate the Elastic IP to the EC2 instance](#-step-4)
+
+---
+
 ## ✅ Goal
 
 Provision an EC2 instance with:
