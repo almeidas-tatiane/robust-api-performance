@@ -132,7 +132,6 @@ aws ec2 attach-internet-gateway \
   --internet-gateway-id <YOUR_IGW_ID> \
   --vpc-id <YOUR_VPC_ID>
 ```
-
 Press Enter. There will be no output if successful.
 
 **1.4 Create a route table and add an Internet route**
@@ -171,6 +170,7 @@ aws ec2 modify-subnet-attribute \
   --map-public-ip-on-launch
 ```
 Press Enter. There will be no output if successful.
+
 ---
 ### ✅ Step 2: Allocate and Prepare a Static Public IP (Elastic IP)
 
