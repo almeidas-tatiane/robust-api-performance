@@ -241,5 +241,8 @@ Make sure you have
 
 **🧠 Tip: How to find these in the Console (if unsure)**
 - **AMI ID:** go to EC2 > AMIs and search for Ubuntu 22.04 in your region.
+![image](https://github.com/user-attachments/assets/4a7181c6-84fa-4e97-8bcc-eaa72299d002)
+
+
 - **Key Pair:** go to EC2 > Key Pairs.
 - **Security Group:** create one that allows SSH (port 22) from your IP.
