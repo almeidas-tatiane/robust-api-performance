@@ -241,7 +241,7 @@ Make sure you have
 
 **🧠 Tip: How to find these in the Console (if unsure)**
 - **AMI ID:** go to EC2 > AMIs and search for Ubuntu 22.04 in your region.
-![image](https://github.com/user-attachments/assets/4a7181c6-84fa-4e97-8bcc-eaa72299d002)
+  ![image](https://github.com/user-attachments/assets/4a7181c6-84fa-4e97-8bcc-eaa72299d002)
 
 
 - **Key Pair:** go to EC2 > Key Pairs.
@@ -257,17 +257,17 @@ Make sure you have
   - Press ENTER and copy the **group-id**
 
   - Then allow SSH access
-```bash
-  aws ec2 authorize-security-group-ingress \
-  --group-id sg-<YOUR-GROUP-ID> \
-  --protocol tcp \
-  --port 22 \
-  --cidr <YOUR-PUBLIC-IP-ADDRESS>/32
-```
+  ```bash
+    aws ec2 authorize-security-group-ingress \
+    --group-id sg-<YOUR-GROUP-ID> \
+    --protocol tcp \
+    --port 22 \
+    --cidr <YOUR-PUBLIC-IP-ADDRESS>/32
+    ```
 
   - Press ENTER, it will return the **SecurityGroupRuleId** and **GroupId**
   - Verify at **EC2->Security Group**
-![image](https://github.com/user-attachments/assets/c200a89c-aa16-4008-8992-6790062c2222)
+  ![image](https://github.com/user-attachments/assets/c200a89c-aa16-4008-8992-6790062c2222)
 
 
 
