@@ -49,7 +49,7 @@ If you're on Windows and don't have a Linux terminal, install **Git Bash** or **
 
 Let’s try just the first part of the VPC setup manually in your terminal.
 
-**1.1 Create a VPC (Virtual Private Cloud)**
+### 1.1 Create a VPC (Virtual Private Cloud)
 
 🧠 **What it does:**
 
@@ -93,7 +93,7 @@ You’ll get a JSON output like this:
 ```
 Copy the **VpcId** — you'll need it in the next steps.
 
-**1.2 Create a public subnet**
+### 1.2 Create a public subnet
 
 A **subnet** is a sub-division of your VPC. We’ll make one in Availability Zone us-east-1a with the range **10.0.1.0/24**.
 
@@ -115,7 +115,7 @@ In the JSON output, find
 
 Copy that **SubnetId (for example, subnet-1a2b3c4d)**.
 
-**1.3 Create and attach an Internet Gateway**
+### 1.3 Create and attach an Internet Gateway
 
 An **Internet Gateway** (IGW) lets resources in your VPC talk to the Internet
 
@@ -134,7 +134,7 @@ aws ec2 attach-internet-gateway \
 ```
 Press Enter. There will be no output if successful.
 
-**1.4 Create a route table and add an Internet route**
+### 1.4 Create a route table and add an Internet route
 
 **Create the route table** for your VPC
 ```bash
@@ -160,7 +160,7 @@ aws ec2 associate-route-table \
 ```
 Press Enter the **AssociateID** will be displayed if successful.
 
-**1.5 Enable automatic public IP assignment (optional)**
+### 1.5 Enable automatic public IP assignment (optional)
 
 This makes any new EC2 you launch in that subnet automatically get a public IP. Since we are using an Elastic IP, this step is optional.
 
@@ -189,7 +189,7 @@ Make sure you have:
 - A working AWS CLI session (**aws sts get-caller-identity** must work)
 - Your default region set (e.g. us-east-1)
 
-**🔧 2.1: Allocate a New Elastic IP**
+### 🔧 2.1: Allocate a New Elastic IP
 
 In your terminal, run:
 ```bash
@@ -207,7 +207,7 @@ The output should look like this
 - **PublicIp:** this is the actual IP you’ll access from your browser or JMeter
 - **AllocationId:** used to associate the IP to an EC2 instance later
 
-**📘 2.2. Optional: Tag your Elastic IP (for organization)**
+### 📘 2.2. Optional: Tag your Elastic IP (for organization)
 
 Use this command, replacing **<ALLOCATION_ID>** with yours:
 ```bash
@@ -269,6 +269,32 @@ Make sure you have
   - Verify at **EC2->Security Group**
   ![image](https://github.com/user-attachments/assets/c200a89c-aa16-4008-8992-6790062c2222)
 
+### 🚀 3.2 Launch the EC2 Instance via AWS CLI
 
+```bash
+aws ec2 run-instances \
+  --image-id <GET-A-FREE-ELIGIBLE-IMAGE,AS ami-020cba7c55df1f615> \
+  --instance-type <GET-A-FREE-ELIGIBLE-INSTANCE-TYPE, AS t2.micro> \
+  --key-name <YOUR-KEY> \
+  --subnet-id <YOUR-SUBNET> \
+  --private-ip-address 10.0.1.100 \
+  --security-group-ids sg-<YOUR-SECURITY-GROUP> \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=jmeter-ec2}]' \
+  --associate-public-ip-address \
+  --count 1
+```
+### 🔍 Explanation of each parameter
+
+|Parameter	|Meaning|
+|-----------|---------|
+|--image-id|	OS image to use (Ubuntu, Amazon Linux, etc.)|
+|--instance-type|	Machine size; t3.micro is free tier–eligible|
+|--key-name|	SSH key pair name you created in AWS|
+|--subnet-id|	Public subnet created in Step 1|
+|--private-ip-address|	The static internal IP (must be within subnet range, e.g. 10.0.1.100)|
+|--security-group-ids|	The firewall rules for the instance|
+|--associate-public-ip-address|	Automatically assigns a public IP temporarily (we’ll override with Elastic IP in Step 4)|
+|--count|	Number of EC2s to create (we want 1)|
+|--tag-specifications|	Helpful tag so your instance has a name|
 
 
