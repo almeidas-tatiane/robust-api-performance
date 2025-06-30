@@ -12,6 +12,7 @@ Before starting, make sure you have:
 ![image](https://github.com/user-attachments/assets/8e673d91-a310-4170-b772-48239f1d0eb2)
 
 - The private key file 
+
 **NOTE**
 
 - If you don't know how to create a private key file, check the [step-by-step guide here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md#create-a-infra-folder-inside-your-project).
