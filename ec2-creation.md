@@ -54,11 +54,11 @@ Provision an EC2 instance with:
 
 ## ✅ Step 0: Prepare Your Environment
 
-**1. Install AWS CLI**
+### 1. Install AWS CLI
 
 👉 [Installing or updating to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 
-**2. Configure AWS CLI**
+### 2. Configure AWS CLI
 ```bash
 aws configure
 ```
@@ -74,7 +74,7 @@ It will ask for:
 
 See the details how to get AWS Access KeyID and how to configure AWS Secret Access Key in the following link: [Get your credentials](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md#get-your-credentials)
 
-**3. Open a terminal**
+### 3. Open a terminal
 If you're on Windows and don't have a Linux terminal, install **Git Bash** or **WSL**
 
 ---
@@ -222,7 +222,7 @@ Make sure you have:
 - A working AWS CLI session (**aws sts get-caller-identity** must work)
 - Your default region set (e.g. us-east-1)
 
-### 🔧 2.1: Allocate a New Elastic IP
+### 2.1: Allocate a New Elastic IP
 
 In your terminal, run:
 ```bash
@@ -240,7 +240,7 @@ The output should look like this
 - **PublicIp:** this is the actual IP you’ll access from your browser or JMeter
 - **AllocationId:** used to associate the IP to an EC2 instance later
 
-### 📘 2.2. Optional: Tag your Elastic IP (for organization)
+### 2.2. Optional: Tag your Elastic IP (for organization)
 
 Use this command, replacing **<ALLOCATION_ID>** with yours:
 ```bash
@@ -258,7 +258,7 @@ aws ec2 create-tags \
 This step creates a **virtual machine (EC2 instance)** inside the VPC and subnet you created earlier, and assigns it a **fixed internal (private) IP address**, so it doesn't change even after stopping and restarting the instance.
 
 
-###  🔧3.1 What You Need Before This Step
+### 3.1 What You Need Before This Step
 
 Make sure you have
 
@@ -302,7 +302,7 @@ Make sure you have
   - Verify at **EC2->Security Group**
   ![image](https://github.com/user-attachments/assets/c200a89c-aa16-4008-8992-6790062c2222)
 
-### 🚀 3.2 Launch the EC2 Instance via AWS CLI
+### 3.2 Launch the EC2 Instance via AWS CLI
 
 ```bash
 aws ec2 run-instances \
@@ -316,7 +316,7 @@ aws ec2 run-instances \
   --associate-public-ip-address \
   --count 1
 ```
-### 🔍 Explanation of each parameter
+### Explanation of each parameter
 
 |**Parameter**	|**Meaning**|
 |-----------|---------|
@@ -330,7 +330,7 @@ aws ec2 run-instances \
 |--count|	Number of EC2s to create (we want 1)|
 |--tag-specifications|	Helpful tag so your instance has a name|
 
-### ✅ What Happens Next
+### What Happens Next
 
 After you run the command, AWS returns a **JSON response** like this
 ```json
@@ -345,7 +345,7 @@ After you run the command, AWS returns a **JSON response** like this
 ```
 👉 Copy the value of **"InstanceId" (e.g., i-0123456789abcdef0)**. You'll need it to attach the Elastic IP.
 
-### 📘 3.3 Check Your Instance Status
+### 3.3 Check Your Instance Status
 
 To check if the instance is running
 ```bash
@@ -376,7 +376,7 @@ After step 4, your EC2 instance will have:
 |Private IP|	10.0.1.100|	✅ Yes|
 |Elastic (Public) IP|	3.86.120.45|	✅ Yes|
 
-### 🛠️ 4.1 Associate the Elastic IP via AWS CLI
+### 4.1 Associate the Elastic IP via AWS CLI
 
 Run this command (replace with your actual values):
 ```bash
@@ -406,7 +406,7 @@ Look for this in the output:
 
 **This means your setup is complete!**
 
-### 📌 4.3 What to expect now
+### 4.3 What to expect now
 
 |**Action**	|**Will the IP change?**|
 |-----------|-----------------------|
