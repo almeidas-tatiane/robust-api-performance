@@ -1,6 +1,6 @@
 # Create EC2 with JMeter, InfluxDB and Grafana
 
-This document is a step-by-step guide how to create an AWS EC2 with JMeter, InfluxDB and Grafana
+This document is a step-by-step guide how to create an AWS EC2 with JMeter, InfluxDB, Prometheus and Grafana
 
 ## ✅ Goal
 
@@ -8,7 +8,7 @@ Provision an EC2 instance with:
 - Static public IP (Elastic IP)
 - Static private IP (within a custom VPC)
 - Ensure that the instance retains its IPs even after being stopped and restarted
-- Perfect for consistent access during performance testing (e.g., JMeter, Grafana, InfluxDB)
+- Perfect for consistent access during performance testing (e.g., JMeter, Grafana, InfluxDB, Prometheus)
 ---
 ## 🧰 Prerequisites
 - AWS account
