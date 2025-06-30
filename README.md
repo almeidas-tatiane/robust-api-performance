@@ -25,7 +25,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Postman Collection](#-postman-collection)
 - [Swagger](#-swagger)
 - [How to Run Locally](#️-how-to-run-this-project-locally)
-- [Performance Test Plan](#-performance-test-plan)
+- [Performance Test Plan](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
 - [Contributing or Feedback](#-contributing-or-feedback)
 - [Usage and Credit Notice](#-usage-and-credit-notice)
 - [Application Deployment on AWS using Docker, Terraform, and EKS](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/application-cloud-deployment.md)
@@ -192,12 +192,6 @@ Inside the project's folder, run in command line
 ```cmd
 node server.js
 ```
----
-## 📈 Performance Test Plan
-This test plan was created as part of a personal portfolio project to demonstrate performance engineering best practices and readiness to return to the professional market.
-
-🔗 [📊 View Full Performance Test Plan (GitHub)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/performance-test-plan.md)
-
 ---
 ## 🤝 Contributing or Feedback
 
