@@ -19,7 +19,7 @@ Provision an EC2 instance with:
 ---
 ## 🛠️ STEP-BY-STEP: How to Run These Commands
 
-### ✅ Step 0: Prepare Your Environment
+## ✅ Step 0: Prepare Your Environment
 
 **1. Install AWS CLI**
 
@@ -45,7 +45,7 @@ See the details how to get AWS Access KeyID and how to configure AWS Secret Acce
 If you're on Windows and don't have a Linux terminal, install **Git Bash** or **WSL**
 
 ---
-### ✅ Step 1: Manually Run the First Commands
+## ✅ Step 1: Manually Run the First Commands
 
 Let’s try just the first part of the VPC setup manually in your terminal.
 
@@ -172,7 +172,7 @@ aws ec2 modify-subnet-attribute \
 Press Enter. There will be no output if successful.
 
 ---
-### ✅ Step 2: Allocate and Prepare a Static Public IP (Elastic IP)
+## ✅ Step 2: Allocate and Prepare a Static Public IP (Elastic IP)
 
 In AWS, Elastic IPs (EIPs) are public IPv4 addresses that:
 - Are **static** (don’t change over time)
@@ -182,7 +182,7 @@ In AWS, Elastic IPs (EIPs) are public IPv4 addresses that:
 
 **This is perfect for performance testing with JMeter, where you want to always access the same IP address.**
 
-## 🧰 Prerequisites (before starting this step)
+### 🧰 Prerequisites (before starting this step)
 
 Make sure you have:
 - Completed Step 1 (especially the VPC and subnet setup)
@@ -220,12 +220,12 @@ aws ec2 create-tags \
 
 ---
 
-### ✅ Step 3: Launch an EC2 Instance with a Fixed Private IP
+## ✅ Step 3: Launch an EC2 Instance with a Fixed Private IP
 
 This step creates a **virtual machine (EC2 instance)** inside the VPC and subnet you created earlier, and assigns it a **fixed internal (private) IP address**, so it doesn't change even after stopping and restarting the instance.
 
 
-##  🔧3.1 What You Need Before This Step
+###  🔧3.1 What You Need Before This Step
 
 Make sure you have
 
