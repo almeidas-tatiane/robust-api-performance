@@ -11,7 +11,7 @@ Before starting, make sure you have:
 - A **running EC2 instance** with an **Elastic IP** associated
 ![image](https://github.com/user-attachments/assets/8e673d91-a310-4170-b772-48239f1d0eb2)
 
-- The private key file 
+- The `.pem` private key file (e.g., `my-key.pem`)
 
 **NOTE**
 
@@ -45,9 +45,6 @@ If you're using Windows, you must convert your `.pem` key to `.ppk` using **PuTT
 
 > ⚠️ You can skip setting a passphrase unless extra security is needed.
 
-![image](https://github.com/user-attachments/assets/7bb5e948-35be-4443-a2ec-59baa4d5c154)
-
-
 ---
 
 ### 🔐 Step 2: Add the private key to FileZilla
@@ -72,7 +69,7 @@ Use the Quickconnect bar or Site Manager to establish the connection:
 | **Password**| Leave it empty                                                          |
 | **Port**    | `22`                                                                    |
 
-1. Click **Quickconnect**.
+1. Click **Connect**.
 2. Accept any host key prompt that appears (optional on first connection).
 
 ---
@@ -98,9 +95,4 @@ You can now:
 - Do **not** share your private key with others
 - Avoid using the `root` user
 
----
 
-### 🧪 Optional: Test SSH CLI Access (for troubleshooting)
-
-```bash
-ssh -i my-key.pem ubuntu@<YOUR_ELASTIC_IP>
