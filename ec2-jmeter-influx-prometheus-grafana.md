@@ -225,7 +225,7 @@ aws ec2 create-tags \
 This step creates a **virtual machine (EC2 instance)** inside the VPC and subnet you created earlier, and assigns it a **fixed internal (private) IP address**, so it doesn't change even after stopping and restarting the instance.
 
 
-##🔧3.1 What You Need Before This Step
+##  🔧3.1 What You Need Before This Step
 
 Make sure you have
 
