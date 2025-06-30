@@ -274,7 +274,7 @@ Make sure you have
 ```bash
 aws ec2 run-instances \
   --image-id <GET-A-FREE-ELIGIBLE-IMAGE,AS ami-020cba7c55df1f615> \
-  --instance-type <GET-A-FREE-ELIGIBLE-INSTANCE-TYPE, AS t2.micro> \
+  --instance-type <GET-A-FREE-ELIGIBLE-INSTANCE-TYPE, as t2.micro or t3.micro> \
   --key-name <YOUR-KEY> \
   --subnet-id <YOUR-SUBNET> \
   --private-ip-address 10.0.1.100 \
@@ -296,5 +296,33 @@ aws ec2 run-instances \
 |--associate-public-ip-address|	Automatically assigns a public IP temporarily (we’ll override with Elastic IP in Step 4)|
 |--count|	Number of EC2s to create (we want 1)|
 |--tag-specifications|	Helpful tag so your instance has a name|
+
+### ✅ What Happens Next
+
+After you run the command, AWS returns a **JSON response** like this
+```json
+{
+    "Instances": [
+        {
+            "InstanceId": "i-0123456789abcdef0",
+            ...
+        }
+    ]
+}
+```
+👉 Copy the value of **"InstanceId" (e.g., i-0123456789abcdef0)**. You'll need it to attach the Elastic IP.
+
+### 📘 3.3 Check Your Instance Status
+
+To check if the instance is running
+```bash
+aws ec2 describe-instances --instance-ids <YOUR-INSTANCE-ID>
+```
+
+Look for:
+
+- "State": { "Name": "running" }
+- "PrivateIpAddress": "10.0.1.100" ✅
+- "PublicIpAddress": "X.X.X.X" 
 
 
