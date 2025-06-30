@@ -1,4 +1,4 @@
-# Create EC2 with JMeter, InfluxDB and Grafana
+# Create EC2 with JMeter, InfluxDB, Prometheus and Grafana
 
 This document is a step-by-step guide how to create an AWS EC2 with JMeter, InfluxDB, Prometheus and Grafana
 
