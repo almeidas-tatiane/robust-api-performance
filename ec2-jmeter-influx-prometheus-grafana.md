@@ -229,7 +229,7 @@ This step creates a **virtual machine (EC2 instance)** inside the VPC and subnet
 
 Make sure you have
 
-|Resource|	Description |	Example value|
+|**Resource**|	**Description** |	**Example value**|
 |--------|--------------|--------------|
 |VPC ID|	From Step 1	|vpc-0a1b2c3d4e5f6g7h
 |Subnet ID|	Public subnet inside the VPC |	subnet-1234abcd
@@ -285,7 +285,7 @@ aws ec2 run-instances \
 ```
 ### 🔍 Explanation of each parameter
 
-|Parameter	|Meaning|
+|**Parameter**	|**Meaning**|
 |-----------|---------|
 |--image-id|	OS image to use (Ubuntu, Amazon Linux, etc.)|
 |--instance-type|	Machine size; t3.micro is free tier–eligible|
@@ -326,7 +326,20 @@ Look for:
 - "PublicIpAddress": "X.X.X.X" 
 
 -----
-## 👉 Step 4: Associate the Elastic IP to the EC2 instance
+## ✅ Step 4: Associate the Elastic IP to the EC2 instance
 
+Now that:
+- You’ve launched your EC2 instance with a **fixed private IP** (e.g. 10.0.1.100)
+- You’ve allocated an **Elastic IP ** (Step 2.1)
+- You have the **Instance ID** (Step 3.1)
+- And the Elastic **IP Allocation ID ** (Step 2.1)
+- It’s time to **bind the static public IP (Elastic IP)** to your EC2 instance.
 
+### 🎯 Goal
+After step 4, your EC2 instance will have:
+
+|**IP Type**|	**Address Example**|	**Stays the Same After Restart?**|
+|-----------|--------------------|-----------------------------------|
+|Private IP|	10.0.1.100|	✅ Yes|
+|Elastic (Public) IP|	3.86.120.45|	✅ Yes|
 
