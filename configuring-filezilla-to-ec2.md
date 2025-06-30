@@ -15,6 +15,7 @@ Before starting, make sure you have:
 ![image](https://github.com/user-attachments/assets/c09d8774-8164-4be1-ae30-7da4a2129268)
 
 **NOTE**
+
 If you don't know how to create a private key file, check the [step-by-step guide here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html).
 
 - **Port 22** open in the **Security Group**
@@ -22,6 +23,7 @@ If you don't know how to create a private key file, check the [step-by-step guid
 ![image](https://github.com/user-attachments/assets/1b47fdc4-18e1-4427-95c7-898adccbe96a)
 
 **NOTE**
+
 If you don't know how to create a private key file, check the [step-by-step guide here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md#31-what-you-need-before-this-step).
 
 - [FileZilla Client](https://filezilla-project.org/download.php) installed
