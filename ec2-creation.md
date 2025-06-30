@@ -406,6 +406,9 @@ Look for this in the output:
 
 **This means your setup is complete!**
 
+![image](https://github.com/user-attachments/assets/ee5dbd7d-d8ce-4b1c-846b-b28f4260ff2f)
+
+
 ### 4.3 What to expect now
 
 |**Action**	|**Will the IP change?**|
