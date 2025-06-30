@@ -45,7 +45,7 @@ See the details how to get AWS Access KeyID and how to configure AWS Secret Acce
 If you're on Windows and don't have a Linux terminal, install **Git Bash** or **WSL**
 
 ---
-### 🧪 Step 1: Manually Run the First Command
+### 🧪 Step 1: Manually Run the First Commands
 
 Let’s try just the first part of the VPC setup manually in your terminal.
 
