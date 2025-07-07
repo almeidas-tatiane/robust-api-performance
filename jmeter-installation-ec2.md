@@ -70,8 +70,7 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 
 - Verify where **bashrc file is (it's used to set environment variables on Ubuntu)** with the command **ls ~/.bashrc**
 - Type **vi + ./bashrc path** to edit the file. For example: **vi /home/ubuntu/.bashrc**
-- To go until end of the file press **WR**
-- To write in the end of the file with a new line press **WO**
+- To write in the end of the file with a new line press **ESC** **WO**
 - Add this line **export JAVA_HOME=/home/ubuntu/apps/jdk-24.0.1**
 - Also add this line **export PATH=$JAVA_HOME/bin:$PATH**  **-->** **NOTE** It's important to add **$PATH** in the end of **JAVA_HOME** in the path, otherwise it will **overwrite** the PATH, then the JAVA_HOME wil be the only command in the PATH and the exists path will be deleted.
 - To quit the vi edition, press **ESC**
