@@ -66,6 +66,8 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 
 ![image](https://github.com/user-attachments/assets/a4adf501-b53c-4c54-be59-db693fbb042e)
 
+## Adding Java as environment variable
+
 - Execute the command **pwd** to verify the path where java is installed and copy the path
 
 ![image](https://github.com/user-attachments/assets/3833a3e4-e97d-4049-9fda-b81951ab596e)
@@ -108,6 +110,26 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 - Verify the jmeter version with the command **./jmeter --version**
   
 ![image](https://github.com/user-attachments/assets/96d6f879-a29f-4160-ac3e-fda3ff9214e0)
+
+## Adding JMeter as environment variable
+
+- Type the command **pwd** to verify where the jmeter executable file is
+
+![image](https://github.com/user-attachments/assets/55b076b3-9ad5-4329-9a3f-2c8e0244a1ec)
+
+- Copy the path
+- Edit the ./bashrc file with the command **vi /home/ubuntu/.bashrc**
+- Press **ESC WO** to add a new line in the end of the file
+- Type **export PATH=/home/ubuntu/apps/apache-jmeter-5.6.3/bin:$PATH**
+
+![image](https://github.com/user-attachments/assets/7f15a1f5-5c38-4bf2-b42a-be5632332cc0)
+
+- To quit the edition press **ESC**
+- To save the file press **:wq!**
+- To relaod the **.bashrc file** after editing it, type **source /home/ubuntu/.bashrc**
+- Verify the PATH values with the command **echo $PATH**
+
+![image](https://github.com/user-attachments/assets/786eb13f-65d3-4585-9ba8-9dc458a1891b)
 
 
 
