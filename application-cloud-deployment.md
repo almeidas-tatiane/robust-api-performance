@@ -630,7 +630,7 @@ kubectl get svc
 ```
 📌**IMPORTANT:**
 - Use this external IP to test your API in Postman or browser.
-- Pay attention to Kubernets costs at AWS, usually when the costs are expensive.
+- Pay attention to Kubernets costs at AWS, usually the daily costs are expensive.
 
 
 
