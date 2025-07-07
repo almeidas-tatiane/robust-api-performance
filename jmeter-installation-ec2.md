@@ -64,6 +64,11 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 
 ![image](https://github.com/user-attachments/assets/a4adf501-b53c-4c54-be59-db693fbb042e)
 
+- Execute the command **pwd** to verify the path where java is installed and copy the path
+
+![image](https://github.com/user-attachments/assets/3833a3e4-e97d-4049-9fda-b81951ab596e)
+
+- Set the environment variables on Ubuntu with the command **ls ~/.bashrc**
 
 
 
