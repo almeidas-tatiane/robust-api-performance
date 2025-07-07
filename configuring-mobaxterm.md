@@ -28,4 +28,4 @@ This document is a step by step guide how to configure MobaXterm to access and u
 - A message will be displayed to accept the connection, click on **Accept**
 
 
-It's done, after it, you should be able a terminal with the EC2 public IP
+**It's done, after it, you should be able a terminal with the EC2 public IP**
