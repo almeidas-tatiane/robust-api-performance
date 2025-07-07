@@ -309,7 +309,7 @@ Make sure you have
 ```bash
 aws ec2 run-instances \
   --image-id <GET-A-FREE-ELIGIBLE-IMAGE,AS ami-020cba7c55df1f615> \
-  --instance-type <GET-A-FREE-ELIGIBLE-INSTANCE-TYPE, as t2.micro or t3.micro> \
+  --instance-type <t3.large OR GET-A-FREE-ELIGIBLE-INSTANCE-TYPE> \
   --key-name <YOUR-KEY> \
   --subnet-id <YOUR-SUBNET> \
   --private-ip-address 10.0.1.100 \
@@ -323,7 +323,7 @@ aws ec2 run-instances \
 |**Parameter**	|**Meaning**|
 |-----------|---------|
 |--image-id|	OS image to use (Ubuntu, Amazon Linux, etc.)|
-|--instance-type|	Machine size; t3.micro is free tier–eligible|
+|--instance-type|	Machine size; **t3.large**  OR **a free tier–eligible**  **NOTE** Be aware that to configure JMeter you'll need an instance with at least 2GB RAM|
 |--key-name|	SSH key pair name you created in AWS|
 |--subnet-id|	Public subnet created in Step 1|
 |--private-ip-address|	The static internal IP (must be within subnet range, e.g. 10.0.1.100)|
@@ -331,6 +331,8 @@ aws ec2 run-instances \
 |--associate-public-ip-address|	Automatically assigns a public IP temporarily (we’ll override with Elastic IP in Step 4)|
 |--count|	Number of EC2s to create (we want 1)|
 |--tag-specifications|	Helpful tag so your instance has a name|
+
+
 
 ### What Happens Next
 
