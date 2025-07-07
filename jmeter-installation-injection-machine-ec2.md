@@ -3,7 +3,7 @@
 This document is a step by step guide how to install **JMeter on EC2 injection machine**.
 
 ## Pre-requistes
-- EC2 with Ubuntu
+- EC2 with Ubuntu, check the steps how to create a injection machine [here]
 - EC2 configuration: 2GB of RAM and minimum of CPU
 
 - For this example, we are using **t3.large AWS instance** that has **8vCPU** and **2GB of ram** 
