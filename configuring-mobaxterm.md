@@ -30,4 +30,5 @@ This document is a step by step guide how to configure MobaXterm to access and u
 
 **It's done, after it, you should be able to access the EC2 terminal with public IP**
 
-![image](https://github.com/user-attachments/assets/6e56edd3-c2bd-48a3-afe8-f137fb88fabc)
+![image](https://github.com/user-attachments/assets/84daed2f-725f-4654-b526-46a723096d15)
+
