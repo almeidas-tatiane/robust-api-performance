@@ -2,6 +2,17 @@
 
 This document is a step by step guide how to install **JMeter on EC2 injection machine**.
 
+## 📑 Table of Contents
+
+- [Pre-requisites](#pre-requisites)
+- [Installing Java on Ubuntu](#installing-java-on-ubuntu)
+- [Adding Java as environment variable](#adding-java-as-environment-variable)
+- [Installing JMeter on Ubuntu](#installing-jmeter-on-ubuntu)
+- [Adding JMeter as environment variable](#adding-jmeter-as-environment-variable)
+- [Stopping MobXterm terminal](#stopping-mobxterm-terminal)
+- [Stopping EC2 injection machine](#stopping-ec2-injection-machine)
+
+
 ## Pre-requistes
 - EC2 with Ubuntu, check the steps how to create a injection machine [here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/injection-machine-ec2-creation.md)
 - EC2 configuration: 2GB of RAM and minimum of CPU
@@ -66,7 +77,7 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 
 ![image](https://github.com/user-attachments/assets/a4adf501-b53c-4c54-be59-db693fbb042e)
 
-## Adding Java as environment variable
+### Adding Java as environment variable
 
 - Execute the command **pwd** to verify the path where java is installed and copy the path
 
@@ -111,7 +122,7 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
   
 ![image](https://github.com/user-attachments/assets/96d6f879-a29f-4160-ac3e-fda3ff9214e0)
 
-## Adding JMeter as environment variable
+### Adding JMeter as environment variable
 
 - Type the command **pwd** to verify where the jmeter executable file is
 
@@ -130,6 +141,31 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 - Verify the PATH values with the command **echo $PATH**
 
 ![image](https://github.com/user-attachments/assets/786eb13f-65d3-4585-9ba8-9dc458a1891b)
+
+
+## Stopping MobXterm terminal
+
+- To stop MobXterm terminal to access EC2 instance, just click on **Exit** icon on the top
+
+![image](https://github.com/user-attachments/assets/fd290efd-8764-4ac8-b74f-b1af8e00460b)
+
+## Stopping EC2 injection machine
+
+- To reduce AWS costs, don't forget to stop the EC2 when you finish to use it.
+- To stop the EC2, goes to **AWS page -> EC2 -> Instances**
+- Verify the running instances
+
+![image](https://github.com/user-attachments/assets/d7defcd7-afea-4a53-9bc2-3362579ab31a)
+
+- Select the instance
+- Click on **Instance state**
+- Click on **Stop instance**
+- Click on **Stop**
+
+![image](https://github.com/user-attachments/assets/1a33abda-1439-413b-acc0-4075ba961f50)
+
+
+
 
 
 
