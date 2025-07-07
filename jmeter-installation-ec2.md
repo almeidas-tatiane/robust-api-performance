@@ -35,7 +35,8 @@ apps
 
 - The apps directory is displayed
 - Go to apps directory with the command **cd apps**
-- To download the Java version (**that the link was copied in Oracle page**) to EC2, use the command **wget + URL link** . For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_bin.tar.gz**
+- To download the Java version (**that the link was copied in Oracle page**) to EC2, use the command **wget + URL link** .
+For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_bin.tar.gz**
 ![image](https://github.com/user-attachments/assets/54c24b55-c0e9-48ae-8a63-7d192cb7be3d)
 
 
