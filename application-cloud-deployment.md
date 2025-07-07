@@ -155,7 +155,7 @@ resource "aws_security_group" "allow_ssh_http" {
 
 resource "aws_instance" "app_server" {
   ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 (us-east-1)
-  instance_type = "t2.micro"
+  instance_type = "t3.large"
   key_name      = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.allow_ssh_http.name]
 
@@ -271,7 +271,7 @@ resource "aws_eks_node_group" "performance_nodes" {
     min_size     = 1
   }
 
-  instance_types = ["t3.medium"]
+  instance_types = ["t3.large"]
 
   depends_on = [
     aws_eks_cluster.performance,
