@@ -41,7 +41,10 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 ![image](https://github.com/user-attachments/assets/54c24b55-c0e9-48ae-8a63-7d192cb7be3d)
 
 - Type **ls** to list the download file
+
 ![image](https://github.com/user-attachments/assets/eed100e0-5c09-4607-b35e-adca7b760d9a)
+
+
 
 
 
