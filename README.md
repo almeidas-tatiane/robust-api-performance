@@ -42,14 +42,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
 - [ ] Collect results and screenshots
 - [ ] Write test report summarizing results and insights
-- [ ] Create shell scripts to:
-      - [ ] EC2 creation
-      - [ ] Install: Java,
-            - [ ] JMeter
-            - [ ] Influx
-            - [ ] Prometheus
-            - [ ] Grafana
-
+- [ ] Create shell scripts to: EC2 creation, install: Java, JMeter, Influx, Prometheus and Grafana
 
 ---
 ## ⚡ Designed for Performance Testing
