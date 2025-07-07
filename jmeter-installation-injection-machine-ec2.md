@@ -106,6 +106,7 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 ![image](https://github.com/user-attachments/assets/bad6cc42-8996-476d-8d82-d7b097f7def5)
 
 - Verify the jmeter version with the command **./jmeter --version**
+  
 ![image](https://github.com/user-attachments/assets/96d6f879-a29f-4160-ac3e-fda3ff9214e0)
 
 
