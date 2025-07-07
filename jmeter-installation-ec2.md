@@ -75,6 +75,13 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 - Also add this line **export PATH=$JAVA_HOME/bin:$PATH**  **-->** **NOTE** It's important to add **$PATH** in the end of **JAVA_HOME** in the path, otherwise it will **overwrite** the PATH, then the JAVA_HOME wil be the only command in the PATH and the exists path will be deleted.
 - To quit the vi edition, press **ESC**
 - To save the changes, press **:wq!**
+- To reload **.bashrc** after editing it, type **source /home/ubuntu/.bashrc**
+- Execute the command **echo $PATH** to verify the **PATH environment variable**
+
+![image](https://github.com/user-attachments/assets/9d4fede2-f154-4dde-9b23-f953bec4260b)
+
+
+
 
 
 
