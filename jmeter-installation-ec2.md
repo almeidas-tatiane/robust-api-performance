@@ -3,7 +3,7 @@
 This document is a step by step guide how to install JMeter on EC2 injection machine.
 
 ## Pre-requistes
-- EC2 with Linux
+- EC2 with Ubuntu
 - EC2 configuration: 2GB of RAM and minimum of CPU
 
 - For this example, we are using **t2.micro AWS instance** that has **1vCPU** and **1GB of ram** (**this instance is free eligible**)
@@ -79,6 +79,11 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 - Execute the command **echo $PATH** to verify the **PATH environment variable**
 
 ![image](https://github.com/user-attachments/assets/9d4fede2-f154-4dde-9b23-f953bec4260b)
+
+- Execute the command **echo $JAVA_HOME** to verify the path where java was installed
+
+![image](https://github.com/user-attachments/assets/f3627910-8274-412c-a180-d15f933a54b2)
+
 
 
 
