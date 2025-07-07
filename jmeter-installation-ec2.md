@@ -68,7 +68,9 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 
 ![image](https://github.com/user-attachments/assets/3833a3e4-e97d-4049-9fda-b81951ab596e)
 
-- Set the environment variables on Ubuntu with the command **ls ~/.bashrc**
+- Verify where **bashrc file is (it's used to set environment variables on Ubuntu)** with the command **ls ~/.bashrc**
+- Type **vi + ./bashrc path** to edit the file. For example: **vi /home/ubuntu/.bashrc**
+- 
 
 
 
