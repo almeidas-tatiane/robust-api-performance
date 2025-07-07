@@ -32,16 +32,23 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Injection Machine - EC2 Creation](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md)
 - [Accessing EC2 via FileZilla (SFTP)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configuring-filezilla-to-ec2.md)
 - [Configuring MobaXterm to access EC2 as terminal](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configuring-mobaxterm.md)
+- [JMeter installation on injection machine at EC2](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/jmeter-installation-injection-machine-ec2.md)
 
 ---
 
 ## 🔧 Upcoming Tasks
-- [ ] Configure EC2 with JMeter, Influx, Prometheus and Grafana
+- [ ] Configure EC2 with Influx, Prometheus and Grafana
 - [ ] Create and execute JMeter scripts
 - [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
 - [ ] Collect results and screenshots
 - [ ] Write test report summarizing results and insights
-- [ ] Create shell scripts to create EC2, install Java, JMeter, Influx, Prometheus and Grafana
+- [ ] Create shell scripts to:
+      - [ ] EC2 creation
+      - [ ] Install: Java,
+            - [ ] JMeter
+            - [ ] Influx
+            - [ ] Prometheus
+            - [ ] Grafana
 
 
 ---
