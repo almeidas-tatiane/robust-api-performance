@@ -84,6 +84,11 @@ For example: **wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_
 
 ![image](https://github.com/user-attachments/assets/f3627910-8274-412c-a180-d15f933a54b2)
 
+---
+
+## Installing JMeter on Ubuntu
+
+
 
 
 
