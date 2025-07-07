@@ -332,6 +332,8 @@ aws ec2 run-instances \
 |--count|	Number of EC2s to create (we want 1)|
 |--tag-specifications|	Helpful tag so your instance has a name|
 
+- For real performance tests, I advise to use to use a robust configuration as **32GB of ram, 8 vCPUs, Operation System: Ubuntu**. In AWS, an EC2 instance with this configuration is **t2.2xlarge**
+- [Check AWS Instance types](https://aws.amazon.com/ec2/instance-types/?trk=a5a8f3c9-c18a-485c-bbdb-52b795178fbe&sc_channel=ps&ef_id=CjwKCAjw4K3DBhBqEiwAYtG_9Egnpes7WDzX3R4IfkPsjhIG9NoX-3O3iR-OnYtnXPGYygX_I4naWhoCT5cQAvD_BwE:G:s&s_kwcid=AL!4422!3!536323165854!e!!g!!aws%20instance%20types!12028491727!115492233545&gad_campaignid=12028491727&gbraid=0AAAAADjHtp9ManJdWERBk1JBZp5ayMJpp&gclid=CjwKCAjw4K3DBhBqEiwAYtG_9Egnpes7WDzX3R4IfkPsjhIG9NoX-3O3iR-OnYtnXPGYygX_I4naWhoCT5cQAvD_BwE)
 
 
 ### What Happens Next
