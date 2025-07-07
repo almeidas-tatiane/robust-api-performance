@@ -4,7 +4,7 @@ This document is a step by step guide how to configure MobaXterm to access and u
 
 ## ✅ Pre-requisites
 
-- Mobaxterm installed in your machine, [download here](https://mobaxterm.mobatek.net/download-home-edition.html)
+- Mobaxterm installed in your machine, 🔗 [download here](https://mobaxterm.mobatek.net/download-home-edition.html)
 - EC2 public IP
 - .pem file of EC2 key pair
 - EC2 already created at AWS and in running status, [check the steps here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md)
