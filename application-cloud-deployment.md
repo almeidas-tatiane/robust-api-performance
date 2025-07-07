@@ -155,7 +155,7 @@ resource "aws_security_group" "allow_ssh_http" {
 
 resource "aws_instance" "app_server" {
   ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 (us-east-1)
-  instance_type = "t3.large"
+  instance_type = "t2.micro"
   key_name      = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.allow_ssh_http.name]
 
@@ -271,7 +271,7 @@ resource "aws_eks_node_group" "performance_nodes" {
     min_size     = 1
   }
 
-  instance_types = ["t3.large"]
+  instance_types = ["t2.micro"]
 
   depends_on = [
     aws_eks_cluster.performance,
@@ -629,7 +629,8 @@ Once deployed, the LoadBalancer service will expose an external IP address:
 kubectl get svc
 ```
 📌**IMPORTANT:**
-Use this external IP to test your API in Postman or browser.
+- Use this external IP to test your API in Postman or browser.
+- Pay attention to Kubernets costs at AWS, usually when the costs are expensive.
 
 
 
