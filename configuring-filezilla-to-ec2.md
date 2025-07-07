@@ -28,7 +28,7 @@ Before starting, make sure you have:
 
 If you don't know how to create a security group and associate with port 22, check the [step-by-step guide here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md#31-what-you-need-before-this-step).
 
-- [FileZilla Client](https://filezilla-project.org/download.php) installed
+- 🔗 [FileZilla Client](https://filezilla-project.org/download.php) installed
 
 ---
 
@@ -36,7 +36,7 @@ If you don't know how to create a security group and associate with port 22, che
 
 If you're using Windows, you must convert your `.pem` key to `.ppk` using **PuTTYgen**, because FileZilla requires `.ppk` format.
 
-1. Download [PuTTYgen](https://www.puttygen.com/) or open it from the PuTTY installation.
+1. Download 🔗 [PuTTYgen](https://www.puttygen.com/) or open it from the PuTTY installation.
 2. Click **Load**.
 3. Change the file filter to `All Files (*.*)` to see your `.pem` file.
 4. Select and open your `.pem` file.
