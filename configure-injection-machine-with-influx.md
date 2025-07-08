@@ -1,4 +1,4 @@
-# Configure injection machine with InfluxDB
+# 📘 Configure injection machine with InfluxDB
 
 This document is a step by step guide how to configure injection machine at EC2 with InfluxDB
 
@@ -8,23 +8,19 @@ This document is a step by step guide how to configure injection machine at EC2 
 - Access EC2 terminal by MobaXterm
 - Docker installed
 - Inbound port **8086** open in the Security Group
-  - To add inbound roule, go to **EC2-> Network & Security -> Security Groups**
-  - Click on Create Security Group
-  - Fill in the fields to allow **InfluxDB**
+  - To add inbound roule, go to **EC2-> click on Instances and select your instance**
+  - Scroll down to the **Security section** and click on the **Security Group** link
+  - In the **Inbound Rules** tab, click Edit **Inbound Rules**
+  - Click Add Rule
+  - Add both rules
+  - **NOTE**: Source Anywhere/IPv4 
     
-  ![image](https://github.com/user-attachments/assets/86c3c405-edb4-47cc-beb6-632aa98ad1e2)
+![image](https://github.com/user-attachments/assets/89995a62-d224-44d4-96d7-1521f7a8d637)
 
+  - Click on **Save Rules**
 
-  **NOTE**: Source is Anywhere/IPv4 to both **InfluxDB** and **Grafana**
+  ![image](https://github.com/user-attachments/assets/ea9ac069-9846-4412-89ab-5bb6b754263c)
 
-  - Click on **Add rule** to add a new rule to allow **Grafana**
-  - Fill in the fields
- 
-  ![image](https://github.com/user-attachments/assets/2874888f-715b-43f7-bb42-8cddc482fe7d)
-
-  - Click on Create Security Group
- 
-  ![image](https://github.com/user-attachments/assets/b537a21f-efec-422d-bc1b-12d6f9a4ea1c)
 
 ---
 
@@ -91,6 +87,16 @@ docker run -d \
   -v influxdb_config:/etc/influxdb2 \
   influxdb:2.7
 ```
+---
+## Access InfluxDB Web UI
+
+- Open this URL in your browser
+```
+http://<YOUR-EC2-PUBLIC-IP>:8086
+```
+
+![image](https://github.com/user-attachments/assets/ff40475b-bda5-4f46-b21a-b0a3863d69b7)
+
 
 
 
