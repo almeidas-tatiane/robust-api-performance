@@ -68,6 +68,18 @@ sudo systemctl start docker
 # Enable Docker to start on boot
 sudo systemctl enable docker
 ```
+--- 
+## Allow Docker for Current User
+
+- Run the following commands **one by one** on EC2 terminal by MobaXterm
+
+```
+sudo usermod -aG docker $USER
+```
+
+- Then **log out and log back in** to apply the group change
+
+
 
   
 
