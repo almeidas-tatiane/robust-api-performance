@@ -92,7 +92,7 @@ docker run -d \
 
 - Open this URL in your browser
 ```
-http://**<YOUR-EC2-PUBLIC-IP>**:8086
+http://<YOUR-EC2-PUBLIC-IP>:8086
 ```
 
 ![image](https://github.com/user-attachments/assets/ff40475b-bda5-4f46-b21a-b0a3863d69b7)
@@ -115,14 +115,32 @@ http://**<YOUR-EC2-PUBLIC-IP>**:8086
 - Run the command on EC2 terminal by MobaXterm
 
 ```
-curl -i http://**<YOUR-EC2-PUBLIC-IP>**:8086/health
+curl -i http://<YOUR-EC2-PUBLIC-IP>:8086/health
 ```
 
 - The response will be similar to
 
 ![image](https://github.com/user-attachments/assets/51b7dff2-23bb-4f23-8cfb-42c96059ae96)
 
-  
+---
+## Useful Docker Commands
+
+```
+# View container logs
+docker logs influxdb
+
+# Stop the container
+docker stop influxdb
+
+# Start the container
+docker start influxdb
+
+# Remove the container
+docker rm -f influxdb
+
+# Check status
+docker ps -a
+```
 
 
   
