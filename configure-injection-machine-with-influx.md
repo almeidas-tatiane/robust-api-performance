@@ -1,11 +1,12 @@
-# Configure injection machine with Influx
+# Configure injection machine with InfluxDB
 
-This document is a step by step guide how to configure injection machine at EC2 with Influx
+This document is a step by step guide how to configure injection machine at EC2 with InfluxDB
 
 ## Pre-requisites
 
 - Start your EC2 at AWS
 - Access EC2 terminal by MobaXterm
+- Docker installed
 - Inbound port **8086** open in the Security Group
   - To add inbound roule, go to **EC2-> Network & Security -> Security Groups**
   - Click on Create Security Group
@@ -24,6 +25,38 @@ This document is a step by step guide how to configure injection machine at EC2 
   - Click on Create Security Group
  
   ![image](https://github.com/user-attachments/assets/b537a21f-efec-422d-bc1b-12d6f9a4ea1c)
+
+---
+
+## Install Docker on Ubuntu
+
+- Run the following commands **one by one** on EC2 terminal by MobaXterm
+
+```
+bash
+# Update the package list
+sudo apt update && sudo apt upgrade -y
+
+# Install Docker dependencies
+sudo apt install -y ca-certificates curl gnupg
+
+# Add Docker’s official GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+# Add Docker repository
+echo \
+  "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update again and install Docker Engine
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
 
   
 
