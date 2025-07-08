@@ -155,7 +155,9 @@ sudo systemctl status prometheus
 ## Access Prometheus Web UI
 
 - Open your browser and go to:
-- **http://EC2-PUBLIC-IP:9090**
+```
+http://<EC2-PUBLIC-IP>:9090
+```
 
 ![image](https://github.com/user-attachments/assets/95752439-2356-434b-9c3a-e9d523dc5b47)
 
