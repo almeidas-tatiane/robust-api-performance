@@ -29,7 +29,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Contributing or Feedback](#-contributing-or-feedback)
 - [Usage and Credit Notice](#-usage-and-credit-notice)
 - [Application Deployment on AWS using Docker, Terraform, and EKS](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/application-cloud-deployment.md)
-- [Injection Machine - EC2 Creation](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/ec2-creation.md)
+- [Injection Machine - EC2 Creation](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/injection-machine-ec2-creation.md)
 - [Accessing EC2 via FileZilla (SFTP)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configuring-filezilla-to-ec2.md)
 - [Configuring MobaXterm to access EC2 as terminal](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configuring-mobaxterm.md)
 - [Configure JMeter on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-jmeter-injection-machine.md)
