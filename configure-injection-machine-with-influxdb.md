@@ -1,6 +1,20 @@
-# 📘 Configure injection machine with InfluxDB
+# 🐧 Configure injection machine with InfluxDB
 
 This document is a step by step guide how to configure injection machine at EC2 with InfluxDB
+
+## 📑 Table of Contents
+
+- [Pre-requisites](#pre-requisites)
+- [Install Docker on Ubuntu](#install-docker-on-ubuntu)
+- [Start Docker and Enable on Boot](#start-docker-and-enable-on-boot)
+- [Allow Docker for Current User](#allow-docker-for-current-user)
+- [Run InfluxDB in Docker](#run-influxdb-in-docker)
+- [Access InfluxDB Web UI](#access-influxdb-web-ui)
+- [Initial Web Setup](#initial-web-setup)
+- [Verify with curl](#verify-with-curl)
+- [Useful Docker Commands](#useful-docker-commands)
+
+---
 
 ## Pre-requisites
 
