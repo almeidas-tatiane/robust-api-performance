@@ -1,4 +1,4 @@
-# 🐧 Configure injection machine with InfluxDB
+# 🐧 Configure InfluxDB in Injection Machine
 
 This document is a step by step guide how to configure injection machine at EC2 with InfluxDB
 
