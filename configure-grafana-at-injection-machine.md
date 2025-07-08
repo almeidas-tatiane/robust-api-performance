@@ -2,6 +2,17 @@
 
 This document is a step by step guide how to configure Grafana on injection machine at EC2
 
+## 📑 Table of Contents
+
+- [Pre-requisite](#pre-requisites)
+- [Installing Grafana on Ubuntu EC2](installing-grafana-on-ubuntu-ec2)
+- [Install Dependencies](install-dependencies)
+- [Add Grafana GPG Key and Repo](add-grafana-gpg-key-and-repo)
+- [Install Grafana OSS](install-grafana-oss)
+- [Start and Enable Grafana](start-and-enable-grafana)
+- [Access Grafana Web UI](access-grafana-web-ui)
+
+---
 ## Pre-requisites
 
 - An **Ubuntu EC2** instance running (e.g., **t3.micro or larger**)
