@@ -4,7 +4,7 @@ This document is a step by step guide how to configure Grafana on injection mach
 
 ## 📑 Table of Contents
 
-- [Pre-requisite](#pre-requisites)
+- [Pre-requisites](#pre-requisites)
 - [Installing Grafana on Ubuntu EC2](installing-grafana-on-ubuntu-ec2)
 - [Install Dependencies](install-dependencies)
 - [Add Grafana GPG Key and Repo](add-grafana-gpg-key-and-repo)
