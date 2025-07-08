@@ -56,6 +56,18 @@ echo \
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
+---
+## Start Docker and Enable on Boot
+
+- Run the following commands **one by one** on EC2 terminal by MobaXterm
+
+```
+# Start Docker
+sudo systemctl start docker
+
+# Enable Docker to start on boot
+sudo systemctl enable docker
+```
 
   
 
