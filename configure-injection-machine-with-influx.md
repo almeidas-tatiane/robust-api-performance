@@ -33,7 +33,6 @@ This document is a step by step guide how to configure injection machine at EC2 
 - Run the following commands **one by one** on EC2 terminal by MobaXterm
 
 ```
-bash
 # Update the package list
 sudo apt update && sudo apt upgrade -y
 
