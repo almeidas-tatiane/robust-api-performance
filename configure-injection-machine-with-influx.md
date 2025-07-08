@@ -92,12 +92,21 @@ docker run -d \
 
 - Open this URL in your browser
 ```
-http://<YOUR-EC2-PUBLIC-IP>:8086
+http://**<YOUR-EC2-PUBLIC-IP>**:8086
 ```
 
 ![image](https://github.com/user-attachments/assets/ff40475b-bda5-4f46-b21a-b0a3863d69b7)
 
+---
+## Initial Web Setup
 
+- In the browser:
+  - Set up **username** and **password**
+  - Choose **organization name** and **bucket**
+  
+  ![image](https://github.com/user-attachments/assets/3c688a65-cc85-4ac3-ad1f-ed4cf36dd86b)
+
+  - Copy and save your **admin token**
 
 
   
