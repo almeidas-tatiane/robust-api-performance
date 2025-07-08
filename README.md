@@ -32,7 +32,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Injection Machine - EC2 Creation](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/ec2-creation.md)
 - [Accessing EC2 via FileZilla (SFTP)](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configuring-filezilla-to-ec2.md)
 - [Configuring MobaXterm to access EC2 as terminal](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configuring-mobaxterm.md)
-- [Configure JMeter on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configure-jmeter-injection-machine.md))
+- [Configure JMeter on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configure-jmeter-injection-machine.md)
 - [Configure InfluxDB on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configure-injection-machine-with-influxdb.md#useful-docker-commands)
 - [Configure Grafana on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/configure-grafana-at-injection-machine.md#access-grafana-web-ui)
 
