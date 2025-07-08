@@ -105,8 +105,24 @@ http://**<YOUR-EC2-PUBLIC-IP>**:8086
   - Choose **organization name** and **bucket**
   
   ![image](https://github.com/user-attachments/assets/3c688a65-cc85-4ac3-ad1f-ed4cf36dd86b)
-
+  
+  - Click on **Continue**
   - Copy and save your **admin token**
+
+ ---
+ ## Verify with curl
+
+- Run the command on EC2 terminal by MobaXterm
+
+```
+curl -i http://**<YOUR-EC2-PUBLIC-IP>**:8086/health
+```
+
+- The response will be similar to
+
+![image](https://github.com/user-attachments/assets/51b7dff2-23bb-4f23-8cfb-42c96059ae96)
+
+  
 
 
   
