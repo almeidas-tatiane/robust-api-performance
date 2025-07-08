@@ -6,7 +6,6 @@ This document is a step by step guide how to configure injection machine at EC2 
 
 - Start your EC2 at AWS
 - Access EC2 terminal by MobaXterm
-- Docker installed
 - Inbound port **8086** open in the Security Group
   - To add inbound roule, go to **EC2-> click on Instances and select your instance**
   - Scroll down to the **Security section** and click on the **Security Group** link
