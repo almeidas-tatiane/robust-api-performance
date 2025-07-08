@@ -71,13 +71,26 @@ sudo systemctl enable docker
 --- 
 ## Allow Docker for Current User
 
-- Run the following commands **one by one** on EC2 terminal by MobaXterm
+- Run the command on EC2 terminal by MobaXterm
 
 ```
 sudo usermod -aG docker $USER
 ```
 
-- Then **log out and log back in** to apply the group change
+- Then **log out and log back in** using MobaXterm to apply the group change
+---
+## Run InfluxDB in Docker
+
+- Run the command on EC2 terminal by MobaXterm
+
+```
+docker run -d \
+  --name influxdb \
+  -p 8086:8086 \
+  -v influxdb_data:/var/lib/influxdb2 \
+  -v influxdb_config:/etc/influxdb2 \
+  influxdb:2.7
+```
 
 
 
