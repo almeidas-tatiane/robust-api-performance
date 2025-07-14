@@ -2,6 +2,27 @@
 
 This document is a step by step guide how to configure Prometheus on Injection Machine at EC2
 
+## 📑 Table of Contents
+
+- [Pre-requisites](#re-requisites)
+- [Create Prometheus User](#create-prometheus-user)
+- [Create Required Directories](#create-required-directories)
+- [Download and Extract Prometheus](#download-and-extract-prometheus)
+- [Move Binaries](#move-binaries)
+- [Set Ownership for Binaries](#set-ownership-for-binaries)
+- [Move Configuration Files](#move-configuration-files)
+- [Set Ownership for Config Files](#set-ownership-for-config-files)
+- [Create Systemd Service File](#create-systemd-service-file)
+- [Reload Systemd & Start Prometheus](#reload-systemd-start-prometheus)
+- [Verify Status](#verify-status)
+- [Access Prometheus Web UI](#access-prometheus-web-ui)
+- [Add Node Exporter in the Prometheus yml](#add-node-exporter-in-the-prometheus-yml)
+- [Reload Prometheus Configuration](#reload-prometheus-configuration)
+- [Verify in Web UI after Node Exporter configuration](#verify-in-web-ui-after-node-exporter-configuration)
+
+
+---
+
 ## Pre-requisites
 
 - An EC2 instance running Ubuntu 
