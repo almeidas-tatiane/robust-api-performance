@@ -36,6 +36,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Configure InfluxDB on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-influx-injection-machine.md)
 - [Configure Grafana on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-grafana-at-injection-machine.md)
 - [Configure Prometheus on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-prometheus-injection-machine.md)
+- [Configure Node Exporter on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-node-explorer-injection-machine.md)
 
 ---
 
