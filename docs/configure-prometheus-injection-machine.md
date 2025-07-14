@@ -13,7 +13,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 - [Move Configuration Files](#move-configuration-files)
 - [Set Ownership for Config Files](#set-ownership-for-config-files)
 - [Create Systemd Service File](#create-systemd-service-file)
-- [Reload Systemd & Start Prometheus](#reload-systemd-and-start-prometheus)
+- [Reload Systemd and Start Prometheus](#reload-systemd-and-start-prometheus)
 - [Verify Status](#verify-status)
 - [Access Prometheus Web UI](#access-prometheus-web-ui)
 - [Add Node Exporter in the Prometheus yml](#add-node-exporter-in-the-prometheus-yml)
@@ -148,7 +148,7 @@ WantedBy=default.target
 - Press **CRL+X** to close nano editor
 
 ---
-## Reload Systemd & Start Prometheus
+## Reload Systemd and Start Prometheus
 
 - Run the commands on MobaXterm **one by one**
 
