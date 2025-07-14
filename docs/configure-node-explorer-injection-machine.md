@@ -1,4 +1,4 @@
-# 📊 Monitoring Linux Server with Node Exporter
+# 📊 Configuring Node Exporter in the Injection Machine
 
 This guide shows how to install and configure **Node Exporter** to monitor system metrics on a Linux server.
 
