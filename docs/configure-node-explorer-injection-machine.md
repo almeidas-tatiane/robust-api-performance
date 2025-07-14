@@ -1,6 +1,6 @@
-# 📊 Monitoring Linux Server with Node Exporter, Prometheus and Grafana
+# 📊 Monitoring Linux Server with Node Exporter
 
-This guide shows how to install and configure **Node Exporter**, **Prometheus**, and **Grafana** to monitor system metrics on a Linux server.
+This guide shows how to install and configure **Node Exporter** to monitor system metrics on a Linux server.
 
 ---
 
