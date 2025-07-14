@@ -4,7 +4,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 
 ## 📑 Table of Contents
 
-- [Pre-requisites](#re-requisites)
+- [Pre-requisites](#pre-requisites)
 - [Create Prometheus User](#create-prometheus-user)
 - [Create Required Directories](#create-required-directories)
 - [Download and Extract Prometheus](#download-and-extract-prometheus)
@@ -13,7 +13,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 - [Move Configuration Files](#move-configuration-files)
 - [Set Ownership for Config Files](#set-ownership-for-config-files)
 - [Create Systemd Service File](#create-systemd-service-file)
-- [Reload Systemd & Start Prometheus](#reload-systemd-start-prometheus)
+- [Reload Systemd & Start Prometheus](#reload-systemd-and-start-prometheus)
 - [Verify Status](#verify-status)
 - [Access Prometheus Web UI](#access-prometheus-web-ui)
 - [Add Node Exporter in the Prometheus yml](#add-node-exporter-in-the-prometheus-yml)
