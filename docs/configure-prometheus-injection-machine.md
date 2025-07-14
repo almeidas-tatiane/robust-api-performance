@@ -161,3 +161,50 @@ http://<EC2-PUBLIC-IP>:9090
 
 ![image](https://github.com/user-attachments/assets/95752439-2356-434b-9c3a-e9d523dc5b47)
 
+---
+## Add Node Exporter in the Prometheus yml
+
+- Open the file in an editor
+```bash
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+- Scroll to the section called **scrape_configs**. Add this block:
+```yaml
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['<ec2 ip>:9100']
+```
+
+- Make sure the indentation is correct (spaces, **not tabs**). Example:
+```yaml
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['<ec2 ip>:9090']
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['<ec2 ip>:9100']
+```
+
+---
+## Reload Prometheus Configuration
+
+- Restart Prometheus to apply the new configuration
+```bash
+sudo systemctl restart prometheus
+```
+
+---
+## Verify in Web UI after Node Exporter configuration
+
+- Open Prometheus in your browser:
+```
+http://<your-ec2-ip>:9090/targets
+```
+
+<img width="1916" height="511" alt="image" src="https://github.com/user-attachments/assets/77f43ec5-a38c-48f5-907f-4f98d92f65ee" />
+
+
+
