@@ -4,6 +4,16 @@ This guide shows how to install and configure **Node Exporter** to monitor syste
 
 ---
 
+## 📑 Table of Contents
+
+- [What is Node Exporter?](#what-is-node-exporter)
+- [Why use Node Exporter?](#why-use-node-exporter)
+- [Pre-requisites](#pre-requisites)
+- [Install Node Exporter](#install-node-exporter)
+- [Create a systemd Service](#create-a-systemd-service)
+
+---
+
 ## What is Node Exporter?
 
 **Node Exporter** is an **open-source monitoring agent** developed by Prometheus. It collects **hardware and operating system metrics** from a Linux system and exposes them via an HTTP endpoint, usually at http://localhost:9100/metrics. It helps to collect:
@@ -71,22 +81,22 @@ WantedBy=default.target
 
 - ✅ ExecStart path must match where your node_exporter binary is. By default, it's in /usr/local/bin/.
 
-- Reload systemd to detect the new service
+- **Reload systemd to detect the new service**
 ```bash
 sudo systemctl daemon-reload
 ```
 
-- Start the service
+- **Start the service**
 ```bash
 sudo systemctl start node_exporter
 ```
 
-- Enable service on boot
+- **Enable service on boot**
 ```bash
 sudo systemctl enable node_exporter
 ```
 
-- Check the service status
+- **Check the service status**
 ```bash
 sudo systemctl status node_exporter
 ```
@@ -95,7 +105,7 @@ sudo systemctl status node_exporter
 <img width="1585" height="424" alt="image" src="https://github.com/user-attachments/assets/ad02ac6b-5dde-496c-a4a7-4d4c30f37865" />
 
 
-- Confirm it's running
+- **Confirm it's running**
 ```
 http://<your-ec2-ip>:9100/metrics
 ```
