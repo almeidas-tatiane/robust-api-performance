@@ -43,8 +43,10 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 ## 🔧 Upcoming Tasks
 - [ ] Setup NGINX as a reverse proxy
 - [ ] Create Grafana dashboards to Node Exporter and JMeter
-- [ ] Create and execute JMeter scripts
+- [ ] Create JMeter scripts
 - [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
+- [ ] Configure and install Dynatrace
+- [ ] Execute JMeter scripts
 - [ ] Collect results and screenshots
 - [ ] Write test report summarizing results and insights
 - [ ] Create shell scripts to: EC2 creation, install: Java, JMeter, Influx, Prometheus and Grafana
