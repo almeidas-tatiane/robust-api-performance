@@ -41,8 +41,6 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 ---
 
 ## 🔧 Upcoming Tasks
-- [ ] Configure Prometheus
-- [ ] Create Grafana Dashboards
 - [ ] Create and execute JMeter scripts
 - [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
 - [ ] Collect results and screenshots
