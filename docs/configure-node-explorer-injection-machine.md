@@ -36,8 +36,8 @@ In short: **Node Exporter = system metrics → Prometheus → Grafana dashboards
 ---
 ## Pre-requisites
 
-- EC2 with Linux
-- Add 9100 port in the EC2 security group
+- An Ubuntu EC2 running
+- 9100 port in the EC2 security group
 <img width="1576" height="60" alt="image" src="https://github.com/user-attachments/assets/31578b2e-307f-49ad-8f6b-28149238e77f" />
 
 - MobaXterm configured
