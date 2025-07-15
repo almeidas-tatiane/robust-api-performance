@@ -73,23 +73,9 @@ Direct access to these service ports is blocked to improve security. Use NGINX t
   ---
   ## NGINX Reverse Proxy Architecture for Performance Monitoring
 
-                   ┌──────────────────────────────┐
-                   │        End User / You        │
-                   └────────────┬─────────────────┘
-                                │  (HTTP + Basic Auth)
-                                ▼
-                    ┌─────────────────────────┐
-                    │         NGINX           │  ← Public IP (Port 80)
-                    │    (Reverse Proxy)      │
-                    └──────┬──────────┬───────┘
-                           │          │
-         ┌─────────────────┘          └──────────────────┐
-         ▼                                             ▼
-┌────────────────────┐                     ┌────────────────────┐
-│   Prometheus        │                     │   Node Exporter     │
-│ http://localhost:9090│   ◄──────────────  │http://localhost:9100│
-└────────────────────┘        /             └────────────────────┘
-                            `/`                         `/metrics/`
+  <img width="763" height="526" alt="image" src="https://github.com/user-attachments/assets/8fe05b49-4a2a-428b-95ab-36550898f4b6" />
+
+         
 
 ---
 ## Access Flow
