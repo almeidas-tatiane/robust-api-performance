@@ -111,6 +111,7 @@ Direct access to these service ports is blocked to improve security. Use NGINX t
 <img width="1187" height="88" alt="image" src="https://github.com/user-attachments/assets/48416a94-1529-48c3-8286-c5874e03c887" />
 
 - You have **sudo** access
+- Start InfluxDB docker: **docker start influxdb**
 
 ---
 ## Install NGINX and Apache tools
@@ -171,7 +172,7 @@ server {
     }
 
     location /influxdb/ {
-        proxy_pass http://localhost:8086/influxdb;
+        proxy_pass http://localhost:8086/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -231,10 +232,22 @@ sudo systemctl reload nginx
 <img width="1917" height="843" alt="image" src="https://github.com/user-attachments/assets/0f2f6dfc-1308-4640-80c4-59f3c0b87088" />
 
 - Accessing **Influx DB** -> http://EC2-IP/influxdb/
+```
+The result will be a blank page with status 200
+```
+<img width="1747" height="428" alt="image" src="https://github.com/user-attachments/assets/9b3d0e3c-992f-4ef3-b365-92c7fb2514bc" />
 
+- Verifying http://EC2-IP:9090 is blocked
+<img width="469" height="167" alt="image" src="https://github.com/user-attachments/assets/ad67e52b-49e3-4a67-9ff7-0283f32cc05d" />
 
+- Verifying http://EC2-IP:9100 is blocked
+<img width="448" height="179" alt="image" src="https://github.com/user-attachments/assets/70c71bf5-d8e3-4e12-80d4-b25de86c935a" />
 
+- Verifying http://EC2-IP:3000 is blocked
+<img width="460" height="177" alt="image" src="https://github.com/user-attachments/assets/cd896a3a-af0e-4995-a7d5-190d02b7b911" />
 
+- Verifying http://EC2-IP:8086 is blocked
+<img width="456" height="198" alt="image" src="https://github.com/user-attachments/assets/5c71a029-3bab-4870-899a-61f7442016c3" />
 
 
 
