@@ -10,6 +10,25 @@ This guide explains the role of NGINX and how it helps secure and simplify acces
 - **Hiding the actual service ports** (9090 for Prometheus, 9100 for Node Exporter, 3000 for Grafana, 8086 for InfluxDB) from the public internet.
 - Forwarding incoming requests from the public IP **to the appropriate backend service internally**.
 
+## 📑 Table of Contents
+
+- [What is NGINX?](#what-is-nginx)
+- [What Is a Reverse Proxy?](#what-is-a-reverse-proxy)
+- [Why Do You Need NGINX?](#why-do-you-need-nginx)
+- [Example Use Case](#example-use-case)
+- [NGINX Reverse Proxy Architecture for Performance Monitoring](#nginx-reverse-proxy-architecture-for-performance-monitoring)
+- [Access Flow](#access-flow)
+- [Security Additions](#security-additions)
+- [Pre-requisites](#pre-requisites)
+- [Install NGINX and Apache tools](#install-nginx-and-apache-tools)
+- [Create Basic Auth Credentials](#create-basic-auth-credentials)
+- [Configure NGINX as Reverse Proxy](#configure-nginx-as-reverse-proxy)
+- [Enable the Site and Reload NGINX](#enable-the-site-and-reload-nginx)
+- [Block Direct Access to Service Ports](#block-direct-access-to-service-ports)
+- [Test Access](#test-access)
+- [Troubleshooting FAQ](#troubleshooting-faq)
+- [Deployment Strategy Note](#deployment-strategy-note)
+
 ---
 ## What is NGINX?
 
@@ -92,13 +111,13 @@ Direct access to these service ports is blocked to improve security. Use NGINX t
 
 
 - All on **port 80**, no explicit ports in URL.
-- **Ports 9090, 9100, 3000 are blocked** in firewall and not reachable from outside.
+- **Ports 9090, 9100, 3000 and 8086 are blocked** in firewall and not reachable from outside.
 
 ---
 ## Security Additions
 
 - 🔐 **Basic Authentication** (username/password prompt)
-- 🔒 **Direct access to ports 9090 and 9100 is blocked**
+- 🔒 **Direct access to ports 9090, 9100, 3000 and 8086 are blocked**
 - ✅ Only **NGINX (port 80)** is open to the public
 
 ---
