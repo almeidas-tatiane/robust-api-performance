@@ -294,6 +294,12 @@ The expected result will be a blank page with status 200
 - Confirm InfluxDB is running and accessible on port 8086 locally.  
 - Use InfluxDB CLI or API clients for interaction if the UI is not needed.
 
+---
+## Deployment Strategy Note
+
+- InfluxDB was installed via Docker to enable a faster and more isolated setup, while Prometheus, Node Exporter, and Grafana were installed directly to practice and demonstrate native Linux configuration and systemd integration.
+- This mixed setup was intentional to demonstrate flexibility in managing both containerized and system-level services, as well as to focus on completing all key functionalities and documentation in a timely manner.
+- In the next iteration, the full stack will be migrated to **Docker** (or Docker Compose) to improve consistency, portability, and automation — aligning with modern DevOps practices.
 
 
 
