@@ -1,6 +1,6 @@
-# 🌐 Using NGINX Reverse Proxy to Secure Prometheus, Node Exporter, and Grafana
+# 🌐 Using NGINX Reverse Proxy to Secure Prometheus, Node Exporter, InfluxDB and Grafana
 
-This document is a step by step guide how to implement NGINX as a reverse proxy to securely expose Prometheus, Node Exporter, and Grafana dashboards on a single public port (80) with basic authentication, ensuring backend ports remain closed and protected.
+This document is a step by step guide how to implement NGINX as a reverse proxy to securely expose Prometheus, Node Exporter, InfluxDB and Grafana dashboards on a single public port (80) with basic authentication, ensuring backend ports remain closed and protected.
 
 This guide explains the role of NGINX and how it helps secure and simplify access to your monitoring tools.
 
@@ -68,6 +68,8 @@ Backend services:
 Direct access to these service ports is blocked to improve security. Use NGINX to:
 - Forward **/ to Prometheus**
 - Forward **/metrics/ to Node Exporter**
+- Forward **/grafana/ to Grafana**
+- Forward **influxdb/ to InfluxDB**
 - Add a **login screen (basic auth)**
 - Control access through **only one open port (80)**
 
@@ -159,7 +161,7 @@ server {
     }
 
     location /grafana/ {
-        proxy_pass http://localhost:3000/;
+        proxy_pass http://localhost:3000/grafana/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -169,7 +171,7 @@ server {
     }
 
     location /influxdb/ {
-        proxy_pass http://localhost:8086/;
+        proxy_pass http://localhost:8086/influxdb;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -226,34 +228,10 @@ sudo systemctl reload nginx
 <img width="1031" height="543" alt="image" src="https://github.com/user-attachments/assets/85a51314-3802-48e8-a03a-5647b77b7fa0" />
 
 - Accessing **Grafana** -> http://EC2-IP/grafana/
+<img width="1917" height="843" alt="image" src="https://github.com/user-attachments/assets/0f2f6dfc-1308-4640-80c4-59f3c0b87088" />
 
+- Accessing **Influx DB** -> http://EC2-IP/influxdb/
 
----
-## Possible errors
-
-If you got page not found when you tried http://EC2-IP/grafana/ and http://EC2-IP/influxDB/ follow the steps to fix it
-
-### Edit the Grafana configuration file
-
-```
-sudo nano /etc/grafana/grafana.ini
-```
-
-- Find and update (or uncomment and edit) the following lines
-```
-[server]
-root_url = http://localhost/grafana/
-serve_from_sub_path = true
-```
-🔁 This tells Grafana to adjust all internal links and assets to use /grafana/ as the base path.
-
-- Save and restart Grafana
-```
-sudo systemctl restart grafana-server
-```
-
-- Refresh in your browser: http://<EC2-IP>/grafana/
-✅ You should now see the Grafana login screen
 
 
 
