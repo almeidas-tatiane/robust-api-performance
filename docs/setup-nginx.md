@@ -5,7 +5,7 @@ This document is a step by step guide how to implement NGINX as a reverse proxy 
 This guide explains the role of NGINX and how it helps secure and simplify access to your monitoring tools.
 
 **NGINX acts as a security layer and access gateway for monitoring services** by:
-- Exposing **only port 80 (HTTP) or 443 (HTTPS)** publicly on your EC2 instance.
+- Exposing **only port 80 (HTTP) ** publicly on your EC2 instance.
 - Requiring **basic authentication** for all access, protecting sensitive dashboards and metrics.
 - **Hiding the actual service ports** (9090 for Prometheus, 9100 for Node Exporter, 3000 for Grafana, 8086 for InfluxDB) from the public internet.
 - Forwarding incoming requests from the public IP **to the appropriate backend service internally**.
@@ -50,11 +50,10 @@ User ---> NGINX (Reverse Proxy) ---> Backend Server (like Prometheus)
 You can later add **SSL (HTTPS), load balancing, or rate limiting** via NGINX — without changing your backend.
 
 **NGINX helps you**
-- Consolidate all services behind one port (usually 80 or 443)
+- Consolidate all services behind one port (usually 80)
 - Add authentication (basic auth) to protect these services
 - Hide backend ports (security by obscurity + reduce exposed ports)
 - Have cleaner URLs like http://EC2_IP/ or /metrics/ instead of ports
-- Easily add HTTPS later (SSL/TLS encryption)
 
 ---
 ## Example Use Case
@@ -88,7 +87,7 @@ Direct access to these service ports is blocked to improve security. Use NGINX t
 | http://ec2-ip/          | NGINX forwards to Prometheus (9090)    |
 | http://ec2-ip/metrics/  | NGINX forwards to Node Exporter (9100) |
 | http://ec2-ip/grafana/  | NGINX forwards to Grafana (3000)        |
-| http://ec2-ip/influxDB/  | NGINX forwards to InfluxDB (8086)        |
+| http://ec2-ip/influxdb/  | NGINX forwards to InfluxDB (8086)        |
 | 🔐 All require login      | NGINX checks `.htpasswd` credentials      |
 
 
@@ -217,7 +216,7 @@ sudo systemctl reload nginx
 |http://EC2-IP/	|Prometheus UI	|✅|
 |http://EC2-IP/metrics/	|Node Exporter metrics|	✅|
 |http://EC2-IP/grafana/|	Grafana dashboard	|✅|
-|http://EC2-IP/influxDB/|	InfluxDB UI	|✅|
+|http://EC2-IP/influxdb/|	InfluxDB UI	|✅|
 |http://EC2-IP:9090, :9100, :3000, :8086|	❌ Should be blocked|	✅|
 
 **NOTE**: Accessing any of the URL, it will ask you the username and password setup earlier at **Create Basic Auth Credentials**
@@ -233,7 +232,7 @@ sudo systemctl reload nginx
 
 - Accessing **Influx DB** -> http://EC2-IP/influxdb/
 ```
-The result will be a blank page with status 200
+The expected result will be a blank page with status 200
 ```
 <img width="1747" height="428" alt="image" src="https://github.com/user-attachments/assets/9b3d0e3c-992f-4ef3-b365-92c7fb2514bc" />
 
@@ -248,6 +247,52 @@ The result will be a blank page with status 200
 
 - Verifying http://EC2-IP:8086 is blocked
 <img width="456" height="198" alt="image" src="https://github.com/user-attachments/assets/5c71a029-3bab-4870-899a-61f7442016c3" />
+
+
+---
+## Troubleshooting FAQ
+
+**Q1: NGINX configuration test (`nginx -t`) fails with syntax errors. What should I check?**  
+- Ensure there are no missing or extra curly braces `{}` in your config file.  
+- Check for proper indentation and semicolons `;` at the end of each directive line.  
+- Verify the `proxy_pass` URLs are correctly formatted with trailing slashes as needed.  
+- Run `sudo nginx -t` after every edit to catch errors before reloading.
+
+---
+
+**Q2: After reloading NGINX, changes don’t seem to take effect. What can I do?**  
+- Confirm you reloaded NGINX with `sudo systemctl reload nginx` or `sudo nginx -s reload`.  
+- Check if the correct site config is enabled by verifying the symlink in `/etc/nginx/sites-enabled/`.  
+- Look at NGINX logs for errors: `sudo journalctl -u nginx` or `/var/log/nginx/error.log`.  
+- Clear your browser cache or try accessing in a private/incognito window.
+
+---
+
+**Q3: Unable to access services via NGINX; getting connection refused or timeout errors.**  
+- Confirm backend services (Prometheus, Node Exporter, Grafana, InfluxDB) are running and accessible on localhost and correct ports.  
+- Make sure firewall or EC2 Security Group rules block direct public access but allow localhost communication.  
+- Double-check NGINX `proxy_pass` URLs point to the correct ports on localhost.
+
+---
+
+**Q4: Basic authentication prompt does not appear or login fails.**  
+- Verify `.htpasswd` file exists at `/etc/nginx/.htpasswd` and has correct permissions readable by NGINX.  
+- Confirm you created users correctly using `htpasswd` and did not accidentally overwrite the file after the first user (use `-c` only once).  
+- Check NGINX config has `auth_basic` and `auth_basic_user_file` directives properly set in each `location` block.
+
+---
+
+**Q5: Grafana shows 404 errors or the dashboard doesn’t load properly behind `/grafana/` path.**  
+- Ensure Grafana’s root URL is configured to use the `/grafana/` subpath (check Grafana config `root_url`).  
+- Add or adjust NGINX proxy headers (`proxy_set_header`) to forward client information properly.  
+- Try adding `proxy_redirect off;` inside the Grafana location block if redirects cause issues.
+
+---
+
+**Q6: InfluxDB UI shows a blank page or doesn’t render as expected.**  
+- This behavior can be normal since InfluxDB UI might serve API endpoints rather than a traditional dashboard.  
+- Confirm InfluxDB is running and accessible on port 8086 locally.  
+- Use InfluxDB CLI or API clients for interaction if the UI is not needed.
 
 
 
