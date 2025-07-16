@@ -28,6 +28,7 @@ This guide explains the role of NGINX and how it helps secure and simplify acces
 - [Test Access](#test-access)
 - [Troubleshooting FAQ](#troubleshooting-faq)
 - [Deployment Strategy Note](#deployment-strategy-note)
+- [How to disable NGINX](#how-to-disable-nginx)
 
 ---
 ## What is NGINX?
@@ -319,6 +320,71 @@ The expected result will be a blank page with status 200
 - InfluxDB was installed via Docker to enable a faster and more isolated setup, while Prometheus, Node Exporter, and Grafana were installed directly to practice and demonstrate native Linux configuration and systemd integration.
 - This mixed setup was intentional to demonstrate flexibility in managing both containerized and system-level services, as well as to focus on completing all key functionalities and documentation in a timely manner.
 - In the next iteration, the full stack will be migrated to **Docker** (or Docker Compose) to improve consistency, portability, and automation — aligning with modern DevOps practices.
+
+---
+## How to disable NGINX
+
+If for any reason you want to disable NGINX and access the services directly by port again, follow the steps bellow:
+
+- **Stop the influxdb docker**: docker stop influxdb
+
+- Run the MobaXterm terminal the commands:
+  - **To stop NGINX**: sudo systemctl stop nginx
+  - **Disable NGINX**: sudo systemctl disable nginx
+
+- In your EC2 that is running, go to security group, inbound rules and add a rule to each of them:
+  - **Grafana** port **3000**
+  - **Prometheus** port **9090**
+  - **InfluxDB** port **8086**
+  - **Node Exporter** port **9100**
+<img width="1616" height="373" alt="image" src="https://github.com/user-attachments/assets/6830fb79-eee4-457b-9604-943fd4a1a42f" />
+
+
+-Verify if the services are running and listening in the correct ports
+
+sudo systemctl status grafana-server
+sudo systemctl status prometheus
+sudo systemctl status influxdb **In case of InfluxDB is on Docker run docker start influxdb**
+sudo systemctl status node_exporter
+
+- Modify grafana.ini
+- Run in the ModbaXterm terminal:
+```
+sudo nano /etc/grafana/grafana.ini
+```
+
+- Find and replace on **[server]**
+- Find **root_url = http://localhost/grafana/** and replace by **root_url = %(protocol)s://%(domain)s:%(http_port)s/**
+- Find **serve_from_sub_path = true** and replace by **serve_from_sub_path = false**
+- Press **Ctrl+O**, **ENTER**, **Ctrul+X**
+
+- Restart **Grafana**, run in the MobaXterm terminal: **sudo systemctl restart grafana-server**
+<img width="537" height="159" alt="image" src="https://github.com/user-attachments/assets/d13ff099-daf7-4b03-88d0-830698ab4be1" />
+
+- Clean your **brower's cache**
+
+- Try to access in your **browser**
+
+**Grafana**: http://ec2-ip:3000
+<img width="1880" height="672" alt="image" src="https://github.com/user-attachments/assets/a5275588-ad0c-477c-9d1c-5caa650ab916" />
+
+**Prometheus**: http://ec2-ip:9090
+<img width="1919" height="679" alt="image" src="https://github.com/user-attachments/assets/f9e9d341-9583-4a6a-b85d-ac0e0022e5d9" />
+
+**Node Exporter**: http://ec2-ip:9100
+<img width="1175" height="559" alt="image" src="https://github.com/user-attachments/assets/5f4f4c00-a3d2-4ad5-95e4-e7dff4a72ec3" />
+
+**InfluxDB**: http://ec2-ip:8086
+<img width="1912" height="844" alt="image" src="https://github.com/user-attachments/assets/91d954e1-63e8-49c5-9bcd-a0b0786d934c" />
+
+
+
+
+
+
+
+
+
 
 
 
