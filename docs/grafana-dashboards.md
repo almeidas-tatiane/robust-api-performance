@@ -1,4 +1,4 @@
-# Grafana Dashboards
+# 📊 Grafana Dashboards
 
 This document is a step by step guide how to create dashboards on Grafana to Node Exporter and JMeter.
 
