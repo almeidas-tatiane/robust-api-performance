@@ -340,7 +340,7 @@ If for any reason you want to disable NGINX and access the services directly by 
 <img width="1616" height="373" alt="image" src="https://github.com/user-attachments/assets/6830fb79-eee4-457b-9604-943fd4a1a42f" />
 
 
--Verify if the services are running and listening in the correct ports
+- Verify if the services are running and listening in the correct ports
 ```
 sudo systemctl status grafana-server
 sudo systemctl status prometheus
