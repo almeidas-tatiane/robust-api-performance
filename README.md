@@ -44,7 +44,7 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 ## 🔧 Upcoming Tasks
 - [ ] Create Grafana dashboards to Node Exporter and JMeter
 - [ ] Create JMeter scripts
-- [ ] Create a GitHub Actions and/or Jenkins pipeline with JMeter scripts
+- [ ] Create a GitHub Actions and/or Jenkins pipeline to JMeter scripts and to start/shutdown injection machine at EC2
 - [ ] Configure and install Dynatrace
 - [ ] Execute JMeter scripts
 - [ ] Collect results and screenshots
