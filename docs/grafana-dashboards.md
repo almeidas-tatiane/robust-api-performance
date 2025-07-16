@@ -19,7 +19,7 @@ This document is a step by step guide how to create dashboards on Grafana to Nod
 - Query Language select Flux
 - In HTTP session -> URL, type: http://EC2'IP:8086
 - On Auth, let all options **disabled**
-- On InfluxDB details, fill in, [See how to configure here](https://github.com/almeidas-tatiane/robust-api-performance/edit/main/docs/configure-influx-injection-machine)
+- On InfluxDB details, fill in, [See how to configure here](https://github.com/almeidas-tatiane/robust-api-performance/edit/main/docs/configure-influx-injection-machine.md)
   - **Organization**
   - **Token**
   - **Default Bucket**
