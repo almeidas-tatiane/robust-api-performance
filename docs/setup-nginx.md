@@ -341,11 +341,12 @@ If for any reason you want to disable NGINX and access the services directly by 
 
 
 -Verify if the services are running and listening in the correct ports
-
+```
 sudo systemctl status grafana-server
 sudo systemctl status prometheus
 sudo systemctl status influxdb **In case of InfluxDB is on Docker run docker start influxdb**
 sudo systemctl status node_exporter
+```
 
 - Modify grafana.ini
 - Run in the ModbaXterm terminal:
