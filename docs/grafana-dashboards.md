@@ -7,6 +7,7 @@ This document is a step by step guide how to create dashboards on Grafana to Nod
 
 - EC2 with Ubuntu running
 - Grafana and InfluxDB already installed and running
+- If InfluxDB was installed by Docker, run on MobaXterm terminal: **docker start influxdb**
 
 ---
 ## Configuring Data Sources
