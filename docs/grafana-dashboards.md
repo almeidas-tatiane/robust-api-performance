@@ -92,6 +92,11 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - **Both** dashboards imported are displayed
 <img width="1915" height="469" alt="image" src="https://github.com/user-attachments/assets/dfdb6d8e-da35-4e9e-bde5-17f8f8d9f0c7" />
 
+---
+## Testing Dashboards
+
+### JMeter with InfluxDB
+
 
     
 
