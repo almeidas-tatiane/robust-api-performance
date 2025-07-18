@@ -6,6 +6,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager">
@@ -81,7 +83,7 @@
         <boolProp name="CacheManager.controlledByThread">false</boolProp>
       </CacheManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <intProp name="ThreadGroup.num_threads">1000</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">0</longProp>
@@ -94,7 +96,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="orderplacedforpurchasing">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="orderplacedforpurchasing" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -163,7 +165,7 @@
           <stringProp name="filename">C:\Backup Laptop Antigo\Performance360\JMeter\report.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
           <stringProp name="TestPlan.comments">Created from cURL on 2025-03-12T15:29:59.6693541</stringProp>
           <stringProp name="HTTPSampler.domain">petstore.swagger.io</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -202,7 +204,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
           <stringProp name="TestPlan.comments">Created from cURL on 2025-03-12T15:33:53.9140563</stringProp>
           <stringProp name="HTTPSampler.domain">petstore.swagger.io</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -363,7 +365,7 @@
             </elementProp>
             <elementProp name="influxDBHost" elementType="Argument">
               <stringProp name="Argument.name">influxDBHost</stringProp>
-              <stringProp name="Argument.value">44.214.232.145</stringProp>
+              <stringProp name="Argument.value">localhost</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBPort" elementType="Argument">
@@ -373,7 +375,7 @@
             </elementProp>
             <elementProp name="influxDBToken" elementType="Argument">
               <stringProp name="Argument.name">influxDBToken</stringProp>
-              <stringProp name="Argument.value">im_yG3UnYwzkZTd2Son6-Z84PC2gVoy0Q01yLfFHfl_Q20PrSE-Gq_yVn5NAylYTJ2w8q_50Pj6Py32bTpyPQQ==</stringProp>
+              <stringProp name="Argument.value">fKvRaE9Iu1bytf1GRwUDeGYNqXGb9ngAIvrSsfZx4G86O3Ur8p_Qb_0z5v4qjZ6BnkwzMq6HBJTR-RsPaA_3Og==</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBOrganization" elementType="Argument">
