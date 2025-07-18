@@ -20,7 +20,7 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - Select **InfluxDB**
 - Click on Add New Data Source
 - Name type JMeter
-- Query Language select Flux
+- Query Language select **Flux**
 - In HTTP session -> URL, type: http://EC2'IP:8086
 - On Auth, let all options **disabled**
 - On InfluxDB details, fill in, [See how to configure here](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-influx-injection-machine.md)
@@ -33,6 +33,13 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - Click again on **Data sources** on **let pannel under Connections**
 - The **JMeter** data source is displayed
 <img width="1503" height="162" alt="image" src="https://github.com/user-attachments/assets/4fb5ada0-51ab-4188-946b-2f3a0026cffe" />
+
+- Now we need to create a jmeter token with full acess write and read
+- Click on **Load Data** -> **API Tokens**
+- Click on **Generate API Token** -> **All Access API Token**
+- On **Description** type a **jmeter**
+- Click on **Save**
+- It will display the token **save it in a secure place, you won't be able to see it again**
 
 ### Prometheus
 
@@ -50,22 +57,15 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - Click on Connections -> Data sources
 - In the **JMeter** Data Sources, click on **Build a dashboard**
 - Let's create **importing a dashboard**, click on **Import a dashboard**
-- In a new **browser tab** access [JMeter Performance Testing](https://grafana.com/grafana/dashboards/17506-jmeter-performance-testing-dashboard/)
+- In a new **browser tab** access [JMeter Performance Testing](https://grafana.com/grafana/dashboards/13644-jmeter-load-test-org-md-jmeter-influxdb2-visualizer-influxdb-v2-0-flux/)
 - Click on **Copy ID to clipboard**
 - **Back to browser tab when Grafana New Dashboard is opened**
 - Click on **Import a dashboard**
 - **Save the Dashboard**
 - Click on **Import a dashboard** again
 - Paste the **Dashboard's ID** and click on Load
-<img width="787" height="71" alt="image" src="https://github.com/user-attachments/assets/e49d8a6b-afbd-4e95-ae9a-3a22dad83ff6" />
-
 - On **Options session -> InfluxDB** select **JMeter**
-
-<img width="956" height="770" alt="image" src="https://github.com/user-attachments/assets/1d168912-4a66-4b3f-9eef-94edac2c8b38" />
-
 - Click on **Import**
-
-<img width="1907" height="851" alt="image" src="https://github.com/user-attachments/assets/c825423c-7419-4295-8f67-593b47502105" />
 
 ### Node Exporter
 
@@ -77,25 +77,21 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - **Save the Dashboard**
 - Click on **Import a dashboard** again
 - Paste the **Dashboard's ID** and click on Load
-<img width="808" height="86" alt="image" src="https://github.com/user-attachments/assets/f999a525-6e3d-4fc3-8b02-1b93fd394f23" />
-
 - On **Options session -> prometheus** select **prometheus**
-<img width="922" height="778" alt="image" src="https://github.com/user-attachments/assets/469da8b6-93cf-41df-aafb-ddcfc14fd0d2" />
-
 - Click on Import
-<img width="1895" height="847" alt="image" src="https://github.com/user-attachments/assets/1ec71f58-dd16-4d3c-9bdf-c13a1658a4a7" />
 
 ---
 ## Verifying Dashboards Created
 
 - Click on **Dashboards** on left pannel
 - **Both** dashboards imported are displayed
-<img width="1915" height="469" alt="image" src="https://github.com/user-attachments/assets/dfdb6d8e-da35-4e9e-bde5-17f8f8d9f0c7" />
+<img width="1589" height="311" alt="image" src="https://github.com/user-attachments/assets/8e8ddbc7-42af-4530-a93a-95c57347fd38" />
+
 
 ---
 ## Testing Dashboards
 
-### JMeter with InfluxDB
+### JMeter with InfluxDB2
 
 
 - To test the Dashboard, first of all we need a JMeter script with **Backend Listener**
@@ -103,12 +99,18 @@ This document is a step by step guide how to create dashboards on Grafana to **J
   - **Backend Listener implementation**: select **influxdb2**
   - **influxDBHost**: EC2's IP
   - **influxDBPort**: 8086
-  - **influxDBToken**: the same token used in InfluxDB setup
+  - **influxDBToken**: the one created to **jmeter**
   - **influxDBOrganization**: the same used in InfluxDB setup
   - **influxDBBucket**: the same used in InfluxDB setup
+  - Also **add** these **3 new fields manually that are required to influxdb2**
+    - **precision**: ms
+    - **application**: application's name
+    - **influxDBURL**: the complete URL with this format http://ec2-ip:8086
+   <img width="1118" height="659" alt="image" src="https://github.com/user-attachments/assets/3e9d9296-6b05-490b-a3f0-5fb18c09c36e" />
+   
  
 - Save the file
-- Upload it to **injection machine** at EC2
+- Upload it to **injection machine** at EC2 using MobaXterm
 <img width="535" height="42" alt="image" src="https://github.com/user-attachments/assets/0a1d44f8-d506-4206-b116-579d6a00aeb0" />
 
 - Now we need to update our jmeter in the injection machine with **influxdb2** plugin
@@ -119,8 +121,22 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - Verify if plugin is diapleyd with the command: ls -lh jmeter-plugins-influxdb2-listener-2.8.jar
 <img width="890" height="27" alt="image" src="https://github.com/user-attachments/assets/004314f2-647d-41f7-9fff-7bdf2e56d18c" />
 
-- Back to the directory when you've uploaded the jmeter script
-- **Execute** the script with this command in the MobaXterm terminal: jmeter -n -t grafana-test.jmx -l results.txt -e -o results
+- One a browser tab and access Grafana: **http://ec2-ip:8086**
+- Click on **Dashboard** -> select the **JMeter dashboard created**
+
+- In the **MobaXterm terminal**, back to the directory when you've uploaded the jmeter script
+- **Execute** the script with this command in the MobaXterm terminal: **jmeter -n -t grafana-test.jmx -l results.txt -e -o results**
+
+- **Go to Grafana** and verify the result of JMeter tests in **real time**, you can adjust the time interval as needed. For example: Last 5 minutes
+
+<img width="1595" height="901" alt="image" src="https://github.com/user-attachments/assets/be7ebc64-0475-4130-b3f8-f4f60e60ceb7" />
+
+
+**NOTE**: When the test execution finished, you'll be able to download JMeter hmtl report. The advantage of using Grafana dashboard to monitor it in real time, it's gaining time to investing bottleneck and issues founded during execution.
+
+---
+### JMeter with Prometheus
+
 
 
 
