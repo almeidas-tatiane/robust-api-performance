@@ -98,6 +98,33 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 ### JMeter with InfluxDB
 
 
+- To test the Dashboard, first of all we need a JMeter script with **Backend Listener**
+- In **Backend Listener** fill in the fields:
+  - **Backend Listener implementation**: select **influxdb2**
+  - **influxDBHost**: EC2's IP
+  - **influxDBPort**: 8086
+  - **influxDBToken**: the same token used in InfluxDB setup
+  - **influxDBOrganization**: the same used in InfluxDB setup
+  - **influxDBBucket**: the same used in InfluxDB setup
+ 
+- Save the file
+- Upload it to **injection machine** at EC2
+<img width="535" height="42" alt="image" src="https://github.com/user-attachments/assets/0a1d44f8-d506-4206-b116-579d6a00aeb0" />
+
+- Now we need to update our jmeter in the injection machine with **influxdb2** plugin
+- In the MobaXterm terminal, go to **/apps/apache-jmeter-5.6.3/lib/ext**
+- Download the plugin with the command: **wget https://repo1.maven.org/maven2/io/github/mderevyankoaqa/jmeter-plugins-influxdb2-listener/2.8/jmeter-plugins-influxdb2-listener-2.8.jar**
+<img width="1587" height="187" alt="image" src="https://github.com/user-attachments/assets/ae30faba-5ffd-4f02-b862-fe9a90fea9f9" />
+
+- Verify if plugin is diapleyd with the command: ls -lh jmeter-plugins-influxdb2-listener-2.8.jar
+<img width="890" height="27" alt="image" src="https://github.com/user-attachments/assets/004314f2-647d-41f7-9fff-7bdf2e56d18c" />
+
+- Back to the directory when you've uploaded the jmeter script
+- **Execute** the script with this command in the MobaXterm terminal: jmeter -n -t grafana-test.jmx -l results.txt -e -o results
+
+
+
+
     
 
 
