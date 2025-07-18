@@ -345,12 +345,12 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="testName" elementType="Argument">
               <stringProp name="Argument.name">testName</stringProp>
-              <stringProp name="Argument.value">robust-api-performance</stringProp>
+              <stringProp name="Argument.value">Test</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="nodeName" elementType="Argument">
               <stringProp name="Argument.name">nodeName</stringProp>
-              <stringProp name="Argument.value">EC2-jmeter-01</stringProp>
+              <stringProp name="Argument.value">Test-Node</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="runId" elementType="Argument">
@@ -365,7 +365,7 @@
             </elementProp>
             <elementProp name="influxDBHost" elementType="Argument">
               <stringProp name="Argument.name">influxDBHost</stringProp>
-              <stringProp name="Argument.value">44.214.232.145</stringProp>
+              <stringProp name="Argument.value">localhost</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBPort" elementType="Argument">
@@ -375,17 +375,17 @@
             </elementProp>
             <elementProp name="influxDBToken" elementType="Argument">
               <stringProp name="Argument.name">influxDBToken</stringProp>
-              <stringProp name="Argument.value">im_yG3UnYwzkZTd2Son6-Z84PC2gVoy0Q01yLfFHfl_Q20PrSE-Gq_yVn5NAylYTJ2w8q_50Pj6Py32bTpyPQQ==</stringProp>
+              <stringProp name="Argument.value">put token here</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBOrganization" elementType="Argument">
               <stringProp name="Argument.name">influxDBOrganization</stringProp>
-              <stringProp name="Argument.value">Performance</stringProp>
+              <stringProp name="Argument.value">performance_testing</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBBucket" elementType="Argument">
               <stringProp name="Argument.name">influxDBBucket</stringProp>
-              <stringProp name="Argument.value">Performance</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBFlushInterval" elementType="Argument">
@@ -426,6 +426,36 @@
             <elementProp name="responseBodyLength" elementType="Argument">
               <stringProp name="Argument.name">responseBodyLength</stringProp>
               <stringProp name="Argument.value">0</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdb2.url" elementType="Argument">
+              <stringProp name="Argument.name">influxdb2.url</stringProp>
+              <stringProp name="Argument.value">http://44.214.232.145:8086</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdb2.bucket" elementType="Argument">
+              <stringProp name="Argument.name">influxdb2.bucket</stringProp>
+              <stringProp name="Argument.value">Performance</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdb2.token" elementType="Argument">
+              <stringProp name="Argument.name">influxdb2.token</stringProp>
+              <stringProp name="Argument.value">im_yG3UnYwzkZTd2Son6-Z84PC2gVoy0Q01yLfFHfl_Q20PrSE-Gq_yVn5NAylYTJ2w8q_50Pj6Py32bTpyPQQ==</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdb2.application" elementType="Argument">
+              <stringProp name="Argument.name">influxdb2.application</stringProp>
+              <stringProp name="Argument.value">robust-api-performance</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdb2.org" elementType="Argument">
+              <stringProp name="Argument.name">influxdb2.org</stringProp>
+              <stringProp name="Argument.value">222a28b386d5bee2</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdb2.measurement" elementType="Argument">
+              <stringProp name="Argument.name">influxdb2.measurement</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
