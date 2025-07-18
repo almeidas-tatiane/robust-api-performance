@@ -370,7 +370,7 @@
             </elementProp>
             <elementProp name="influxdbToken" elementType="Argument">
               <stringProp name="Argument.name">influxdbToken</stringProp>
-              <stringProp name="Argument.value">im_yG3UnYwzkZTd2Son6-Z84PC2gVoy0Q01yLfFHfl_Q20PrSE-Gq_yVn5NAylYTJ2w8q_50Pj6Py32bTpyPQQ</stringProp>
+              <stringProp name="Argument.value">ap-bjVDpnIFDj6Bdn9iJmUlOuhg0DQwpKAKpMPhzvaqVsfmt44YGVOEY-x0Fr7C_gZURP02jVw5taflG0m0I4Q==</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="measurement" elementType="Argument">
