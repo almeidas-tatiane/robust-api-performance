@@ -226,7 +226,7 @@ sudo nano /etc/prometheus/prometheus.yml
 ```yaml
   - job_name: 'jmeter'
     static_configs:
-      - targets: ['<ec2 ip>:**9270**']
+      - targets: ['<ec2 ip>:9270']
 ```
 
 ---
