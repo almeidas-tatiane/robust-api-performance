@@ -20,6 +20,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 - [Add JMeter in the Prometheus yml](#add-jmeter-in-the-prometheus-yml)
 - [Reload Prometheus Configuration](#reload-prometheus-configuration)
 - [Verify in Web UI after Node Exporter configuration](#verify-in-web-ui-after-node-exporter-configuration)
+- [Edit JMeter user properties file with Prometheus information](#edit-jmeter-user-properties-file-with-prometheus-information)
 
 
 ---
@@ -246,6 +247,20 @@ http://<your-ec2-ip>:9090/targets
 ```
 
 <img width="1916" height="511" alt="image" src="https://github.com/user-attachments/assets/77f43ec5-a38c-48f5-907f-4f98d92f65ee" />
+
+---
+## Edit JMeter user properties file with Prometheus information
+
+- In the MobaXterm, go to **/home/ubuntu/apps/apache-jmeter-5.6.3/bin/**
+- Open the file user.properties with the command: **sudo nano user.properties**
+- Add in the end of file, the following lines:
+```
+prometheus.ip=0.0.0.0
+prometheus.port=9270
+```
+
+- **CTRL+O , ENTER, CTRL+X**; to save and exit
+
 
 
 
