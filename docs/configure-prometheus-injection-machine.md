@@ -41,6 +41,10 @@ This document is a step by step guide how to configure Prometheus on Injection M
  
   ![image](https://github.com/user-attachments/assets/6ddd3eb9-de32-4615-ab00-1e6de9c7e662)
 
+  - Also create an **Inbound Rule** to port **9270** that will allow **JMeter with Prometheus**
+  <img width="1327" height="97" alt="image" src="https://github.com/user-attachments/assets/f1ee3405-4d19-430f-a0b9-8e2bb51058c0" />
+
+
 --
 ## Create Prometheus User
 
