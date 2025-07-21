@@ -17,6 +17,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 - [Verify Status](#verify-status)
 - [Access Prometheus Web UI](#access-prometheus-web-ui)
 - [Add Node Exporter in the Prometheus yml](#add-node-exporter-in-the-prometheus-yml)
+- [Add JMeter in the Prometheus yml](#add-jmeter-in-the-prometheus-yml)
 - [Reload Prometheus Configuration](#reload-prometheus-configuration)
 - [Verify in Web UI after Node Exporter configuration](#verify-in-web-ui-after-node-exporter-configuration)
 
@@ -211,6 +212,21 @@ scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
       - targets: ['<ec2 ip>:9100']
+```
+
+---
+## Add JMeter in the Prometheus yml
+
+- Open the file in an editor
+```bash
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+- Scroll to the section called **scrape_configs**. Add this block:
+```yaml
+  - job_name: 'jmeter'
+    static_configs:
+      - targets: ['<ec2 ip>:**9270**']
 ```
 
 ---
