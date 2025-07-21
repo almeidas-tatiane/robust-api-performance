@@ -140,9 +140,7 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - To test the Dashboard, first of all we need a JMeter script with **Prometheus Listener**
 - In the MobaXterm terminal, go to **/apps/apache-jmeter-5.6.3/lib/ext**
 - Download the plugin with the command: **wget https://github.com/johrstrom/jmeter-prometheus-plugin/releases/download/0.7.1/jmeter-prometheus-plugin-0.7.1.jar**
-- Verify if plugin is displayed with the command: **ls -lh jmeter-prometheus-plugin-0.6.0.jar**
-<img width="1028" height="39" alt="image" src="https://github.com/user-attachments/assets/6c7de96e-02d8-49db-9702-af67814eb7c4" />
-
+- Verify if plugin is displayed with the command: **ls -lh jmeter-prometheus-plugin-0.7.1.jar**
 - **Open JMeter locally**, in your script, right-click on Test Plan > Add > Listener > **Prometheus Listener**
 - Click on **Add** button to add the following metrics
 <img width="1455" height="569" alt="image" src="https://github.com/user-attachments/assets/71b7d563-edc8-4459-9404-fe8cf36917ae" />
