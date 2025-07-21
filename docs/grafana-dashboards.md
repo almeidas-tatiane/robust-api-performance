@@ -121,7 +121,7 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - Verify if plugin is displayed with the command: **ls -lh jmeter-plugins-influxdb2-listener-2.8.jar**
 <img width="890" height="27" alt="image" src="https://github.com/user-attachments/assets/004314f2-647d-41f7-9fff-7bdf2e56d18c" />
 
-- One a browser tab and access Grafana: **http://ec2-ip:8086**
+- One a browser tab and access Grafana: **http://ec2-ip:3000**
 - Click on **Dashboard** -> select the **JMeter dashboard with InfluxDB2**
 
 - In the **MobaXterm terminal**, back to the directory when you've uploaded the jmeter script
@@ -137,22 +137,22 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 ---
 ### JMeter with Prometheus
 
-- To test the Dashboard, first of all we need a JMeter script with **Prometheus Listener** 
-- Go to plugin manager at JMeter and verify if **Prometheus Listener** plugin is in the installed plugin list, if isn't, go to Available plugins -> Select Prometheus Listener and download it
-- In your script, right-click on Test Plan > Add > Listener > **Prometheus Listener**
+- To test the Dashboard, first of all we need a JMeter script with **Prometheus Listener**
+- In the MobaXterm terminal, go to **/apps/apache-jmeter-5.6.3/lib/ext**
+- Download the plugin with the command: **wget https://github.com/johrstrom/jmeter-prometheus-plugin/releases/download/0.7.1/jmeter-prometheus-plugin-0.7.1.jar**
+- Verify if plugin is displayed with the command: **ls -lh jmeter-prometheus-plugin-0.6.0.jar**
+<img width="1028" height="39" alt="image" src="https://github.com/user-attachments/assets/6c7de96e-02d8-49db-9702-af67814eb7c4" />
+
+- **Open JMeter locally**, in your script, right-click on Test Plan > Add > Listener > **Prometheus Listener**
 - Click on **Add** button to add the following metrics
 <img width="1455" height="569" alt="image" src="https://github.com/user-attachments/assets/71b7d563-edc8-4459-9404-fe8cf36917ae" />
 
 - Save the script and close the JMeter
 
-- Now we need to update our jmeter in the injection machine with **Prometheus Listener** plugin
-- In the MobaXterm terminal, go to **/apps/apache-jmeter-5.6.3/lib/ext**
-- You can **upload the jar file from your computer to injection machine**
-- Verify if plugin is displayed with the command: **ls -lh jmeter-prometheus-plugin-0.6.0.jar**
-<img width="1028" height="39" alt="image" src="https://github.com/user-attachments/assets/6c7de96e-02d8-49db-9702-af67814eb7c4" />
+
 
 - Upload the script with **Prometheus Listener to injection machine**
-- One a browser tab and access Grafana: **http://ec2-ip:8086**
+- One a browser tab and access Grafana: **http://ec2-ip:3000**
 - Click on **Dashboard** -> select the **JMeter (via prometheus exporter)**
 - In the **MobaXterm terminal**, back to the directory when you've uploaded the jmeter script
 - **Execute** the script with this command in the MobaXterm terminal: **jmeter -n -t grafana-test.jmx -l results.txt -e -o results**
