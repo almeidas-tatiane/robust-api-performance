@@ -143,7 +143,8 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 - Verify if plugin is displayed with the command: **ls -lh jmeter-prometheus-plugin-0.7.1.jar**
 - **Open JMeter locally**, in your script, right-click on Test Plan > Add > Listener > **Prometheus Listener**
 - Click on **Add** button to add the following metrics
-<img width="1455" height="569" alt="image" src="https://github.com/user-attachments/assets/71b7d563-edc8-4459-9404-fe8cf36917ae" />
+<img width="1432" height="432" alt="image" src="https://github.com/user-attachments/assets/63e14ffe-35b7-4e68-8913-cb10d0bb7a77" />
+
 
 - Save the script and close the JMeter
 
