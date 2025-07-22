@@ -20,7 +20,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 - [Add JMeter in the Prometheus yml](#add-jmeter-in-the-prometheus-yml)
 - [Reload Prometheus Configuration](#reload-prometheus-configuration)
 - [Verify in Web UI after Node Exporter configuration](#verify-in-web-ui-after-node-exporter-configuration)
-- [Add JVM_ARGS Prometheus configuration as environment variable](#add-jvm-args-prometheus-configuration-as-environment-variable)
+- [Add JVM ARGS Prometheus configuration as environment variable](#add-jvm-args-prometheus-configuration-as-environment-variable)
 
 
 ---
@@ -249,7 +249,7 @@ http://<your-ec2-ip>:9090/targets
 <img width="1916" height="511" alt="image" src="https://github.com/user-attachments/assets/77f43ec5-a38c-48f5-907f-4f98d92f65ee" />
 
 ---
-## Add JVM_ARGS Prometheus configuration as environment variable
+## Add JVM ARGS Prometheus configuration as environment variable
 
 - In the MobaXterm, run the command: **nano ~/.bashrc**
 - Add thsi line in the end: **export JVM_ARGS="-Dprometheus.ip=0.0.0.0 -Dprometheus.port=9270"**
