@@ -257,7 +257,8 @@ http://<your-ec2-ip>:9090/targets
 - Apply the changes: **source ~/.bashrc**
 - Also edit the global file to all users's system: **sudo nano /etc/environment**
 - Add this line in the end: **JVM_ARGS="-Dprometheus.ip=0.0.0.0 -Dprometheus.port=9270"**
-- Salve and restart the injection machine to apply the changes
+- **CTRL+O , ENTER, CTRL+X**; to save and exit
+- Restart the injection machine to apply the changes
 - In the MobaXterm terminal, open a new terminal
 - Run to verify if the changes worked: **echo $JVM_ARGS**
 - It should display: **-Dprometheus.ip=0.0.0.0 -Dprometheus.port=9270**
@@ -279,7 +280,7 @@ The metrics defined in **Prometheus listener** in jmx file will be displayed at 
 
 
 
-- **CTRL+O , ENTER, CTRL+X**; to save and exit
+
 
 
 
