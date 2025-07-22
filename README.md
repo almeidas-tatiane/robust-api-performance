@@ -38,11 +38,12 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [Configure Prometheus on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-prometheus-injection-machine.md)
 - [Configure Node Exporter on injection machine](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/configure-node-exporter-injection-machine.md)
 - [Using NGINX Reverse Proxy to Secure Prometheus, Node Exporter, InfluxDB and Grafana](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/setup-nginx.md)
+- [Grafana Dashboards](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/grafana-dashboards.md)
 
 ---
 
 ## 🔧 Upcoming Tasks
-- [ ] Create Grafana dashboards to Node Exporter and JMeter
+
 - [ ] Create JMeter scripts
 - [ ] Create a GitHub Actions and/or Jenkins pipeline to JMeter scripts and to start/shutdown injection machine at EC2
 - [ ] Configure and install Dynatrace
