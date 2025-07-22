@@ -11,15 +11,9 @@ This document is a step by step guide how to create dashboards on Grafana to **J
 ## 📚 Table of Contents
 
 - [Configuring Data Sources](#configuring-data-sources)
-  - [InfluxDB](#influxdb)
-  - [Prometheus](#prometheus)
 - [Creating a Dashboard](#creating-a-dashboard)
-  - [JMeter with InfluxDB2](#jmeter-with-influxdb2)
-  - [JMeter with Prometheus](#jmeter-with-prometheus)
 - [Verifying Dashboards Created](#verifying-dashboards-created)
 - [Testing Dashboards](#testing-dashboards)
-  - [JMeter with InfluxDB2](#jmeter-with-influxdb2)
-  - [JMeter with Prometheus](#jmeter-with-prometheus)
 
 ---
 ## Configuring Data Sources
