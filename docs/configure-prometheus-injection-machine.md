@@ -20,7 +20,7 @@ This document is a step by step guide how to configure Prometheus on Injection M
 - [Add JMeter in the Prometheus yml](#add-jmeter-in-the-prometheus-yml)
 - [Reload Prometheus Configuration](#reload-prometheus-configuration)
 - [Verify in Web UI after Node Exporter configuration](#verify-in-web-ui-after-node-exporter-configuration)
-- [Edit JMeter user properties file with Prometheus information](#edit-jmeter-user-properties-file-with-prometheus-information)
+- [Add JVM_ARGS Prometheus configuration as environment variable](#add-jvm-args-prometheus-configuration-as-environment-variable)
 
 
 ---
@@ -249,15 +249,35 @@ http://<your-ec2-ip>:9090/targets
 <img width="1916" height="511" alt="image" src="https://github.com/user-attachments/assets/77f43ec5-a38c-48f5-907f-4f98d92f65ee" />
 
 ---
-## Edit JMeter user properties file with Prometheus information
+## Add JVM_ARGS Prometheus configuration as environment variable
 
-- In the MobaXterm, go to **/home/ubuntu/apps/apache-jmeter-5.6.3/bin/**
-- Open the file user.properties with the command: **sudo nano user.properties**
-- Add in the end of file, the following lines:
-```
-prometheus.ip=0.0.0.0
-prometheus.port=9270
-```
+- In the MobaXterm, run the command: **nano ~/.bashrc**
+- Add thsi line in the end: **export JVM_ARGS="-Dprometheus.ip=0.0.0.0 -Dprometheus.port=9270"**
+- Save (CTRL+O, ENTER) and quit (CTRL+X)
+- Apply the changes: **source ~/.bashrc**
+- Also edit the global file to all users's system: **sudo nano /etc/environment**
+- Add this line in the end: **JVM_ARGS="-Dprometheus.ip=0.0.0.0 -Dprometheus.port=9270"**
+- Salve and restart the injection machine to apply the changes
+- In the MobaXterm terminal, open a new terminal
+- Run to verify if the changes worked: **echo $JVM_ARGS**
+- It should display: **-Dprometheus.ip=0.0.0.0 -Dprometheus.port=9270**
+
+**NOTE: This change will allow metrics will be displayed at http://ec2-ip:9270 when JMeter script is running**
+<img width="1180" height="751" alt="image" src="https://github.com/user-attachments/assets/7e844373-f654-4959-b83b-f98f83e2e7b8" />
+
+The metrics defined in **Prometheus listener** in jmx file will be displayed at http://ec2-ip:9270
+
+<img width="1632" height="270" alt="image" src="https://github.com/user-attachments/assets/c6e3b7eb-0f16-47ca-b9aa-8fdd65619532" />
+
+
+
+**NOTE: This metrics will be directed to Grafana, and then displayed in the JMeter with Prometheus Dashboard**
+
+
+
+
+
+
 
 - **CTRL+O , ENTER, CTRL+X**; to save and exit
 
