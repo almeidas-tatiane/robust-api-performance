@@ -86,7 +86,7 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
         <intProp name="ThreadGroup.num_threads">1000</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <longProp name="ThreadGroup.duration">300</longProp>
+        <longProp name="ThreadGroup.duration">600</longProp>
         <longProp name="ThreadGroup.delay">0</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
@@ -452,7 +452,7 @@
       <com.github.johrstrom.listener.PrometheusListener guiclass="com.github.johrstrom.listener.gui.PrometheusListenerGui" testclass="com.github.johrstrom.listener.PrometheusListener" testname="Main prometheus listener" enabled="true">
         <collectionProp name="prometheus.collector_definitions">
           <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-            <stringProp name="collector.help">the response time for a jsr223 sampler</stringProp>
+            <stringProp name="collector.help">Histogram of response time</stringProp>
             <stringProp name="collector.metric_name">jmeter_rt_as_hist</stringProp>
             <stringProp name="collector.type">HISTOGRAM</stringProp>
             <collectionProp name="collector.labels">
@@ -463,7 +463,7 @@
             <stringProp name="listener.collector.measuring">ResponseTime</stringProp>
           </elementProp>
           <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-            <stringProp name="collector.help">the response time for a jsr223 sampler</stringProp>
+            <stringProp name="collector.help">Summary of response time with quantiles</stringProp>
             <stringProp name="collector.metric_name">jmeter_rt_as_sum</stringProp>
             <stringProp name="collector.type">SUMMARY</stringProp>
             <collectionProp name="collector.labels">
@@ -474,7 +474,7 @@
             <stringProp name="listener.collector.listen_to">samples</stringProp>
           </elementProp>
           <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-            <stringProp name="collector.help">the total number of samplers</stringProp>
+            <stringProp name="collector.help">Total number of samples</stringProp>
             <stringProp name="collector.metric_name">jmeter_count_total</stringProp>
             <stringProp name="collector.type">COUNTER</stringProp>
             <collectionProp name="collector.labels">
@@ -484,7 +484,7 @@
             <stringProp name="listener.collector.measuring">CountTotal</stringProp>
           </elementProp>
           <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-            <stringProp name="collector.help">the total number of successful samplers</stringProp>
+            <stringProp name="collector.help">Total number of successful requests</stringProp>
             <stringProp name="collector.metric_name">jmeter_success_total</stringProp>
             <stringProp name="collector.type">COUNTER</stringProp>
             <collectionProp name="collector.labels">
@@ -495,7 +495,7 @@
             <stringProp name="listener.collector.measuring">SuccessTotal</stringProp>
           </elementProp>
           <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-            <stringProp name="collector.help">the total number of successful samplers</stringProp>
+            <stringProp name="collector.help">Total number of failed requests</stringProp>
             <stringProp name="collector.metric_name">jmeter_failure_total</stringProp>
             <stringProp name="collector.type">COUNTER</stringProp>
             <collectionProp name="collector.labels">
@@ -504,6 +504,36 @@
             </collectionProp>
             <stringProp name="collector.quantiles_or_buckets"></stringProp>
             <stringProp name="listener.collector.measuring">FailureTotal</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
+            <stringProp name="collector.help">Histogram of connect time</stringProp>
+            <stringProp name="collector.metric_name">jmeter_connect_time_hist</stringProp>
+            <stringProp name="collector.type">HISTOGRAM</stringProp>
+            <collectionProp name="collector.labels">
+              <stringProp name="102727412">label</stringProp>
+            </collectionProp>
+            <stringProp name="collector.quantiles_or_buckets">100,200,500,1000,3000</stringProp>
+            <stringProp name="listener.collector.measuring">ConnectTime</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
+            <stringProp name="collector.help">Histogram of latency</stringProp>
+            <stringProp name="collector.metric_name">jmeter_latency_hist</stringProp>
+            <stringProp name="collector.type">HISTOGRAM</stringProp>
+            <collectionProp name="collector.labels">
+              <stringProp name="102727412">label</stringProp>
+            </collectionProp>
+            <stringProp name="collector.quantiles_or_buckets">100,200,500,1000,3000</stringProp>
+            <stringProp name="listener.collector.measuring">Latency</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
+            <stringProp name="collector.help">Success ratio</stringProp>
+            <stringProp name="collector.metric_name">jmeter_success_ratio</stringProp>
+            <stringProp name="collector.type">GAUGE</stringProp>
+            <collectionProp name="collector.labels">
+              <stringProp name="102727412">label</stringProp>
+            </collectionProp>
+            <stringProp name="collector.quantiles_or_buckets"></stringProp>
+            <stringProp name="listener.collector.measuring">SuccessRatio</stringProp>
           </elementProp>
         </collectionProp>
         <stringProp name="TestPlan.comments">This listener &quot;measures&quot; everything, sometimes in summaries, sometimes in histograms.</stringProp>
