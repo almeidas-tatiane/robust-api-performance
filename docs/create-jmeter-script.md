@@ -80,6 +80,6 @@ This is a different approach if you need to create JMeter tests to API and don't
 ---
 ## Download the final version of JMeter file
 
-You can download the file [here](https://github.com/almeidas-tatiane/robust-api-performance/tests)
+- You can download the file here [robust-api-performance.jmx](https://github.com/almeidas-tatiane/robust-api-performance/tree/main/tests)
 
 
