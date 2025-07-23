@@ -61,4 +61,9 @@ Indicating the tests are recording
 - Now you can adjust the script as necessary, adding post processor, variables etc
 
 ---
+## Generate scripts with openAPI
 
+This is a different approach if you need to create JMeter tests to API and don't want to import from Postman.
+
+- Install the JAR from openAPI, [CLI installation](https://openapi-generator.tech/docs/installation/#jar)
+- 
