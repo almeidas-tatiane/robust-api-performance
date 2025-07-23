@@ -1,7 +1,17 @@
-# Create JMeter script
+# Create JMeter Script
 
 This document is a step by step how to create jmeter scripts using a Postman Collection and export to JMeter.
 
+## 📑 Table of Contents
+
+- [Pre-requisites](#pre-requisites)
+- [Configuring JMeter](#configuring-jmeter)
+- [Configuring Postman](#configuring-postman)
+- [Executing the Postman collection while JMeter is recording](#executing-the-postman-collection-while-jmeter-is-recording)
+- [Generating scripts with openAPI](#generating-scripts-with-openapi)
+- [Download the final version of JMeter file](#download-the-final-version-of-jmeter-file)
+
+---
 ## Pre-requisites
 - Application running locally or at Cloud
 - A Postman collection already tested and working
@@ -61,7 +71,7 @@ Indicating the tests are recording
 - Now you can adjust the script in the JMeter as necessary, adding post processor, variables etc
 
 ---
-## Generate scripts with openAPI
+## Generating scripts with openAPI
 
 This is a different approach if you need to create JMeter tests to API and don't want to import from Postman.
 
