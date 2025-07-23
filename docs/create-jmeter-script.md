@@ -1,6 +1,6 @@
 # Create JMeter Script
 
-This document is a step by step how to create jmeter scripts using a Postman Collection and export to JMeter.
+This document is a step-by-step to creating JMeter scripts using a Postman Collection and export to JMeter.
 
 ## 📑 Table of Contents
 
@@ -25,7 +25,7 @@ This document is a step by step how to create jmeter scripts using a Postman Col
 - Click on Test Plan -> Add -> Non Test Elements-> HTTP(s) Test Script Recorder
 - At Target Controller select the Thread Group **Flow**
 - Click on Start
-- It will generated a certificate that will be used in Postman in the next step, this certificate
+- This will generate a certificate that will be used in Postman in the next step
 
 <img width="731" height="317" alt="image" src="https://github.com/user-attachments/assets/cb1b4fdb-5285-45f6-b97a-44865ec89641" />
 
@@ -80,7 +80,7 @@ This is a different approach if you need to create JMeter tests to API and don't
 - The result will be similar to
 <img width="1902" height="579" alt="image" src="https://github.com/user-attachments/assets/2a8808ee-064e-4a42-b4b3-7e246ad3dc82" />
 
-- Go to directly where you run the command and verify the files: **DefaultApi.jmx** and **DefaultApi.csv**
+- Navigate to the directory where you ran the command and verify the files: **DefaultApi.jmx** and **DefaultApi.csv**
 <img width="1074" height="80" alt="image" src="https://github.com/user-attachments/assets/d4eae38d-1c96-49c2-a95b-c99c3aa31be8" />
 
 - Now you can adjust the script in the JMeter as necessary, adding post processor, variables etc
@@ -90,6 +90,7 @@ This is a different approach if you need to create JMeter tests to API and don't
 ---
 ## Download the final version of JMeter file
 
-- You can download the file here [robust-api-performance.jmx](https://github.com/almeidas-tatiane/robust-api-performance/tree/main/tests)
+- To skip the manual steps and test directly, download the ready-to-use JMeter script here: [robust-api-performance.jmx](https://github.com/almeidas-tatiane/robust-api-performance/tree/main/tests)
 
+> Make sure to update variables such as URLs or tokens before running in your environment.
 
