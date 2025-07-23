@@ -23,8 +23,8 @@ A robust and extensible RESTful API built with Node.js, Express, and MongoDB Atl
 - [API Endpoints](#-api-endpoints)
 - [Environment Variables](#️-environment-variables)
 - [Postman Collection](#-postman-collection)
-- [Swagger](#-swagger)
 - [How to Run Locally](#️-how-to-run-this-project-locally)
+- [Swagger](#-swagger)
 - [Performance Test Plan](https://github.com/almeidas-tatiane/robust-api-performance/blob/main/docs/performance-test-plan.md)
 - [Contributing or Feedback](#-contributing-or-feedback)
 - [Usage and Credit Notice](#-usage-and-credit-notice)
@@ -193,6 +193,12 @@ Use the collection below to quickly test the API endpoints with JWT authenticati
 📦 [📥 Download robust-api-postman-collection.json](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/robust-api-postman-collection.json)
 
 ---
+## 🛠️ How to run this project locally?
+Inside the project's folder, run in command line
+```cmd
+node server.js
+```
+---
 ## 📥 Swagger
 
 - Run the application locally with the command: **node server.js**
@@ -200,13 +206,7 @@ Use the collection below to quickly test the API endpoints with JWT authenticati
 
 <img width="1894" height="974" alt="image" src="https://github.com/user-attachments/assets/8a4ccea1-71bc-41e9-a105-a75eceb833d0" />
 
-
-## 🛠️ How to run this project locally?
-Inside the project's folder, run in command line
-```cmd
-node server.js
-```
----
+----
 ## 🤝 Contributing or Feedback
 
 This project is part of my personal learning journey in performance engineering. 
