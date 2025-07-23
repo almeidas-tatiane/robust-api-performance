@@ -198,6 +198,11 @@ Inside the project's folder, run in command line
 ```cmd
 node server.js
 ```
+
+The result will be
+
+<img width="483" height="82" alt="image" src="https://github.com/user-attachments/assets/6cae892c-43d1-4bcd-8afe-5dadcad593cc" />
+
 ---
 ## 📥 Swagger
 
