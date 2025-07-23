@@ -58,7 +58,7 @@ Indicating the tests are recording
 
 <img width="465" height="265" alt="image" src="https://github.com/user-attachments/assets/a20ac0ef-4c00-46ec-8ad9-d40afab34425" />
 
-- Now you can adjust the script as necessary, adding post processor, variables etc
+- Now you can adjust the script in the JMeter as necessary, adding post processor, variables etc
 
 ---
 ## Generate scripts with openAPI
@@ -66,4 +66,20 @@ Indicating the tests are recording
 This is a different approach if you need to create JMeter tests to API and don't want to import from Postman.
 
 - Install the JAR from openAPI, [CLI installation](https://openapi-generator.tech/docs/installation/#jar)
-- 
+- Run this command in the **same location where JAR from openAPI was installed**: **java -jar openapi-generator-cli.jar generate -i http://localhost:3001/swagger.yaml -g jmeter**
+- The result will be similar to
+<img width="1902" height="579" alt="image" src="https://github.com/user-attachments/assets/2a8808ee-064e-4a42-b4b3-7e246ad3dc82" />
+
+- Go to directly where you run the command and verify the files: **DefaultApi.jmx** and **DefaultApi.csv**
+<img width="1074" height="80" alt="image" src="https://github.com/user-attachments/assets/d4eae38d-1c96-49c2-a95b-c99c3aa31be8" />
+
+- Now you can adjust the script in the JMeter as necessary, adding post processor, variables etc
+
+<img width="1909" height="547" alt="image" src="https://github.com/user-attachments/assets/a9e286ea-0959-4688-b5e2-36b493ce9b9f" />
+
+---
+## Download the final version of JMeter file
+
+You can download the file [here](https://github.com/almeidas-tatiane/robust-api-performance/tests)
+
+
