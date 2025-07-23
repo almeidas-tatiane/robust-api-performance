@@ -16,6 +16,7 @@ This document is a step by step how to create jmeter scripts using a Postman Col
 - At Target Controller select the Thread Group **Flow**
 - Click on Start
 - It will generated a certificate that will be used in Postman in the next step, this certificate
+
 <img width="731" height="317" alt="image" src="https://github.com/user-attachments/assets/cb1b4fdb-5285-45f6-b97a-44865ec89641" />
 
 - It will be saved at **jmeter folder\bin**
