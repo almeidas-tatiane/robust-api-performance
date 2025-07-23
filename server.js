@@ -21,11 +21,14 @@ if (!JWT_SECRET) {
   process.exit(1);
 }
 
-// Carrega o arquivo Swagger
-const swaggerDocument = YAML.load('./docs/swagger.yaml');
-
-// Middleware para servir a documentação
+// Carrega o Swagger para a UI
+const swaggerDocument = YAML.load(path.join(__dirname, './docs/swagger.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Serve o arquivo puro YAML
+app.get('/swagger.yaml', (req, res) => {
+  res.sendFile(path.join(__dirname, './docs/swagger.yaml'));
+});
 
 // Configure CORS - ajuste as origens conforme sua necessidade
 const allowedOrigins = ['http://localhost:3000', 'http://seusite.com'];
@@ -219,6 +222,7 @@ app.get('/', (req, res) => {
 
 // Inicia o servidor
 app.listen(port, () => {
-  console.log(`API rodando em http://localhost:${port}`);
-  console.log(`Swagger disponível em http://localhost:${port}/api-docs`);
+  console.log(`Servidor iniciado: http://localhost:${port}`);
+  console.log(`Swagger UI: http://localhost:${port}/api-docs`);
+  console.log(`Swagger YAML: http://localhost:${port}/swagger.yaml`);
 });
