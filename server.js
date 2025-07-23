@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const { body, validationResult } = require('express-validator');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 
 const app = express();
 
@@ -18,6 +20,12 @@ if (!JWT_SECRET) {
   console.error('JWT_SECRET is not defined in environment variables. Exiting.');
   process.exit(1);
 }
+
+// Carrega o arquivo Swagger
+const swaggerDocument = YAML.load('./docs/swagger.yaml');
+
+// Middleware para servir a documentação
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Configure CORS - ajuste as origens conforme sua necessidade
 const allowedOrigins = ['http://localhost:3000', 'http://seusite.com'];
@@ -212,4 +220,5 @@ app.get('/', (req, res) => {
 // Inicia o servidor
 app.listen(port, () => {
   console.log(`API rodando em http://localhost:${port}`);
+  console.log(`Swagger disponível em http://localhost:${port}/api-docs`);
 });
