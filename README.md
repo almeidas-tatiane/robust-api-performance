@@ -194,9 +194,12 @@ Use the collection below to quickly test the API endpoints with JWT authenticati
 
 ---
 ## 📥 Swagger
-Open the file in the Swagger Editor (https://editor.swagger.io/)
 
-📦 [📥 Download swagger.yaml](https://github.com/almeidas-tatiane/robust-api-performance/raw/main/swagger.yaml)
+- Run the application locally with the command: **node server.js**
+- Add a new browser tab and access: **http://localhost:3001/api-docs**
+
+<img width="1894" height="974" alt="image" src="https://github.com/user-attachments/assets/8a4ccea1-71bc-41e9-a105-a75eceb833d0" />
+
 
 ## 🛠️ How to run this project locally?
 Inside the project's folder, run in command line
