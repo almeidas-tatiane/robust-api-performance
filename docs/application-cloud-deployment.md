@@ -85,9 +85,10 @@ docker run -p 3001:3001 dockerfile
 Example folder structure:
 ```css
 infra/
-├── main.tf
-├── variables.tf
-├── outputs.tf
+	eks-reference/
+		├── main.tf
+		├── variables.tf
+		├── outputs.tf
 
 ```
 ---
@@ -632,5 +633,181 @@ kubectl get svc
 - Use this external IP to test your API in Postman or browser.
 - Pay attention to Kubernets costs at AWS, usually the daily costs are expensive.
 
+---
+## Deploying application at AWS with low cost infrastructure
+
+### 🐳Containerize the Application with Docker
+Create a `Dockerfile` in your project root:
+
+```dockerfile
+# Use Node.js base image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Expose the application port
+EXPOSE 3001
+
+# Start the application
+CMD ["node", "server.js"]
+```
+---
+***📌 Note:*** Open your Docker Desktop and make sure it's running.
+
+Then, build and test the Docker image locally:
+```
+docker build -t dockerfile .
+docker run -p 3001:3001 dockerfile
+```
+
+---
+### Set Up Terraform for AWS Infrastructure
+
+Example folder structure:
+```css
+infra/
+	ec2-docker/
+	├── main.tf
+	├── variables.tf
+	├── outputs.tf
+
+```
+---
+### Create a infra folder inside your project
+
+📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
+- Open your terminal (GitBash or PowerShell) and execute:
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+- When asked where to save, use the default path and press Enter key
+```bash
+Enter file in which to save the key (/c/Users/YourUser/.ssh/id_rsa):
+```
+
+- It will create 2 files:
+  - ~/.ssh/id_rsa -> **private key**
+  - ~/.ssh/id_rsa.pub -> **public key**
+
+- Verify if the file exists in this path
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+---
+### Create a main.tf file
+
+It will be used to create the main resources 
+
+```h 
+provider "aws" {
+  region = var.region
+}
+
+# Key pair (SSH)
+resource "aws_key_pair" "deployer" {
+  key_name   = "performance-key"
+  public_key = file("~/.ssh/id_ed25519.pub")
+}
+
+# Security Group
+resource "aws_security_group" "app_sg" {
+  name        = "performance-app-sg"
+  description = "Allow SSH and application port"
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Application port"
+    from_port   = 3001
+    to_port     = 3001
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "performance-app-sg"
+  }
+}
+
+# EC2 Instance
+resource "aws_instance" "app_server" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  key_name      = aws_key_pair.deployer.key_name
+  security_groups = [aws_security_group.app_sg.name]
+
+  tags = {
+    Name = "performance-app-server"
+  }
+}
+
+```
+---
+### Create a variables.tf file
+```'hcl
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "instance_type" {
+  default = "t3.micro"
+}
+
+variable "ami_id" {
+  description = "Amazon Linux 2 AMI (us-east-1)"
+  default     = "ami-0c02fb55956c7d316"
+}
+```
+---
+### Create outputs.tf file
+
+It will show IPs after creation
+```h
+output "public_ip" {
+  description = "Public IP of EC2 instance"
+  value       = aws_instance.app_server.public_ip
+}
+
+output "ssh_command" {
+  value = "ssh ec2-user@${aws_instance.app_server.public_ip}"
+}
+
+```
+---
+### Import the existed aws_key_pair
+
+```h
+terraform import aws_key_pair.deployer performance-key
+```
+---
+### Initialize and apply
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+---
 
 
