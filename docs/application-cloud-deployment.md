@@ -38,7 +38,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 	- [Create api-secrets on cluster with mongo-uri and jwt_secret keys](#create-api-secrets-on-cluster-with-mongo-uri-and-jwt_secret-keys)
 	- [Create a Kubernetes Deployment](#create-a-kubernetes-deployment)
 	- [Additional commands on docker to run](#additional-commands-on-docker-to-run)
-	- [Aplying the deployment.yaml](#aplying-the-deploymentyaml)
+	- [Applying the deployment.yaml](#applying-the-deploymentyaml)
 	- [Checking if the deployment.yaml worked](#checking-if-the-deploymentyaml-worked)
 	- [Create a Kubernetes Service](#create-a-kubernetes-service)
 	- [Apply the resources](#apply-the-resources)
@@ -80,7 +80,14 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-### Set Up Terraform for AWS Infrastructure
+### Enterprise Deployment with Kubernetes (EKS)
+
+⚠️ Cost Note:
+EKS has a fixed control plane cost (~$72/month), independent of workload size.
+This setup is for learning and enterprise simulation purposes.
+
+
+## Set Up Terraform for AWS Infrastructure
 
 Example folder structure:
 ```css
@@ -365,7 +372,7 @@ aws configure
 Fill in your aws information
 ```pqsql
 AWS Access Key ID [None]: AKIAxxxxxxxxxxxxxxxx <your access key id>
-AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <yoour secret access key>
+AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <your secret access key>
 Default region name [None]: us-east-1     <can be any other reagion, but us-east-1 is free>
 Default output format [None]: json
 ```
@@ -384,7 +391,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
 
 ---
  ### Create a specific policy to performance user
- - Access AWS Console with a ROOT user
+ - Access AWS Console and use a highly privileged administrative account (root access required only for policy creation in this lab scenario).
  - Click on IAM
  - Click on Policies
  - Click on Create policy
@@ -451,7 +458,7 @@ To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that
  - Search **AllowEKSRoleManagement**
  - Select the policy **AllowEKSRoleManagement**
  - Click on Next
- - Click oon Add permissions
+ - Click on Add permissions
 ---
 ### Initialize and apply
 ```bash
@@ -559,7 +566,7 @@ docker login
 docker push <your dockerhub-username>/robust-api:latest
 ```
 ---
-### Aplying the deployment.yaml
+### Applying the deployment.yaml
 
 Inside k8s folder, execute:
 ```
@@ -572,7 +579,7 @@ deployment.apps/robust-api created
 ---
 ### Checking if the deployment.yaml worked
 ```bash
-kubectly get deployments
+kubectl get deployments
 ```
 
 **You should see something similar to:**
@@ -631,30 +638,16 @@ kubectl get svc
 ```
 📌**IMPORTANT:**
 - Use this external IP to test your API in Postman or browser.
-- Pay attention to Kubernets costs at AWS, usually the daily costs are expensive.
+- Pay attention to Kubernetes costs at AWS, usually the daily costs are expensive.
 
 ---
-## Deploying application at AWS with low cost infrastructure
+## Low-cost Deployment (EC2 + Docker)
 
-### 🐳Containerize the Application with Docker
-Create a `Dockerfile` in your project root:
+Low-Cost Application Deployment on AWS (EC2 + Docker + Terraform)
 
-```dockerfile
-# Use Node.js base image
-FROM node:18
 
-# Set working directory
-WORKDIR /app
+***📌 Note:*** Dockerfile is the same as described in the Containerization section.
 
-# Copy dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy source code
-COPY . .
-
-# Expose the application port
-EXPOSE 3001
 
 # Start the application
 CMD ["node", "server.js"]
@@ -764,6 +757,10 @@ resource "aws_instance" "app_server" {
 }
 
 ```
+⚠️ Security Note:
+For learning purposes, SSH and application ports are open to 0.0.0.0/0.
+In real environments, this should be restricted to specific IP ranges.
+
 ---
 ### Create a variables.tf file
 ```'hcl
