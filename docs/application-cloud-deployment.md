@@ -849,6 +849,43 @@ sudo usermod -aG docker ec2-user
 - Login again to apply: ssh -i ~/.ssh/id_ed25519 ec2-user@PUBLIC_AWS_ID
 
 ---
+## Upload the application code to EC2
+
+```
+sudo yum install git -y
+git clone https://github.com/YOUR_USER/robust-api-performance.git
+cd robust-api-performance
+```
+
+---
+## Docker image build
+
+Run it in the dockerfile directory:
+
+```
+docker build -t performance-api .
+```
+
+---
+### Run the container
+```
+docker run -d -p 3001:3001 --name performance-api performance-api
+```
+
+---
+### Verify the container
+```
+docker ps
+```
+
+---
+### Test the application
+
+- Open your browser and type: http://AWS_PUBLIC_IP:3001
+- You should see a welcome message to API application
+
+---
+
 
 
 
