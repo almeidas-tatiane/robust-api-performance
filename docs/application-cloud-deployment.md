@@ -660,10 +660,6 @@ Low-Cost Application Deployment on AWS (EC2 + Docker + Terraform)
 
 ***📌 Note:*** Dockerfile is the same as described in the Containerization section.
 
-
-# Start the application
-CMD ["node", "server.js"]
-```
 ---
 ### Set Up Terraform for AWS Infrastructure
 
@@ -752,6 +748,7 @@ resource "aws_instance" "app_server" {
   ami           = var.ami_id
   instance_type = var.instance_type
   key_name      = aws_key_pair.deployer.key_name
+  associate_public_ip_address = true
   security_groups = [aws_security_group.app_sg.name]
 
   tags = {
