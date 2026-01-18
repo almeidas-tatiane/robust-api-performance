@@ -103,7 +103,7 @@ This setup is for learning and enterprise simulation purposes.
 Example folder structure:
 ```css
 infra/
-	eks-reference/
+	eks-reference/ 				# Enterprise-grade, cost-aware, not always active
 		├── main.tf
 		├── variables.tf
 		├── outputs.tf
@@ -670,7 +670,7 @@ CMD ["node", "server.js"]
 Example folder structure:
 ```css
 infra/
-	ec2-docker/
+	ec2-docker/			# Low-cost, reusable lab environment
 	├── main.tf
 	├── variables.tf
 	├── outputs.tf
