@@ -46,6 +46,7 @@ resource "aws_instance" "app_server" {
   ami           = var.ami_id
   instance_type = var.instance_type
   key_name      = aws_key_pair.deployer.key_name
+  associate_public_ip_address = true
   security_groups = [aws_security_group.app_sg.name]
 
   tags = {
