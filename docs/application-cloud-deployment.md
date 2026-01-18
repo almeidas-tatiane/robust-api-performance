@@ -4,6 +4,16 @@ This section provides a high-level guide to deploy the Node.js API application t
 
 ---
 
+## Architecture Decision Summary
+
+This project intentionally provides two deployment strategies:
+- Enterprise-grade Kubernetes (EKS) for scalability and realism
+- Low-cost EC2-based deployment for performance testing labs
+
+The goal is to balance realism, cost awareness, and learning value.
+
+---
+
 ## ☁️ Cloud Deployment Technologies
 
 | Technology    | Application in the Project                                               | Benefits                                                                 |
@@ -43,6 +53,7 @@ This section provides a high-level guide to deploy the Node.js API application t
 	- [Create a Kubernetes Service](#create-a-kubernetes-service)
 	- [Apply the resources](#apply-the-resources)
 	- [Access the Application](#access-the-application)
+ - [Low-cost Deployment (EC2 + Docker)](#low-cost-deployment-ec2-docker)
 ---
 
 ## 🧱 Step-by-Step Deployment Guide
@@ -266,6 +277,7 @@ resource "aws_eks_cluster" "performance" {
   ]
 }
 
+
 # EKS Managed Node Group
 resource "aws_eks_node_group" "performance_nodes" {
   cluster_name    = aws_eks_cluster.performance.name
@@ -343,7 +355,7 @@ terraform -v
 ---
 ### 🔐Get your credentials
 To get the Access Key ID and Secret Access Key you need a AWS user that isn't root.
-After that, goes to IAM -> Users -> Select your non user root and verify the Access Key ID
+After that, go to IAM -> Users -> Select your non user root and verify the Access Key ID
 
 
 📌**Note:** 
@@ -373,13 +385,13 @@ Fill in your aws information
 ```pqsql
 AWS Access Key ID [None]: AKIAxxxxxxxxxxxxxxxx <your access key id>
 AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <your secret access key>
-Default region name [None]: us-east-1     <can be any other reagion, but us-east-1 is free>
+Default region name [None]: us-east-1     <can be any other region, but us-east-1 is free>
 Default output format [None]: json
 ```
 ---
 ### Set up a not root USER at IAM
 
-To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps bellow:
+To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps below:
 
 - Access AWS Console: (https://console.aws.amazon.com/iam/home#/users)
 - Click on IAM
@@ -653,15 +665,6 @@ Low-Cost Application Deployment on AWS (EC2 + Docker + Terraform)
 CMD ["node", "server.js"]
 ```
 ---
-***📌 Note:*** Open your Docker Desktop and make sure it's running.
-
-Then, build and test the Docker image locally:
-```
-docker build -t dockerfile .
-docker run -p 3001:3001 dockerfile
-```
-
----
 ### Set Up Terraform for AWS Infrastructure
 
 Example folder structure:
@@ -674,7 +677,7 @@ infra/
 
 ```
 ---
-### Create a infra folder inside your project
+### Create an infra folder inside your project
 
 📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
 - Open your terminal (GitBash or PowerShell) and execute:
