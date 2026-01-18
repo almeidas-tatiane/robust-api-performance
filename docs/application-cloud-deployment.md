@@ -33,50 +33,7 @@ The goal is to balance realism, cost awareness, and learning value.
 
 - [Containerize the Application with Docker](#containerize-the-application-with-docker)
 - [Enterprise Deployment with Kubernetes (EKS)](#enterprise-deployment-with-kubernetes-eks)
-	- [Set Up Terraform for AWS Infrastructure](#set-up-terraform-for-aws-infrastructure)
-		- [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project)
-		- [Create a main.tf file](#create-a-maintf-file)
-		- [Create a variables.tf file](#create-a-variablestf-file)
-		- [Create outputs.tf file](#create-outputstf-file)
-		- [Configure the Terraform locally](#configure-the-terraform-locally)
-		- [Configure aws configure on Terraform](#configure-aws-configure-on-terraform)
-		- [Get your credentials](#get-your-credentials)
-		- [Install and configure aws configure locally](#install-and-configure-aws-configure-locally)
-		- [Configure your credentials](#configure-your-credentials)
-		- [Set up a not root USER at IAM](#set-up-a-not-root-user-at-iam)
-		- [Create a specific policy to performance user](#create-a-specific-policy-to-performance-user)
-		- [Apply the AllowEKSRoleManagement to performance user](#apply-the-alloweksrolemanagement-to-performance-user)
-		- [Initialize and apply](#initialize-and-apply)
-		- [Deploy Application to Kubernetes](#deploy-application-to-kubernetes)
-			- [Update your kubeconfig](#update-your-kubeconfig)
-			- [Connection test](#connection-test)
-			- [PRE-REQUISITES](#pre-requisites)
-			- [Create a Kubernetes Deployment](#create-a-kubernetes-deployment)
-			- [Additional commands on docker to run](#additional-commands-on-docker-to-run)
-			- [Applying the deployment.yaml](#applying-the-deploymentyaml)
-			- [Checking if the deployment.yaml worked](#checking-if-the-deploymentyaml-worked)
-			- [Create a Kubernetes Service](#create-a-kubernetes-service)
-			- [Apply the resources](#apply-the-resources)
-			- [Access the Application](#access-the-application)
- - [Low-cost Deployment (EC2 + Docker)](#low-cost-deployment-ec2--docker)
-  	- [Setup Terraform for AWS Infrastructure](#set-up-terraform-for-aws-infrastructure-1)
-  	- [Create a infra folder inside your project](#create-an-infra-folder-inside-your-project)
-  	- [Create a main.tf file](#create-a-maintf-file-1)
-  	- [Create a variables.tf file](#create-a-variablestf-file-1)
-  	- [Create outputs.tf file](#create-outputstf-file-1)
-  	- [Import the existed AWS_key_pair](#import-the-existed-aws_key_pair)
-  	- [Initialize and apply](#initialize-and-apply-1)
-  	- [Login on EC2](#login-on-ec2)
-  	- [Update the System](#update-the-system)
-  	- [Install Docker](#install-docker)
-  	- [Activate and Initiate](#activate-and-initiate)
-  	- [Verify Docker](#verify-docker)
-  	- [Allowing Docker without Sudo](#allowing-docker-without-sudo)
-  	- [Upload the application code to EC2](#upload-the-application-code-to-ec2)
-  	- [Docker image build](#docker-image-build)
-  	- [Run the container](#run-the-container)
-  	- [Verify the container](#verify-the-container)
-  	- [Test the application](#test-the-application)
+- [Low-cost Deployment (EC2 + Docker)](#low-cost-deployment-ec2--docker)
 
 ---
 
@@ -115,7 +72,8 @@ docker run -p 3001:3001 dockerfile
 ```
 
 ---
-### Enterprise Deployment with Kubernetes (EKS)
+## 🏢 Enterprise Deployment with Kubernetes (EKS)
+
 
 ⚠️ Cost Note:
 EKS has a fixed control plane cost (~$72/month), independent of workload size.
@@ -134,7 +92,7 @@ infra/
 
 ```
 ---
-### Create a infra folder inside your project
+### Create an infra folder inside your project
 
 📌**Note:** : If you don't have   key_name = "performance-key" and public_key = file("~/.ssh/id_rsa.pub") created yet, follow the steps bellow:
 - Open your terminal (GitBash or PowerShell) and execute:
@@ -325,6 +283,7 @@ resource "aws_eks_node_group" "performance_nodes" {
   ]
 }
 
+
 # Outputs for convenience
 output "cluster_endpoint" {
   value = aws_eks_cluster.performance.endpoint
@@ -343,6 +302,9 @@ output "node_group_role_arn" {
 }
 
 ```
+
+📌 Note: For learning purposes, both EC2 and EKS resources are shown in the same document. In real production environments, these would always be separated into independent Terraform modules and state files.
+
 ---
 ### Create a variables.tf file
 ```'hcl
@@ -369,7 +331,7 @@ output "app_server_ip" {
 terraform -v
 ```
 ---
-### Configure aws configure on Terraform
+### Configure AWS CLI for Terraform
 
 **✅ What do you need**
 - Access Key ID
@@ -413,7 +375,7 @@ Default region name [None]: us-east-1     <can be any other region, but us-east-
 Default output format [None]: json
 ```
 ---
-### Set up a not root USER at IAM
+### Set up a non-root IAM user
 
 To execute the plan on Terraform, you'll need a USER not ROOT on AWS, to do that, follow the steps below:
 
@@ -677,7 +639,7 @@ kubectl get svc
 - Pay attention to Kubernetes costs at AWS, usually the daily costs are expensive.
 
 ---
-## Low-cost Deployment (EC2 + Docker)
+## 💸 Low-cost Deployment (EC2 + Docker)
 
 Low-Cost Application Deployment on AWS (EC2 + Docker + Terraform)
 
@@ -818,7 +780,7 @@ output "ssh_command" {
 
 ```
 ---
-### Import the existed aws_key_pair
+### Import the existing AWS key pair
 
 ```h
 terraform import aws_key_pair.deployer performance-key
