@@ -32,7 +32,7 @@ The goal is to balance realism, cost awareness, and learning value.
 ## Table of Contents
 
 - [Containerize the Application with Docker](#containerize-the-application-with-docker)
-- [Enterprise Deployment with Kubernetes (EKS)](#enterprise-deployment-with-kubernetes-eks)
+- [Enterprise Deployment with Kubernetes (EKS)](#-enterprise-deployment-with-kubernetes-eks)
 - [Low-cost Deployment (EC2 + Docker)](#low-cost-deployment-ec2--docker)
 
 ---
