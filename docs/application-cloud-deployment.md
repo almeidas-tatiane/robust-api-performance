@@ -17,6 +17,16 @@ This project intentionally provides two deployment strategies:
 
 The goal is to balance realism, cost awareness, and learning value.
 
+Example folder structure:
+```css
+docs/
+└── architecture/
+    └── architecture-diagram.png
+```
+
+![Architecture Diagram](docs/architecture/architecture-diagram.png)
+
+
 ---
 
 ## ☁️ Cloud Deployment Technologies
