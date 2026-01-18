@@ -806,5 +806,50 @@ terraform plan
 terraform apply
 ```
 ---
+## Login on EC2
+
+Use the command: ssh -i ~/.ssh/id_ed25519 ec2-user@PUBLIC_AWS_ID
+
+---
+## Update the system
+
+```
+sudo yum update -y
+```
+
+---
+## Install Docker
+
+```
+sudo amazon-linux-extras install docker -y
+```
+
+---
+### Activate and Initiate
+
+```
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+---
+### Verify Docker
+
+```
+docker --version
+```
+
+---
+### Allowing Docker without sudo
+
+```
+sudo usermod -aG docker ec2-user
+```
+- Exit
+- Login again to apply: ssh -i ~/.ssh/id_ed25519 ec2-user@PUBLIC_AWS_ID
+
+---
+
+
 
 
