@@ -1,6 +1,13 @@
-## 🚀 Application Deployment on AWS using Docker, Terraform, and EKS
+## 🚀 Application Deployment on AWS using Docker and Terraform
+### Enterprise (EKS) and Low-Cost (EC2) Strategies
+
 
 This section provides a high-level guide to deploy the Node.js API application to AWS using container-based infrastructure and Infrastructure as Code.
+
+📌 Note:
+The EKS section represents a reference enterprise setup.
+In real-world projects, EC2 and EKS infrastructure would be separated into different Terraform modules and state files.
+
 
 ---
 
@@ -174,7 +181,7 @@ resource "aws_security_group" "allow_ssh_http" {
 
 resource "aws_instance" "app_server" {
   ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 (us-east-1)
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.allow_ssh_http.name]
 
@@ -291,7 +298,7 @@ resource "aws_eks_node_group" "performance_nodes" {
     min_size     = 1
   }
 
-  instance_types = ["t2.micro"]
+  instance_types = ["t3.micro"]
 
   depends_on = [
     aws_eks_cluster.performance,
@@ -760,6 +767,7 @@ resource "aws_instance" "app_server" {
 ⚠️ Security Note:
 For learning purposes, SSH and application ports are open to 0.0.0.0/0.
 In real environments, this should be restricted to specific IP ranges.
+It is NOT intended for production use.
 
 ---
 ### Create a variables.tf file
