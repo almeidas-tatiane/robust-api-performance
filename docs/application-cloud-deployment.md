@@ -1,6 +1,4 @@
-## 🚀 Application Deployment on AWS using Docker and Terraform
-### Enterprise (EKS) and Low-Cost (EC2) Strategies
-
+## 🚀 Application Deployment on AWS using Docker
 
 This section provides a high-level guide to deploy the Node.js API application to AWS using container-based infrastructure and Infrastructure as Code.
 
@@ -61,6 +59,14 @@ The goal is to balance realism, cost awareness, and learning value.
 	- [Apply the resources](#apply-the-resources)
 	- [Access the Application](#access-the-application)
  - [Low-cost Deployment (EC2 + Docker)](#low-cost-deployment-ec2-docker)
+  - [Low-Cost Application Deployment on AWS](#low-cost-application-deployment-on-aws-ec2--docker--terraform)
+  - [Create a infra folder inside your project](#create-a-infra-folder-inside-your-project-1)
+  - [Create a main.tf file](#create-a-main.tf-file-1)
+  - [Create a variables.tf file](#create-a-variables.tf-file-1)
+  - [Create outputs.tf file](#create-outputs.tf-file-1)
+  - [Import the existed aws_key_pair](#import-the-existed-aws_key_pair)
+  - [Initialize and apply](#initialize-and-apply-1)
+
 ---
 
 ## 🧱 Step-by-Step Deployment Guide
