@@ -125,7 +125,7 @@ envConfig[environment].each { key, value -&gt;
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Flow" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Flow">
         <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -283,7 +283,7 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - Item Id" enabled="true">
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - Item Id">
             <stringProp name="JSONPostProcessor.referenceNames">id</stringProp>
             <stringProp name="JSONPostProcessor.jsonPathExprs">$._id</stringProp>
             <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -396,66 +396,36 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </HeaderManager>
           <hashTree/>
         </hashTree>
-      </hashTree>
-      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador de Iteração">
-          <stringProp name="LoopController.loops">1</stringProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </PostThreadGroup>
-      <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor- JMeter_Dynatrace" enabled="true">
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="parameters">${__TestPlanName}</stringProp>
-          <stringProp name="script">import org.apache.jmeter.protocol.http.control.Header;
-
-def vu = ctx.getThreadGroup().getName() + &quot;-&quot; + ctx.getThreadNum();
-def si = &quot;JMeter&quot; + org.apache.jmeter.util.JMeterUtils.getJMeterVersion();
-def tsn = sampler.getName() + &quot; Username - &quot;  + vars.get(&quot;username&quot;)
-def ltn
-def lsn
-
-try {
-lsn = (args.length &gt; 0) ? args[0] : &quot;No name for Test Plan&quot; //To Configure Test Plan name, add ${__TestPlanName} in Parameters as first argument
-ltn = vars.get(&quot;LoadTestName&quot;) ?: &quot;No name for Load Test&quot; //To Configure Load Test Name, add a variable LoadTestName and the value in Test Plan or User Defined Variables
-dtheaders = &quot;SI=&quot; + si + &quot;;LSN=&quot;+ lsn + &quot;;TSN=&quot; + tsn + &quot;;LTN=&quot; + ltn + &quot;;VU=&quot; + vu + &quot;;&quot;
-sampler.headerManager.removeHeaderNamed(&apos;X-Dynatrace-Test&apos;)
-sampler.headerManager.add(new Header(&apos;X-Dynatrace-Test&apos;, dtheaders))
-}
-catch(Exception e) {
-log.info (&quot;Caught &quot; + e) //Catching the exception
-}</stringProp>
-          <stringProp name="scriptLanguage">groovy</stringProp>
-        </JSR223PreProcessor>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Item by Id">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
-          <stringProp name="HTTPSampler.path">/items/${id}</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">DELETE</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+          <stringProp name="IfController.condition">${__groovy(vars.get(&quot;id&quot;)!= null &amp;&amp; vars.get(&quot;id&quot;) !=&quot;NO_ID&quot;)}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="Authorization" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer ${token}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Item by Id">
+            <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+            <stringProp name="HTTPSampler.path">/items/${id}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">DELETE</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Authorization" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
         </hashTree>
       </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
