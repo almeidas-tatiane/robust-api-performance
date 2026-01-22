@@ -5,8 +5,6 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -78,62 +76,6 @@
         <stringProp name="variableNames">name,description</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp Thread Group" enabled="true">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">1</stringProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </SetupThreadGroup>
-      <hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler - JMeter Props">
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="script">sampleResult.setIgnore();
-// vars = thread-level
-// props = test-level (shared &amp; CLI friendly)
-
-String environment = props.getProperty(&quot;environment&quot;, &quot;&quot;).toUpperCase();
-
-log.info(&quot;Environment received: ${environment}&quot;)
-
-// Mapping values
-def envConfig = [
-    &quot;LOCAL&quot;: [
-        &quot;host&quot;: vars.get(&quot;hostLocal&quot;),
-        &quot;port&quot;: vars.get(&quot;portLocal&quot;),
-        &quot;protocol&quot;: vars.get(&quot;protocolLocal&quot;)
-    ],
-    &quot;AWS&quot;: [
-        &quot;host&quot;: vars.get(&quot;hostAWS&quot;),
-        &quot;port&quot;: vars.get(&quot;portAWS&quot;),
-        &quot;protocol&quot;: vars.get(&quot;protocolAWS&quot;)
-    ]
-];
-
-if (!envConfig.containsKey(environment)) {
-    throw new IllegalArgumentException(&quot;Invalid environment: &quot; + environment);
-}
-
-// Define all the properties together 
-envConfig[environment].each { key, value -&gt;
-    if (!value) {
-        throw new IllegalStateException(&quot;Missing value for ${key} in ${environment}&quot;)
-    }
-    props.put(key, value)
-    log.info(&quot;Property set -&gt; ${key}: ${value}&quot;)
-}
-
-//Example how to execute the script in command line
-//jmeter.bat -n -t robust-api-performance.jmx -l log.csv -e -o HTMLReport -Jenvironment=AWS</stringProp>
-          <stringProp name="scriptLanguage">groovy</stringProp>
-        </JSR223Sampler>
-        <hashTree/>
-      </hashTree>
       <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="bzm - Concurrency Thread Group" enabled="true">
         <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -167,10 +109,53 @@ envConfig[environment].each { key, value -&gt;
           </collectionProp>
         </kg.apc.jmeter.timers.VariableThroughputTimer>
         <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler - JMeter Props">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">sampleResult.setIgnore();
+// vars = thread-level
+// props = test-level (shared &amp; CLI friendly)
+
+def environment = (props.get(&quot;environment&quot;) ?: &quot;LOCAL&quot;).toUpperCase()
+log.info(&quot;Environment resolved to: &quot; + environment)
+
+// Mapping values
+def envConfig = [
+    &quot;LOCAL&quot;: [
+        &quot;host&quot;: vars.get(&quot;hostLocal&quot;),
+        &quot;port&quot;: vars.get(&quot;portLocal&quot;),
+        &quot;protocol&quot;: vars.get(&quot;protocolLocal&quot;)
+    ],
+    &quot;AWS&quot;: [
+        &quot;host&quot;: vars.get(&quot;hostAWS&quot;),
+        &quot;port&quot;: vars.get(&quot;portAWS&quot;),
+        &quot;protocol&quot;: vars.get(&quot;protocolAWS&quot;)
+    ]
+];
+
+if (!envConfig.containsKey(environment)) {
+    throw new IllegalArgumentException(&quot;Invalid environment: &quot; + environment);
+}
+
+// Define all the properties together 
+envConfig[environment].each { key, value -&gt;
+    if (!value) {
+        throw new IllegalStateException(&quot;Missing value for ${key} in ${environment}&quot;)
+    }
+    props.put(key, value)
+    log.info(&quot;Property set -&gt; ${key}: ${value}&quot;)
+}
+
+//Example how to execute the script in command line
+//jmeter.bat -n -t robust-api-performance.jmx -l log.csv -e -o HTMLReport -Jenvironment=AWS</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create_User">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/register</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -226,10 +211,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="true">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/login</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -257,10 +242,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create_Item" enabled="true">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create_Item">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/items</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -297,10 +282,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get All Items" enabled="true">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get All Items">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/items</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -321,10 +306,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get by Id" enabled="true">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get by Id">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/items/${id}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -345,10 +330,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Update item by Id" enabled="true">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Update item by Id">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/items/${id}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
@@ -378,10 +363,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get by Id After Updating" enabled="true">
-          <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get by Id After Updating">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.path">/items/${id}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -408,10 +393,10 @@ file &lt;&lt; &quot;${user},${pass}\n&quot;
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Item by Id" enabled="true">
-            <stringProp name="HTTPSampler.domain">${__P(host,)}</stringProp>
-            <stringProp name="HTTPSampler.port">${__P(port,)}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${__P(protocol,)}</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Item by Id">
+            <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port,3001)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
             <stringProp name="HTTPSampler.path">/items/${id}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">DELETE</stringProp>
