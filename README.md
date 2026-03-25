@@ -222,6 +222,7 @@ Feedback, suggestions, or connections are always welcome!
 ---
 ## 🙏 Usage and Credit Notice
 To help strengthen our community, I would appreciate it if you could mention my [GitHub](https://github.com/almeidas-tatiane) and [LinkedIn](https://www.linkedin.com/in/tatianealmeida/) when using this material.
+⭐ If this project helped you, consider giving it a star!
 
 
 
